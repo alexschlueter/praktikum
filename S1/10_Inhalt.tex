@@ -1,0 +1,211 @@
+\section{Einführung}
+
+Ziel der Versuche S1 war die Beschäftigung mit Messfehlern, Fehlerfortpflanzung, Wahrscheinlichkeitsverteilungen und Signifikanz.
+
+Die wichtigsten Formeln werden im Folgenden angegeben:
+
+\textbf{Mittelwert:}
+\begin{equation}
+  \bar{x}=\frac{1}{n} \sum_{i=1}^n x_i
+  \label{mwert}
+\end{equation}
+
+Die \textbf{Varianz} gibt ein Maß für die Streuung der Werte $x_i$ um den Mittelwert:
+\begin{equation}
+  \sigma^2=\frac{1}{n-1} \sum_{i=1}^n (x_i-\bar{x})^2
+  \label{varianz}
+\end{equation}
+, wobei $\sigma$ Standardabweichung genannt wird.
+
+Grundsätzlich kann durch Messungen der tatsächliche Wert einer physikalischen Größe (fast) nie exakt gemessen werden. Grund dafür sind \textbf{Messfehler}, die jeden gemessenen Wert behaften. Diese müssen vom Experimentalphysiker abgeschätzt und möglichst minimiert werden. Zu Messfehlern zählen:
+\begin{enumerate}
+  \item \emph{Grobe} Messfehler: Werte werden falsch abgelesen oder z.B. die Apparatur angerempelt.
+  \item \emph{Systematische} Messfehler: Die Messgeräte sind nicht richtig geeicht, sodass bei jeder Messung die Werte in dieselbe Richtung abweichen
+  \item \emph{Statistische} Messfehler: Die Messbedinungen ändern sich zwischen den Messungen, sodass die Messwerte zufällig um den tatsächlichen Wert gestreut sind.
+\end{enumerate}
+
+Der \textbf{Vertrauensbereich} $\pm\nu$ gibt an, in welchem Bereich um den Mittelwert der wahre Wert mit einer Wahrscheinlichkeit von $(1-\alpha)$ liegt. Im Falle einer Normalverteilung wird dieser berechnet durch:
+\begin{equation}
+  \nu = \tau \cdot \sigma / \sqrt{n}
+  \label{vbereich}
+\end{equation}
+
+, wobei $\tau$ ein Korrekturfaktor, $\sigma$ die Standardabweichung und $n$ die Anzahl der Messwerte ist.
+
+Bei Angabe eines Messergebnisses sind nun die folgenden Werte nötig:
+
+\begin{enumerate}
+  \item Der Mittelwert $\bar{x}$, wobei bekannte systematische Abweichungen korrigiert werden sollten
+  \item Die Anzahl der Versuche $n$ und das Vertrauensniveau $(1-\alpha)$ (wenn nicht anders verlangt $(1-\alpha)=68\%$)
+  \item Die Unsicherheit $\Delta x=\tau \cdot \sigma / \sqrt{n}$
+\end{enumerate}
+
+Wird ein Wert aus mehreren fehlerbehafteten Ergebnissen errechnet, muss eine \textbf{Fehlerfortpflanzung} durchgeführt werden. Seien $a$, $b$, $c$ fehlerbehaftete Werte mit den Unsicherheiten $\Delta a$, $\Delta b$, $\Delta c$. Dann errechnet sich der Fehler der abhängigen Größe $h(a,b,c)$ durch
+\begin{equation}
+  \Delta h=\sqrt{\left(\frac{\partial h}{\partial a}\Delta a\right)^2+\left(\frac{\partial h}{\partial b}\Delta b\right)^2+\left(\frac{\partial h}{\partial c}\Delta c\right)^2}
+  \label{fehlerfortpf}
+\end{equation}
+
+Außerdem ist das Prinzip der \textbf{geltenden Ziffern} zu beachten, d.h. ein errechneter Zahlenwert ist nur so genau anzugeben, wie der an der Berechnung beteiligte Wert mit der geringsten Anzahl von geltenden Ziffern.
+
+Wenn man nun $n$ Versuche durchführt und dabei $k$-mal das Ergebnis E erhält, folgt daraus die relative Häufigkeit $\frac{k}{n}$. Es gilt nun
+\begin{equation}
+  \lim_{n \to \infty} \frac{k}{n}=p(E)
+  \label{wahrsch}
+\end{equation}
+, wobei $p(E)$ die Wahrscheinlichkeit des Eintreffens von $E$ ist.
+
+Trägt man bei einem Versuch die Ergebnisse zu ihrer relativen Häufigkeit auf, so erhält man eine Verteilungsfunktion. Bei den Verteilungsfunktionen unterscheidet man im allgemeinen zwischen:
+\begin{itemize}
+  \item Binomialverteilung: Wenn die Wahrscheinlichkeit $p$ eines Treffers über den Versuchsverlauf konstant bleibt, erhält man mit Hilfe der Binomialverteilung die Wahrscheinlichkeit $P$, dass bei $n$-maligem Durchführen des Experiments genau $k$ Treffer gelandet werden.
+\begin{equation}
+  P(\text{,,genau k Treffer''})=P(n,p,k)=\binom{n}{k}p^k\cdot (1-p)^{n-k}
+  \label{binomvert}
+\end{equation}
+  \item Poissonverteilung: Vereinfachung der Binomialverteilung für besonders große $n$ und kleine $p$:
+    \begin{equation}
+      P(\mu ,k)=\frac{\mu^k}{k!}e^{-\mu}
+      \label{poisson}
+    \end{equation}
+  \item Gaussverteilung: Von einer Gaussverteilung spricht man, wenn die Messungen alle Werte annehmen können und statistisch fallen.
+    \begin{equation}
+      f(x)=\frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}
+      \label{gauss}
+    \end{equation}
+\end{itemize}
+\section{Versuche}
+
+\subsection{Eine Minute abschätzen}
+
+\subsubsection{Durchführung}
+
+Es wird von einem Partner ohne Uhr eine Minute abgeschätzt, während der andere die Zeit stoppt. 
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{l | c | c | c | r}
+    Durchgang & Schätzung von & Methode & Ergebnis [s] & relativer Fehler\\ \hline
+    1 & Alex & 20er zählen & 49,46 & 17,57\% \\
+    2 & Josh & Durchzählen & 53,16 & 11,4\% \\
+    3 & Alex & 70 Pulsschläge zählen & 55,16 & 8,07\%
+  \end{tabular}
+  \caption{Versuch Abschätzen einer Minute}
+  \label{tab:absch_minute}
+\end{table}
+\subsubsection{Auswertung}
+Am besten lag Alex mit der Methode ,,70 Pulsschläge zählen''.
+
+\subsection{Klavierstimmer in Berlin}
+Durchführung siehe Laborbuch.
+Laut \footcite{gelbeseiten} ist die tatsächliche Anzahl von Klavierstimmern in Berlin ca. 57. Der relative Fehler beträgt
+
+\begin{equation}
+  \frac{\Delta n}{n}=\frac{212,5-57}{57}=2,72
+  \label{klavierfehler}
+\end{equation}
+
+\subsection{Höhe des Physikgebäudes}
+
+Durchfühung siehe Laborbuch.
+
+Die Methode mit dem geringsten geschätzen Fehler ist das Messen mit einem herabgelassenen Maßband. Der Fehler der Methode ,,über Stab gucken'' ist höher, da drei fehlerbehaftete Längen statt einer gemessen werden müssen. Die Methode ,,Objekt fallen lassen'' hat den größten Fehler, da die Fallzeit kurz im Verhältnis zum Fehler durch die Reaktionszeit beim Zeitstoppen ist.
+
+\subsection{Masse einer Spielkarte}
+
+Durch Anlegen eines Daumens wurden die Maße der Karte gemessen. Die Papierdichte wurde durch Vergleich mit einem Schreibblock geschätzt.
+Formeln und Ergebnisse siehe Laborbuch.
+
+\subsection{Würfel 1}
+\subsubsection{Durchführung}
+Zwei Würfel wurden je 100 Mal geworfen und die Anzahl der 6er notiert.
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{l | c}
+    Würfel & Anzahl 6er \\ \hline
+    1 & 47 \\
+    2 & 23
+  \end{tabular}
+  \caption{Versuch Würfel 1}
+  \label{tab:wuerfel1}
+\end{table}
+\subsubsection{Auswertung}
+Die Wahrscheinlichkeiten für die aufgetretenen 6er Häufigkeiten werden für beide Würfel jeweils mit Binomial- und Poissonverteilung berechnet.
+\renewcommand{\arraystretch}{1.4}
+\begin{table}[h]
+  \centering
+  \begin{tabular}{l | c | r}
+    Würfel & Binomialverteilung & Poissonverteilung \\ \hline
+    1 & $P^{100}_{1/6}(47)\approx \num{1.434d-12}$ & $P(47)\approx\num{5.97d-10}$ \\
+    2 & $P^{100}_{1/6}(23)\approx \SI{2.5}{\percent}$ & $P(23)\approx\SI{2.83}{\percent}$ \\
+  \end{tabular}
+  \caption{Wahrscheinlichkeiten für die Auftrittshäufigkeit der 6}
+  \label{tab:binvspoisson}
+\end{table}
+Die Standardabweichung bei einer Binomialverteilung errechnet sich durch
+\begin{equation}
+  \sigma=\sqrt{np(1-p)}=\sqrt{100\cdot\frac{1}{6}\cdot \frac{5}{6}}=3,727
+  \label{sbin}
+\end{equation}
+und der Erwartungswert ist
+\begin{equation}
+  \mu=\frac{100}{6}\approx 16,666
+  \label{erwwert}
+\end{equation}
+Also ergibt sich für die Würfel:
+\begin{equation}
+  \Delta\sigma_1=\frac{47-16,666}{3,727}\approx 8,138 \\
+  \label{wuerfelsigma1}
+\end{equation}
+\begin{equation}
+  \Delta\sigma_2=\frac{23-16,666}{3,727}\approx 1,699
+  \label{wuerfelsigma2}
+\end{equation}
+Die Aussage ,,Würfel 1 ist gezinkt`` lässt sich mit einer Signifikanz von $8.138\sigma$ treffen.
+
+\subsection{Würfel 2}
+Es soll die Anzahl der Würfe, bis eine 3 oder 4 gewürfelt wird, gemessen werden. Der Versuch wird $n=100$ Mal durchgeführt. Erwartete Verteilung siehe Laborbuch.
+\begin{figure}[H]
+  \centering
+  \begin{tikzpicture}
+    \begin{axis}[
+      width=15 cm,
+      height=10 cm,
+      xmin=1, xmax=18,
+      ymin=0, ymax=40,
+      xlabel=Würfe bis 3 oder 4,
+      ylabel=Häufigkeit in 100 Versuchen,
+      legend entries={gewürfelt, $100\cdot\frac{1}{3}\left(\frac{2}{3}\right)^{x-1}$}
+    ]
+      \addplot[mark=x, only marks] table {wuerfel2.txt};
+      \addplot[no marks, domain=1:18, samples=50] {100*(1/3)*(2/3)^(x-1)};
+    \end{axis}
+  \end{tikzpicture}
+  \caption{Anzahl Würfe bis 3 oder 4 in 100 Versuchen}
+  \label{fig:wuerfel2}
+\end{figure}
+
+Die tatsächliche Verteilung entspricht der Erwartung.
+
+Für ein Experiment mit einer Rate $r$, z.B. die Zerfälle eines radioaktiven Präparates, erwarten wir für den Zeitabstand aufeinanderfolgender Ereignisse eine \textbf{Poissonverteilung}:
+\begin{equation}
+  P(\mu, k)=\frac{\mu^k}{k!}e^{-\mu}
+  \label{expvert}
+\end{equation}
+mit $\mu=r\cdot T_{gesamt}$. Grund: die Poissionverteilung gilt, wenn $T_{gesamt}$ im Vergleich zu $r$ groß ist, wie z.B. bei einem radioaktiven Zerfall.
+\section{Abschließende Diskussion}
+
+In der Experimentalphysik ist jeder Messwert mit einem Messfehler behaftet, der sich aus den Komponenten grober, systematischer und statistischer Fehler zusammensetzt. Um dem tatsächlichen Wert möglichst nahe zu kommen, sollten diese minimiert werden:
+
+\begin{enumerate}
+  \item \emph{Grobe} Messfehler sollten ganz vermieden werden, z.B. durch gründlichere Versuchsdurchführung und -protokollierung
+  \item \emph{Systematische} Messfehler sollten klein gehalten oder nachträglich korrigiert werden, z.B. indem Messgeräte besser geeicht oder Abweichungen vor der eigentlichen Messreihe festgestellt werden
+  \item \emph{Statistische} Messfehler können durch eine größere Anzahl von Messungen vermindert werden. Außerdem ist der Fehler einer zusammengesetzten Größe geringer, wenn möglichst wenig fehlerbehaftete Größen in die Berechung einfließen ($\rightarrow$ Fehlerfortpflanzung)
+\end{enumerate}
+
+Die Wahl der Messmethode kann dabei entscheidend die Größe des Fehlers beeinflussen, sodass zur Messung derselben physikalischen Größe eine Methode völlig unbrauchbar sein kann, während eine andere einen sehr genauen Wert liefert. 
+Nach einer Messung muss der Fehler immer mit dem Mittelwert und der Anzahl der Messungen zusammen angegeben werden.
+
+Sollen aus einer Messung physikalische Schlussfolgerungen gezogen werden, geschieht dies immer mit einer bestimmten Signifikanz. Diese ist groß, wenn die Wahrscheinlichkeit, ein solches Ergebnis durch Zufall zu erlangen, gering ist.
+
+\nocite{anleitung-ws2014}

@@ -1,0 +1,12 @@
+.ropeproject/
+*.dvi
+*.aux
+*.log
+*.bcf
+*.aux
+*.log
+*.out
+*.run.xml
+*.toc
+*.blg
+*.bbl

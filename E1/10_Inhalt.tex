@@ -1,4 +1,227 @@
 \section{Einführung}
 \section{Versuche}
+\subsection{Aufgabe 5}
+\begin{figure}[H]
+  \centering
+  \begin{tikzpicture}
+    \begin{axis}[
+      width=15 cm,
+      height=9 cm,
+      xmin=0, xmax=30,
+      ymin=0, ymax=1.2,
+      xlabel={Angelenkte Spannung U [V]},
+      ylabel={Gemessene Stromstärke I [A]},
+      legend entries={Gleichspannung, Wechselspannung, Linearer Fit beider Spannungen},
+      legend pos=north west,
+      domain=0.1:28,
+    ]
+      \addplot plot [only marks,mark=x,thick,error bars/.cd, x dir=both, x fixed=0.25, y dir=both, y fixed=0.05]  file {GleichR.txt};
+      \addplot plot [only marks,mark=o,thick,error bars/.cd, x dir=both, x fixed=0.25, y dir=both, y fixed=0.05]  file {WechselR.txt};
+      \addplot[mark=none] {0.04*x+0.014};
+    \end{axis}
+  \end{tikzpicture}
+  \caption{Versuch mit ohmschen Widerstand (Spannung gegen Stromstärke)}
+  \label{fig:UIOhmscher}
+\end{figure}
+\begin{table}[H]
+  \centering
+  \begin{tabular}{c | c | c | c}
+    Spannungsart & Variabel m & Variabel b & Varians der Residuals\\ \hline
+    Gleichspannung & 0,04 & 0,014 & 0,00024\\
+    Wechselspannung & 0,0422 & 0,007 & 0,00077
+  \end{tabular}
+  \caption{Linearer Fit zu Abbildung \ref{fig:UIOhmscher}}
+  \label{tab:fitUIOhmscher}
+\end{table}
+\begin{figure}[H]
+  \centering
+  \begin{tikzpicture}
+    \begin{axis}[
+      width=15 cm,
+      height=9 cm,
+      xmin=0, xmax=25,
+      ymin=0, ymax=30,
+      xlabel={Gemessene Leistung P [W]},
+      ylabel={Produkt der Stromstärke I und der Spannung U [W]},
+      legend entries={Gleichspannung, Wechselspannung, Linearer Fit beider Spannungen},
+      legend pos=north west,
+      domain=0.1:28,
+    ]
+      \addplot plot [only marks,mark=x,thick,error bars/.cd, x dir=both, x fixed=0.5, y dir=both, y fixed=0.5]  file {GleichR4.txt};
+      \addplot plot [only marks,mark=o,thick,error bars/.cd, x dir=both, x fixed=0.5, y dir=both, y fixed=0.5]  file {WechselR2.txt};
+      \addplot[mark=none] {1.004*x+0.25};
+    \end{axis}
+  \end{tikzpicture}
+  \caption{Versuch mit ohmschen Widerstand (Leistung gegen Produkt aus Spannung und Stromstärke)}
+  \label{fig:PUIOhmscher}
+\end{figure}
+\begin{table}[H]
+  \centering
+  \begin{tabular}{c | c | c | c}
+    Spannungsart & Variabel m & Variabel b & Varians der Residuals\\ \hline
+    Gleichspannung & 1,005 & 0,352 & 0,004\\
+    Wechselspannung & 1,003 & 0,164 & 0,45
+  \end{tabular}
+  \caption{Linearer Fit zu Abbildung \ref{fig:PUIOhmscher}}
+  \label{tab:fitPUIOhmscher}
+\end{table}
+\subsection{Aufgabe 6}
+\begin{figure}[H]
+  \centering
+  \begin{tikzpicture}
+    \begin{axis}[
+      width=15 cm,
+      height=9 cm,
+      xmin=0, xmax=30,
+      ymin=0, ymax=1.2,
+      xlabel={Angelenkte Spannung U [V]},
+      ylabel={Gemessene Stromstärke I [A]},
+      legend entries={Wechselspannung, Linearer Fit},
+      legend pos=north west,
+      domain=0.1:28,
+    ]
+      \addplot plot [only marks,mark=x,thick,error bars/.cd, x dir=both, x fixed=0.25, y dir=both, y fixed=0.05]  file {WechselL.txt};
+      
+      \addplot[mark=none] {0.034*x-0.0096};
+    \end{axis}
+  \end{tikzpicture}
+  \caption{Versuch mit Spule (Spannung gegen Stromstärke)}
+  \label{fig:UISpule}
+\end{figure}
+\begin{table}[H]
+  \centering
+  \begin{tabular}{c | c | c | c}
+    Spannungsart & Variabel m & Variabel b & Varians der Residuals\\ \hline
+    Wechselspannung & 0,034 & -0,0096 & $2,54\cdot10^{-5}$
+  \end{tabular}
+  \caption{Linearer Fit zu Abbildung \ref{fig:UISpule}}
+  \label{tab:fitUISpule}
+\end{table}
+\begin{figure}[H]
+  \centering
+  \begin{tikzpicture}
+    \begin{axis}[
+      width=15 cm,
+      height=9 cm,
+      xmin=0, xmax=20,
+      ymin=0, ymax=25,
+      xlabel={Leistung P [W]},
+      ylabel={Produkt der Stromstärke I und der Spannung U [W]},
+      legend entries={Wechselspannung, Linearer Fit},
+      legend pos=north west,
+      domain=0.1:28,
+    ]
+      \addplot plot [only marks,mark=x,thick,error bars/.cd, x dir=both, x fixed=0.5, y dir=both, y fixed=0.05]  file {WechselL2.txt};
+      
+      \addplot[mark=none] {1.301*x-0.171};
+    \end{axis}
+  \end{tikzpicture}
+  \caption{Versuch mit Spule (Leistung gegen Produkt aus Spannung und Stromstärke)}
+  \label{fig:PUISpule}
+\end{figure}
+\begin{table}[H]
+  \centering
+  \begin{tabular}{c | c | c | c}
+    Spannungsart & Variabel m & Variabel b & Varians der Residuals\\ \hline
+    Wechselspannung & 1,301 & -0,171 & 0,14
+  \end{tabular}
+  \caption{Linearer Fit zu Abbildung \ref{fig:PUISpule}}
+  \label{tab:fitPUISpule}
+\end{table}
+\subsection{Aufgabe 7}
+\begin{figure}[H]
+  \centering
+  \begin{tikzpicture}
+    \begin{axis}[
+      width=15 cm,
+      height=9 cm,
+      xmin=0, xmax=30,
+      ymin=0, ymax=1.2,
+      xlabel={Angelenkte Spannung U [V]},
+      ylabel={Gemessene Stromstärke I [A]},
+      legend entries={Gleichspannung, Linearer Fit},
+      legend pos=north west,
+      domain=0.1:28,
+    ]
+      \addplot plot [only marks,mark=x,thick,error bars/.cd, x dir=both, x fixed=0.25, y dir=both, y fixed=0.05]  file {GleichL.txt};
+      
+      \addplot[mark=none] {0.041*x+0.016};
+    \end{axis}
+  \end{tikzpicture}
+  \caption{Versuch mit Spule}
+  \label{fig:UIGleichSpule}
+\end{figure}
+\begin{table}[H]
+  \centering
+  \begin{tabular}{c | c | c | c}
+    Spannungsart & Variabel m & Variabel b & Varians der Residuals\\ \hline
+    Wechselspannung &0,041 & 0,016 & 0,00035
+  \end{tabular}
+  \caption{Linearer Fit zu Abbildung \ref{fig:UIGleichSpule}}
+  \label{tab:fitUIGleichSpule}
+\end{table}
+\subsection{Aufgabe 8}
+\begin{figure}[H]
+  \centering
+  \begin{tikzpicture}
+    \begin{axis}[
+      width=15 cm,
+      height=9 cm,
+      xmin=0, xmax=30,
+      ymin=0, ymax=0.65,
+      xlabel={Angelenkte Spannung U [V]},
+      ylabel={Gemessene Stromstärke I [A]},
+      legend entries={Wechselspannung, Linearer Fit},
+      legend pos=north west,
+      domain=0.1:28,
+    ]
+      \addplot plot [only marks,mark=x,thick,error bars/.cd, x dir=both, x fixed=0.25, y dir=both, y fixed=0.05]  file {WechselLC.txt};
+      
+      \addplot[mark=none] {0.0229*x+0.00344};
+    \end{axis}
+  \end{tikzpicture}
+  \caption{Versuch mit Spule und Kondensator (Spannung gegen Stromstärke)}
+  \label{fig:UILC}
+\end{figure}
+\begin{table}[H]
+  \centering
+  \begin{tabular}{c | c | c | c}
+    Spannungsart & Variabel m & Variabel b & Varians der Residuals\\ \hline
+    Wechselspannung & 0,023 & 0,003 & $1,36\cdot10^{-5}$
+  \end{tabular}
+  \caption{Linearer Fit zu Abbildung \ref{fig:UILC}}
+  \label{tab:fitUILC}
+\end{table}
+\begin{figure}[H]
+  \centering
+  \begin{tikzpicture}
+    \begin{axis}[
+      width=15 cm,
+      height=9 cm,
+      xmin=0, xmax=10,
+      ymin=0, ymax=15,
+      xlabel={Leistung P [W]},
+      ylabel={Produkt der Stromstärke I und der Spannung U [W]},
+      legend entries={Wechselspannung, Linearer Fit},
+      legend pos=north west,
+      domain=0:9,
+    ]
+      \addplot plot [only marks,mark=x,thick,error bars/.cd, x dir=both, x fixed=0.5, y dir=both, y fixed=0.05]  file {WechselLC2.txt};
+      
+      \addplot[mark=none] {1.62*x+0.27};
+    \end{axis}
+  \end{tikzpicture}
+  \caption{Versuch mit Spule(Leistung gegen Produkt aus Spannung und Stromstärke)}
+  \label{fig:PUILC}
+\end{figure}
+\begin{table}[H]
+  \centering
+  \begin{tabular}{c | c | c | c}
+    Spannungsart & Variabel m & Variabel b & Varians der Residuals\\ \hline
+    Wechselspannung & 1,62 & 0.27 & 0,038
+  \end{tabular}
+  \caption{Linearer Fit zu Abbildung \ref{fig:PUILC}}
+  \label{tab:fitPUILC}
+\end{table}
 \section{Diskussion}
 \notecite{anleitung-ws2014}

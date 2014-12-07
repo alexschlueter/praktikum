@@ -1,6 +1,28 @@
 \section{Einführung}
 \section{Versuche}
+Da es keine weiteren Angaben zur Frequenz der Wechselspannung gab, wurde von den normalen 50 Hz ausgegangen.
+\subsection{Aufgabe 4}
+In dem Aufbau wird kein Verbraucher angeschlossen um die Verlustleistung des Voltmeters zu bestimmen. Diese beträgt bei maximaler Spannung, $U_{Gleich}=27V$ oder $U_{Wechsel}=25,5V$, $P_{verlust}=1W$ und nimmt bei sinkenden Spannungen weiter ab.
 \subsection{Aufgabe 5}
+An den Punkten A und B wird ein ohmscher Widerstand angeschlossen, für den bei Wechsel- und Gleichspannung die möglichen Messwerte bestimmt werden.
+\begin{table}[H]
+  \centering
+  \begin{tabular}{c | c | c | c}
+    Spannungsart & Spannung U [V] $\pm0,25$ & Stromstärke I [A] $\pm 0,05$ & Leistung P [W] $\pm0,5$\\ \hline
+     & 24 & 1,00 & 23,7\\
+     & 20 & 0,85 & 17,0\\
+     Wechselspannung & 15 & 0,68 & 9,8\\
+     & 10 & 0,43 & 4,0\\
+     & 5 & 0,20 & 1,0\\ \hline
+     & 25 & 1,00 & 24,5\\
+     & 20 & 0,82 & 16,0\\
+     Gleichspannung & 15 & 0,63 & 9,0\\
+     & 10 & 0,42 & 3,9\\
+     & 5 & 0,20 & 0,6
+  \end{tabular}
+  \caption{Messwerte des ohmschen Widerstands}
+  \label{tab:messungohm}
+\end{table}
 \begin{figure}[H]
   \centering
   \begin{tikzpicture}
@@ -23,6 +45,9 @@
   \caption{Versuch mit ohmschen Widerstand (Spannung gegen Stromstärke)}
   \label{fig:UIOhmscher}
 \end{figure}
+In dem Diagramm wurde nur der Fit für Gleichspannung eingetragen, da sich dieser fast mit dem von der Wechselspannung deckt und so eine größere Übersichtlichkeit erreicht wurde.
+
+Aufgrund des anscheinend sehr linearen Verlaufs der Messwerte für beide Spannungsarten und in Deckung mit der zu erwarteten Formel \ref{eq:Rohm} wurde mit \emph{gnuplot} nach dem \emph{least-squares}-Verfahren die Werte der beiden Spannungsarten gegen die Funktion $f(x)=m\cdot x+b$ gefittet. Ausgabe:
 \begin{table}[H]
   \centering
   \begin{tabular}{c | c | c | c}
@@ -49,12 +74,15 @@
     ]
       \addplot plot [only marks,mark=x,thick,error bars/.cd, x dir=both, x fixed=0.5, y dir=both, y fixed=0.5]  file {GleichR4.txt};
       \addplot plot [only marks,mark=o,thick,error bars/.cd, x dir=both, x fixed=0.5, y dir=both, y fixed=0.5]  file {WechselR2.txt};
-      \addplot[mark=none] {1.004*x+0.25};
+      \addplot[mark=none] {1.005*x+0.352};
     \end{axis}
   \end{tikzpicture}
   \caption{Versuch mit ohmschen Widerstand (Leistung gegen Produkt aus Spannung und Stromstärke)}
   \label{fig:PUIOhmscher}
 \end{figure}
+In dem Diagramm wurde nur der Fit für Gleichspannung eingetragen, da sich dieser fast mit dem von der Wechselspannung deckt und so eine größere Übersichtlichkeit erreicht wurde. Der Fehler des Produktes von Stromstärke und Spannung wurde nach der Gaußschen Fehlerfortpflanzung bestimmt.
+
+Aufgrund des anscheinend linearen Verlaufs der Messwerte für beide Spannungsarten und in Deckung mit der zu erwarteten Formel \ref{eq:leistung} wurde mit \emph{gnuplot} nach dem \emph{least-squares}-Verfahren die Werte der beiden Spannungsarten gegen die Funktion $f(x)=m\cdot x+b$ gefittet. Ausgabe:
 \begin{table}[H]
   \centering
   \begin{tabular}{c | c | c | c}
@@ -66,6 +94,20 @@
   \label{tab:fitPUIOhmscher}
 \end{table}
 \subsection{Aufgabe 6}
+In diesem Versuchsteil wird eine Spule an den Punkten A und B angeschlossen (Aufbau b), und für Wechselspannung die Messwerte bestimmt.
+\begin{table}[H]
+  \centering
+  \begin{tabular}{c | c | c}
+    Spannung U [V] $\pm0,25$ & Stromstärke I [A] $\pm 0,05$ & Leistung P [W] $\pm0,5$\\ \hline
+    25 & 0,85 & 16,2\\
+    20 & 0,67 & 10,8\\
+	15 & 0,50 & 6,0\\
+    10 & 0,33 & 2,5\\
+    5 & 0,20 & 1,0\\ 
+  \end{tabular}
+  \caption{Messwerte der Spule bei Wechselspannung}
+  \label{tab:messungspulewechsel}
+\end{table}
 \begin{figure}[H]
   \centering
   \begin{tikzpicture}
@@ -111,7 +153,7 @@
       legend pos=north west,
       domain=0.1:28,
     ]
-      \addplot plot [only marks,mark=x,thick,error bars/.cd, x dir=both, x fixed=0.5, y dir=both, y fixed=0.05]  file {WechselL2.txt};
+      \addplot plot [only marks,mark=x,thick,error bars/.cd, x dir=both, x fixed=0.5, y dir=both, y fixed=0.5]  file {WechselL2.txt};
       
       \addplot[mark=none] {1.301*x-0.171};
     \end{axis}
@@ -119,6 +161,7 @@
   \caption{Versuch mit Spule (Leistung gegen Produkt aus Spannung und Stromstärke)}
   \label{fig:PUISpule}
 \end{figure}
+Der Fehler des Produktes von Stromstärke und Spannung wurde nach der Gaußschen Fehlerfortpflanzung bestimmt.
 \begin{table}[H]
   \centering
   \begin{tabular}{c | c | c | c}
@@ -128,7 +171,41 @@
   \caption{Linearer Fit zu Abbildung \ref{fig:PUISpule}}
   \label{tab:fitPUISpule}
 \end{table}
+Aus dem Fit \ref{tab:fitPUISpule} ergibt sich, wenn man den $b$ Achsenabschnitt, der aus Messungenauigkeiten folgt, vernachlässigt,
+\begin{equation}
+U\cdot I=1,301\cdot P.
+\end{equation}
+Wenn man dies nun in \ref{eq:phase} einsetzt und nach dem Phasenwinkel $\varphi$ auflöst, erhält man
+\begin{equation}
+\varphi = \pm arccos(\frac{1}{1,301}) = \pm 39,77^\circ.
+\end{equation}
+Da es sich um eine Schaltung bestehend aus nur einer Spule handelt, kann man allgemein sagen, dass die Stromstärke der Spannung folgt, woraus folgt, dass gilt
+\begin{equation}
+\varphi = 39,77^\circ.
+\end{equation}
+
+Aus dem Fit \ref{tab:fitUISpule} ergibt sich unter der Vernachlässigung von b
+\begin{equation}
+I=0,034\Omega^{-1}\cdot U.
+\end{equation}
+Wenn man dies nun in die Formel \ref{eq:wirkohm} einsetzt erhält man
+\begin{equation}
+R_W=\frac{U}{I}cos(\varphi)=\frac{U}{0,034\Omega^{-1}\cdot U}cos(\varphi)=\frac{1}{0,034\Omega^{-1}}cos(\varphi)= \frac{500}{17}cos(\varphi)\Omega \approx 22,61 \Omega
+\end{equation}
 \subsection{Aufgabe 7}
+\begin{table}[H]
+  \centering
+  \begin{tabular}{c | c }
+    Spannung U [V] $\pm0,25$ & Stromstärke I [A] $\pm 0,05$ \\ \hline
+    24,5 & 1,0 \\
+    19,0 & 0,8\\
+	14,0 & 0,6 \\
+    9,1 & 0,4 \\
+    5,0 & 0,2 \\ 
+  \end{tabular}
+  \caption{Messwerte der Spule bei Wechselspannung}
+  \label{tab:messungspulegleich}
+\end{table}
 \begin{figure}[H]
   \centering
   \begin{tikzpicture}
@@ -155,11 +232,23 @@
   \centering
   \begin{tabular}{c | c | c | c}
     Spannungsart & Variabel m & Variabel b & Varians der Residuals\\ \hline
-    Wechselspannung &0,041 & 0,016 & 0,00035
+    Gleichspannung & 0,041 & 0,016 & 0,00035
   \end{tabular}
   \caption{Linearer Fit zu Abbildung \ref{fig:UIGleichSpule}}
   \label{tab:fitUIGleichSpule}
 \end{table}
+Aus dem Fit \ref{tab:fitUIGleichSpule} ergibt sich unter der Vernachlässigung von b
+\begin{equation}
+I=0,041\Omega^{-1}\cdot U.
+\end{equation}
+Wenn man dies nun in die Formel \ref{eq:Rohm} einsetzt erhält man
+\begin{equation}
+R_i=\frac{U}{I}=\frac{U}{0,041\Omega^{-1}\cdot U}=\frac{1}{0,041\Omega^{-1}}= \frac{1000}{41}\Omega = 24,\overline{39024} \Omega
+\end{equation}
+Aus der Formel \ref{eq:Induk} folgt
+\begin{equation}
+L=\sqrt{\frac{|Z|^2-R^2}{\omega^2}}\approx 0,96 H
+\end{equation}
 \subsection{Aufgabe 8}
 \begin{figure}[H]
   \centering
@@ -206,7 +295,7 @@
       legend pos=north west,
       domain=0:9,
     ]
-      \addplot plot [only marks,mark=x,thick,error bars/.cd, x dir=both, x fixed=0.5, y dir=both, y fixed=0.05]  file {WechselLC2.txt};
+      \addplot plot [only marks,mark=x,thick,error bars/.cd, x dir=both, x fixed=0.5, y dir=both, y fixed=0.5]  file {WechselLC2.txt};
       
       \addplot[mark=none] {1.62*x+0.27};
     \end{axis}
@@ -214,6 +303,7 @@
   \caption{Versuch mit Spule(Leistung gegen Produkt aus Spannung und Stromstärke)}
   \label{fig:PUILC}
 \end{figure}
+Der Fehler des Produktes von Stromstärke und Spannung wurde nach der Gaußschen Fehlerfortpflanzung bestimmt.
 \begin{table}[H]
   \centering
   \begin{tabular}{c | c | c | c}
@@ -223,5 +313,19 @@
   \caption{Linearer Fit zu Abbildung \ref{fig:PUILC}}
   \label{tab:fitPUILC}
 \end{table}
+Der Phasenwinkel lässt sich analog zu Aufgabe 6 berechnen
+\begin{equation}
+\varphi=arccos(1,62^{-1})=51,88^{\circ}.
+\end{equation}
+Ebenso kann man den Widerstand |Z| so wie bei Aufgabe 6 berechnen.
+\begin{equation}
+|Z|=\frac{1}{0,023\Omega^{-1}}=\frac{1000}{23}\Omega\approx 43,48\Omega
+\end{equation}
+
+Damit kann nun die Kapazität des Kondensators berechnet werden
+\begin{equation}
+C=\frac{1}{\omega^2L+\omega\sqrt{|Z|^2-R^2}}=10,54\mu F
+\end{equation}
 \section{Diskussion}
+
 \notecite{anleitung-ws2014}

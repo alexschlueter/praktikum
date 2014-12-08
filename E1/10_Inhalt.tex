@@ -27,6 +27,82 @@ Wir leiten die Bedingung für maximale Leistungsabgabe her:
 \end{align}
 
 \section{Versuche}
+\subsection{Aufgabe 1}
+Ziel dieses Versuches ist die Bestimmung von Leerlaufspannung $U_0$ und Innenwiderstand $R_i$ von
+\begin{enumerate}
+  \item einer einzelnen Akkumulatorzelle
+  \item drei Zellen parallel
+  \item drei Zellen in Reihe.
+\end{enumerate}
+Dazu wird ein Stöpselwiderstand $R_a$ in Reihe und ein Spannungsmessgerät zur Messung der Klemmspannung $U_{\text{Kl}}$ parallel zu den Zellen geschaltet. Der Stöpselwiderstand fungiert als Lastwiderstand, über den der Strom $I$ reguliert werden kann. Es werden jeweils 13 Spannungswerte nach Einstellen verschiedener Widerstände $R_a$ abgenommen. Darunter sind auch Werte für den Kurzschlussfall ($R_a$=0) und für nicht geschlossenen Stromkreis ($R_a=\infty$).
+\begin{table}[H]
+  \centering
+  \begin{tabular}{c c c} \toprule
+    $R_a$ [\SI{\pm1}{\ohm}] & $U_{\text{Kl}}$ [\SI{\pm .015}{V}] & $I=U_{\text{Kl}}/R_a$ [\SI{\pm .5}{mA}] \\ \midrule
+    $\infty$ & \num{1.338} & - \\
+    0 & \num{0.021} & - \\
+    5 & \num{0.303} & \num{60.6} \\
+    10 & \num{.483} & \num{48.3} \\
+    20 & \num{.717} & \num{35.8} \\
+    30 & \num{.840} & \num{28.0} \\
+    40 & \num{.930} & \num{23.3} \\
+    50 & \num{.987} & \num{19.7} \\
+    60 & \num{1.035} & \num{17.3} \\
+    70 & \num{1.071} & \num{15.3} \\
+    80 & \num{1.095} & \num{13.7} \\
+    90 & \num{1.113} & \num{12.4} \\
+    100 & \num{1.140} & \num{11.4} \\ \bottomrule
+  \end{tabular}
+  \caption{Messergebnis für eine Zelle}
+  \label{tab:einezelle}
+\end{table}
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{c c c} \toprule
+    $R_a$ [\SI{\pm 1}{\ohm}] & $U_{\text{Kl}}$ [\SI{\pm .05}{V}] & $I=U_{\text{Kl}}/R_a$ [\SI{\pm 1.2}{mA}] \\ \midrule
+    $\infty$ & \num{4.00} & - \\
+    0 & \num{0.10} & - \\
+    5 & \num{0.40} & \num{80} \\
+    10 & \num{.70} & \num{70} \\
+    20 & \num{1.15} & \num{57.5} \\
+    30 & \num{1.48} & \num{49.3} \\
+    40 & \num{1.73} & \num{43.3} \\
+    50 & \num{1.98} & \num{39.6} \\
+    60 & \num{2.12} & \num{35.3} \\
+    70 & \num{2.30} & \num{32.9} \\
+    80 & \num{2.40} & \num{30.0} \\
+    90 & \num{2.52} & \num{28.0} \\
+    100 & \num{2.61} & \num{26.1} \\ \bottomrule
+  \end{tabular}
+  \caption{Messergebnis für drei Zellen parallel}
+  \label{tab:einezelle}
+\end{table}
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{c c c} \toprule
+    $R_a$ [\SI{\pm1}{\ohm}] & $U_{\text{Kl}}$ [\SI{\pm .015}{V}] & $I=U_{\text{Kl}}/R_a$ [\SI{\pm .5}{mA}] \\ \midrule
+    $\infty$ & \num{1.323} & - \\
+    0 & \num{0.030} & - \\
+    5 & \num{0.327} & \num{65.4} \\
+    10 & \num{.495} & \num{49.5} \\
+    20 & \num{.717} & \num{35.9} \\
+    30 & \num{.843} & \num{28.1} \\
+    40 & \num{.930} & \num{23.3} \\
+    50 & \num{.990} & \num{19.8} \\
+    60 & \num{1.023} & \num{17.1} \\
+    70 & \num{1.068} & \num{15.3} \\
+    80 & \num{1.095} & \num{13.7} \\
+    90 & \num{1.113} & \num{12.4} \\
+    100 & \num{1.137} & \num{11.4} \\ \bottomrule
+  \end{tabular}
+  \caption{Messergebnis für drei Zellen in Reihe}
+  \label{tab:einezelle}
+\end{table}
+Wir beobachten bei allen drei Messungen eine Zunahme der Klemmspannung $U_{\text{Kl}}$ und Abnahme des Stromes $I$ bei höherem Lastwiderstand $R_a$. Die Werte für eine Zelle entsprechen bis auf geringe Abweichungen den Werten für drei Zellen in Reihe. Die größte Abweichung tritt für $R_a=\SI{5}{\ohm}$ auf und beträgt $\Delta U_0=(\SI{0.327}{V}-\SI{0.303}{V})/(\SI{0.303}{V})\approx \SI{8}{\percent}$.
+
+\subsection{Aufgabe 4}
 Da es keine weiteren Angaben zur Frequenz der Wechselspannung gab, wurde von den normalen 50 Hz ausgegangen.
 \begin{figure}[H] 
   \centering
@@ -34,7 +110,6 @@ Da es keine weiteren Angaben zur Frequenz der Wechselspannung gab, wurde von den
 	\caption{Schaltplan für die Aufgaben 4-8 \footcite{anleitung-ws2014}}
   \label{fig:kreisel1}
 \end{figure}
-\subsection{Aufgabe 4}
 In dem Aufbau wird kein Verbraucher angeschlossen um die Verlustleistung des Voltmeters zu bestimmen. Diese beträgt bei maximaler Spannung, $U_{Gleich}=27V$ oder $U_{Wechsel}=25,5V$, $P_{verlust}=1W$ und nimmt bei sinkenden Spannungen weiter ab.
 \subsection{Aufgabe 5}
 An den Punkten A und B wird ein ohmscher Widerstand angeschlossen, für den bei Wechsel- und Gleichspannung die möglichen Messwerte bestimmt werden.

@@ -1,4 +1,31 @@
 \section{Einführung}
+Eine reale Spannungsquelle wird durch das Modell des Innenwiderstandes beschrieben. Dabei wird gerechnet, als wäre ein Innenwiderstand $R_i$ in Reihe mit der eigentlichen Spannungsquelle mit Leerlaufspannung $U_0$ geschaltet. Es ergibt sich bei Belastung durch einen Außenwiderstand $R_a$ (Strom $I$):
+\begin{equation}
+  U_0=R_i\cdot I+R_a\cdot I
+  \label{eq:innenwiderstand}
+\end{equation}
+Die tatsächlich gemessene Spannung an der Quelle weicht von der Leerlaufspannung ab und heißt Klemmspannung $U_{\text{Kl}}$:
+\begin{equation}
+  U_{\text{Kl}}=U_0-R_i\cdot I=R_a\cdot I
+  \label{eq:klemmspannung}
+\end{equation}
+Beim Kurzschluss für $R_a=0$ fließt der endliche Strom
+\begin{equation}
+  I_{\text{Ks}}=U_0/R_i.
+  \label{eq:kurzschluss}
+\end{equation}
+Die an den Verbraucher abgegebene Leistung beträgt
+\begin{equation}
+  P=U_0^2 \frac{R_a}{(R_a+R_i)^2}.
+  \label{eq:leistung}
+\end{equation}
+Wir leiten die Bedingung für maximale Leistungsabgabe her:
+\begin{align}
+  &\frac{\mathrm{d}P}{\mathrm{d}R_a}=\frac{U_0^2}{(R_a-R_i)^2}-2\cdot \frac{R_a U_0^2}{(R_a+R_i)^3}=0 \\
+  &\implies (R_a+R_i)=2R_a \implies R_a=R_i
+  \label{eq:maxleistung}
+\end{align}
+
 \section{Versuche}
 Da es keine weiteren Angaben zur Frequenz der Wechselspannung gab, wurde von den normalen 50 Hz ausgegangen.
 \begin{figure}[H] 

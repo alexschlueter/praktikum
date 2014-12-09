@@ -154,14 +154,17 @@ Dazu wird ein Stöpselwiderstand $R_a$ in Reihe und ein Spannungsmessgerät zur 
 \end{table}
 Wir beobachten bei allen drei Messungen eine Zunahme der Klemmspannung $U_{\text{Kl}}$ und Abnahme des Stromes $I$ bei höherem Lastwiderstand $R_a$. Die Werte für eine Zelle entsprechen bis auf geringe Abweichungen den Werten für drei Zellen in Reihe. Die größte Abweichung tritt für $R_a=\SI{5}{\ohm}$ auf und beträgt $\Delta U_0=(\SI{0.327}{V}-\SI{0.303}{V})/(\SI{0.303}{V})\approx \SI{8}{\percent}$.
 
-\subsection{Aufgabe 4}
-Da es keine weiteren Angaben zur Frequenz der Wechselspannung gab, wurde von den normalen 50 Hz ausgegangen.
+\section{Versuchsreihe 2}
 \begin{figure}[H] 
   \centering
 	\includegraphics[width=0.7\textwidth]{Schaltplan.png}
 	\caption{Schaltplan für die Aufgaben 4-8 \footcite{anleitung-ws2014}}
   \label{fig:kreisel1}
 \end{figure}
+In der zweiten Versuchsreihe wird die Zusammenhänge zwischen Spannung, Stromstärke und Leistung bei verschiedenen Bauteilen insbesondere bei Wechselstrom untersucht. Dazu wird eine Schaltung entsprechend Abbildung \ref{fig:kreisel1} aufgebaut bei der mithilfe des regelbaren Widerstandes $ R_1 $ verschiedene Spannungen angelegt werden können. Die Punkte $ A $ und $ B $ werden nacheinander durch verschiedene Verbraucher verbunden. Diese bestehen nacheinander aus einem ohmschen Widerstand, einem ohmschen Widerstand und einer Spule in Reihe, und einem ohmschen Widerstand, einer Spule und einem Kondensator in Reihe. Der ohmsche Widerstand im zweiten und dritten Verbraucher dient dabei der Vernachlässigung des Innenwiderstandes von Spule und Kondensator. Reguliert man nun die Spannung mittels $ R_1 $, so kann Stromstärke und Leistung in Abhängigkeit davon gemessen werden.
+\subsection{Aufgabe 4}
+Da es keine weiteren Angaben zur Frequenz der Wechselspannung gab, wurde von den normalen 50 Hz ausgegangen.
+
 In dem Aufbau wird kein Verbraucher angeschlossen um die Verlustleistung des Voltmeters zu bestimmen. Diese beträgt bei maximaler Spannung, $U_{Gleich}=27V$ oder $U_{Wechsel}=25,5V$, $P_{verlust}=1W$ und nimmt bei sinkenden Spannungen weiter ab.
 \subsection{Aufgabe 5}
 An den Punkten A und B wird ein ohmscher Widerstand angeschlossen, für den bei Wechsel- und Gleichspannung die möglichen Messwerte bestimmt werden.
@@ -207,13 +210,13 @@ An den Punkten A und B wird ein ohmscher Widerstand angeschlossen, für den bei 
 \end{figure}
 In dem Diagramm wurde nur der Fit für Gleichspannung eingetragen, da sich dieser fast mit dem von der Wechselspannung deckt und so eine größere Übersichtlichkeit erreicht wurde.
 
-Aufgrund des anscheinend sehr linearen Verlaufs der Messwerte für beide Spannungsarten und in Deckung mit der zu erwarteten Formel \ref{eq:Rohm} wurde mit \emph{gnuplot} nach dem \emph{least-squares}-Verfahren die Werte der beiden Spannungsarten gegen die Funktion $f(x)=m\cdot x+b$ gefittet. Ausgabe:
+Aufgrund des anscheinend sehr linearen Verlaufs der Messwerte für beide Spannungsarten und in Deckung mit der zu erwarteten Formel \eqref{eq:Rohm} wurde mit \emph{gnuplot} nach dem \emph{least-squares}-Verfahren die Werte der beiden Spannungsarten gegen die Funktion $f(x)=m\cdot x$ gefittet. Ausgabe:
 \begin{table}[H]
   \centering
-  \begin{tabular}{c | c | c | c}
-    Spannungsart & Variabel m & Variabel b & Varians der Residuals\\ \hline
-    Gleichspannung & 0,04 & 0,014 & 0,00024\\
-    Wechselspannung & 0,0422 & 0,007 & 0,00077
+  \begin{tabular}{c | c | c }
+    Spannungsart & Variabel m  & Unsicherheit\\ \hline
+    Gleichspannung & 0{,}040 & 0{,}002\\
+    Wechselspannung & 0{,}042 & 0{,}003
   \end{tabular}
   \caption{Linearer Fit zu Abbildung \ref{fig:UIOhmscher}}
   \label{tab:fitUIOhmscher}
@@ -335,9 +338,9 @@ Aus dem Fit \ref{tab:fitPUISpule} ergibt sich, wenn man den $b$ Achsenabschnitt,
 \begin{equation}
 U\cdot I=1,301\cdot P.
 \end{equation}
-Wenn man dies nun in \ref{eq:phase} einsetzt und nach dem Phasenwinkel $\varphi$ auflöst, erhält man
+Wenn man dies nun in \eqref{eq:phase} einsetzt und nach dem Phasenwinkel $\varphi$ auflöst, erhält man
 \begin{equation}
-\varphi = \pm arccos(\frac{1}{1,301}) = \pm 39,77^\circ.
+\varphi = \pm \arccos\left(\frac{1}{1{,}301}\right) \approx \pm 39{,}77^\circ.
 \end{equation}
 Da es sich um eine Schaltung bestehend aus nur einer Spule handelt, kann man allgemein sagen, dass die Stromstärke der Spannung folgt, woraus folgt, dass gilt
 \begin{equation}
@@ -348,11 +351,12 @@ Aus dem Fit \ref{tab:fitUISpule} ergibt sich unter der Vernachlässigung von b
 \begin{equation}
 I=0,034\Omega^{-1}\cdot U.
 \end{equation}
-Wenn man dies nun in die Formel \ref{eq:wirkohm} einsetzt erhält man
+Wenn man dies nun in die Formel \eqref{eq:wirkohm} einsetzt erhält man
 \begin{equation}
-R_W=\frac{U}{I}cos(\varphi)=\frac{U}{0,034\Omega^{-1}\cdot U}cos(\varphi)=\frac{1}{0,034\Omega^{-1}}cos(\varphi)= \frac{500}{17}cos(\varphi)\Omega \approx 22,61 \Omega
+R_W=\frac{U}{I}\cos(\varphi)=\frac{U}{0,034\Omega^{-1}\cdot U}\cos(\varphi)=\frac{1}{0,034\Omega^{-1}}\cos(\varphi)= \frac{500}{17}\cos(\varphi)\Omega \approx 22,61 \Omega
 \end{equation}
 \subsection{Aufgabe 7}
+In diesem Versuchsteil wird bei gleichem Aufbau wie in Aufgabe 6 eine Gleichspannung angelegt. Da der Wirkwiderstand der Spule bei Gleichstrom 0 wird, kann so der Innenwiderstand der Spule bestimmt werden.
 \begin{table}[H]
   \centering
   \begin{tabular}{c | c }
@@ -405,11 +409,12 @@ Wenn man dies nun in die Formel \ref{eq:Rohm} einsetzt erhält man
 \begin{equation}
 R_i=\frac{U}{I}=\frac{U}{0,041\Omega^{-1}\cdot U}=\frac{1}{0,041\Omega^{-1}}= \frac{1000}{41}\Omega = 24,\overline{39024} \Omega
 \end{equation}
-Aus der Formel \ref{eq:Induk} folgt
+Aus der Formel \eqref{eq:Induk} folgt
 \begin{equation}
-L=\sqrt{\frac{|Z|^2-R^2}{\omega^2}}\approx 0,96 H
+L=\sqrt{\frac{|Z|^2-R^2}{\omega^2}}\approx 0,052~\si{\henry}
 \end{equation}
 \subsection{Aufgabe 8}
+In diesem Versuchsteil wird zusätzlich ein Kondensator in Reihe geschaltet. Daraufhin wird Wechselspannung angelegt, und die Stromstärke und Leistung abhängig davon gemessen.
 \begin{figure}[H]
   \centering
   \begin{tikzpicture}
@@ -484,8 +489,8 @@ Ebenso kann man den Widerstand |Z| so wie bei Aufgabe 6 berechnen.
 
 Damit kann nun die Kapazität des Kondensators berechnet werden
 \begin{equation}
-C=\frac{1}{\omega^2L+\omega\sqrt{|Z|^2-R^2}}=10,54\mu F
+C=\frac{1}{\omega^2L+\omega\sqrt{|Z|^2-R^2}}=\SI{60.72}{\micro\farad}
 \end{equation}
 \section{Diskussion}
-
-\notecite{anleitung-ws2014}
+Zumindest qualitativ ließen sich in allen Versuchsteilen die theoretisch ermittelten Zusammenhänge zeigen. Bei jeder Messreihe ließ sich Spannung gegen Stromstärke sowie Produkt aus Spannung und Stromstärke ohne Ausreißer und ohne größere Fehler linear gegeneinander Auftragen. Jedoch Fehlen bei den meisten Ergebnissen die Referenzwerte um festzustellen, ob die Werte auch qualitativ passen. Der einzige gegebene Referenzwert, die Kapazität des Kondensators, stimmt jedoch sehr gut mit unseren Ergebnissen überein. Der von uns bestimmte Wert $ \SI{60.72}{\micro\farad} $ weicht von dem angegebenen Wert nur um etwas mehr als $ \SI{1}{\percent} $ ab. Dennoch könnte dieses gute Ergebnis durch mehrere sich aufhebende Fehler begünstigt sein.
+%\notecite{anleitung-ws2014}

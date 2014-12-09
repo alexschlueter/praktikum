@@ -25,7 +25,59 @@ Wir leiten die Bedingung für maximale Leistungsabgabe her:
   &\implies (R_a+R_i)=2R_a \implies R_a=R_i
   \label{eq:maxleistung}
 \end{align}
-
+Bei Wechselstrom wird keine konstante Spannung angelegt, sondern eine Periodisch veränderliche. In der Regel entspricht der Spannungsverlauf einer (Ko-)Sinusfunktion, jedoch sind auch andere Verläufe möglich. 
+\begin{equation}
+	U = U(t) = U_0 \sin(\omega t + \varphi_U)
+\end{equation}
+Die Stromstärke ist nur bei Ohmschen Widerständen direkt proportional zur Spannung. Bei Spule und Kondensator kommt es dagegen zu einer Phase $ \varphi = \varphi_U - \varphi_I $ zwischen Spannung und Strom.
+\begin{align}
+	&\text{Ohmscher Widerstand } R & U_R = R I&,~\varphi = 0 \\
+	&\text{Spule mit Induktivität } L & U_L = L \frac{\di I}{\di t}&,~\varphi= \frac{\pi}{2} \\
+	&\text{Kondensator mit Kapazität } C & U_C = \frac{1}{C} \int I \di t&,~\varphi = -\frac{\pi}{2}
+\end{align}
+Die Leistung bleibt das Produkt aus Spannung und Stromstärke. Jedoch ist meistens nur der Mittelwert von Interesse. Für Gleichstrom ergibt das
+\begin{equation}
+	\bar{P} = \frac{1}{T} \int_{t_0}^{t_0+T} P(t) \di t = \frac{1}{T} \int_{0}^{T} U_0 I_0 \sin^2(\omega t) \di t = \frac{U_0}{\sqrt{2}} \frac{I_0}{\sqrt{2}}
+\end{equation}
+Daher Definiert man die Effektivwerte 
+\begin{equation}
+	U_{eff} = \frac{U_0}{\sqrt{2}} \qquad\qquad I_{eff} = \frac{I_0}{\sqrt{2}}
+\end{equation}
+Im allgemeinen gilt
+\begin{equation}
+	\bar P = U_{eff}I_{eff} \cos \varphi \label{eq:phase}
+\end{equation}
+Um Wechselstrom zu messen sind Messgeräte oft zu träge. Dann erhält man den linearen Mittelwert
+\begin{equation}
+	A = \frac{1}{T} \int_{t_0}^{t_0 + T} A(t) \di t 
+\end{equation}
+Bei Sinuswellen ist dies $ 0 $. Daher wird stattdessen der Gleichspannungsteil, bzw. der Effektivwert verwendet 
+\begin{align}
+	A_= &= \frac{1}{T} \int_{t_0}^{t_0 + T} |A(t)| \di t \\
+	A_{eff} &= \sqrt{\frac{1}{T} \int_{t_0}^{t_0 + T} \big(A(t)\big)^2 \di t} 
+\end{align}
+Bei sinusförmigen Wechselstrom ergibt sich
+\begin{align}
+	I_{=} &= \frac{1}{T}\int_{0}^{T}|I_{0}\sin(\omega t)| \di t=I_{0}\frac{2}{T}\int_{0}^{\frac{T}{2}}\sin(\omega t) \di t = \frac{2}{\pi} I_0 \\
+	I_{eff}&=\sqrt{\frac{1}{T}\int_{0}^{T}I_{0}^{2}\sin^{2}(\omega t)\di t}=\sqrt{\frac{I_{0}^{2}}{2T}\int_{0}^{T}(1-\cos(2\omega t))\di t}=\frac{|I_{0}|}{\sqrt{2}}
+\end{align}
+Mit Widerständen rechnet man bei Wechselstrom mittels Scheinwiderständen. Zusammen mit der Phase lässt sich die Stromstärke in Abhängigkeit von der Zeit berechnen. Allgemein gilt
+\begin{equation}
+	|Z| = \frac{U_{eff}}{I_{eff}}
+\end{equation} Für ohmschen Widerstand, Spule und Kondensator sind Scheinwiderstand und Phase
+\begin{align}
+	&\text{Ohmscher Widerstand } R & |Z|_{R} = R &,~\varphi = 0 \label{eq:Rohm} \\
+	&\text{Spule mit Induktivität } L & |Z|_{L} = \omega L &,~\varphi= \frac{\pi}{2} \\
+	&\text{Kondensator mit Kapazität } C & |Z|_{C} = \frac{1}{\omega C} &,~\varphi = -\frac{\pi}{2}
+\end{align}
+Da im Phasenraum $ Z_{R} $ senkrecht zu $ Z_{L} $ und $ Z_{C} $ ist, ist der Gesamtscheinwiderstand bei Reihenschaltung gegeben durch
+\begin{equation}
+	|Z| = \sqrt{|Z|_{R}^2 + (|Z|_{L} - |Z|_{C})^2}~,\qquad \tan\varphi = \frac{R_{W,L} - R_{W,C}}{R_{W,R}} \label{eq:Induk}
+\end{equation}
+Für den Wirkwiderstand gilt
+\begin{equation}
+	R_W = |Z| \cos\varphi = \frac{U_{eff}}{I_{eff}} \cos\varphi \label{eq:wirkohm}
+\end{equation}
 \section{Versuche}
 \subsection{Aufgabe 1}
 Ziel dieses Versuches ist die Bestimmung von Leerlaufspannung $U_0$ und Innenwiderstand $R_i$ von

@@ -25,7 +25,59 @@ Wir leiten die Bedingung für maximale Leistungsabgabe her:
   &\implies (R_a+R_i)=2R_a \implies R_a=R_i
   \label{eq:maxleistung}
 \end{align}
-
+Bei Wechselstrom wird keine konstante Spannung angelegt, sondern eine Periodisch veränderliche. In der Regel entspricht der Spannungsverlauf einer (Ko-)Sinusfunktion, jedoch sind auch andere Verläufe möglich. 
+\begin{equation}
+	U = U(t) = U_0 \sin(\omega t + \varphi_U)
+\end{equation}
+Die Stromstärke ist nur bei Ohmschen Widerständen direkt proportional zur Spannung. Bei Spule und Kondensator kommt es dagegen zu einer Phase $ \varphi = \varphi_U - \varphi_I $ zwischen Spannung und Strom.
+\begin{align}
+	&\text{Ohmscher Widerstand } R & U_R = R I&,~\varphi = 0 \\
+	&\text{Spule mit Induktivität } L & U_L = L \frac{\di I}{\di t}&,~\varphi= \frac{\pi}{2} \\
+	&\text{Kondensator mit Kapazität } C & U_C = \frac{1}{C} \int I \di t&,~\varphi = -\frac{\pi}{2}
+\end{align}
+Die Leistung bleibt das Produkt aus Spannung und Stromstärke. Jedoch ist meistens nur der Mittelwert von Interesse. Für Gleichstrom ergibt das
+\begin{equation}
+	\bar{P} = \frac{1}{T} \int_{t_0}^{t_0+T} P(t) \di t = \frac{1}{T} \int_{0}^{T} U_0 I_0 \sin^2(\omega t) \di t = \frac{U_0}{\sqrt{2}} \frac{I_0}{\sqrt{2}}
+\end{equation}
+Daher Definiert man die Effektivwerte 
+\begin{equation}
+	U_{eff} = \frac{U_0}{\sqrt{2}} \qquad\qquad I_{eff} = \frac{I_0}{\sqrt{2}}
+\end{equation}
+Im allgemeinen gilt
+\begin{equation}
+	\bar P = U_{eff}I_{eff} \cos \varphi \label{eq:phase}
+\end{equation}
+Um Wechselstrom zu messen sind Messgeräte oft zu träge. Dann erhält man den linearen Mittelwert
+\begin{equation}
+	A = \frac{1}{T} \int_{t_0}^{t_0 + T} A(t) \di t 
+\end{equation}
+Bei Sinuswellen ist dies $ 0 $. Daher wird stattdessen der Gleichspannungsteil, bzw. der Effektivwert verwendet 
+\begin{align}
+	A_= &= \frac{1}{T} \int_{t_0}^{t_0 + T} |A(t)| \di t \\
+	A_{eff} &= \sqrt{\frac{1}{T} \int_{t_0}^{t_0 + T} \big(A(t)\big)^2 \di t} 
+\end{align}
+Bei sinusförmigen Wechselstrom ergibt sich
+\begin{align}
+	I_{=} &= \frac{1}{T}\int_{0}^{T}|I_{0}\sin(\omega t)| \di t=I_{0}\frac{2}{T}\int_{0}^{\frac{T}{2}}\sin(\omega t) \di t = \frac{2}{\pi} I_0 \\
+	I_{eff}&=\sqrt{\frac{1}{T}\int_{0}^{T}I_{0}^{2}\sin^{2}(\omega t)\di t}=\sqrt{\frac{I_{0}^{2}}{2T}\int_{0}^{T}(1-\cos(2\omega t))\di t}=\frac{|I_{0}|}{\sqrt{2}}
+\end{align}
+Mit Widerständen rechnet man bei Wechselstrom mittels Scheinwiderständen. Zusammen mit der Phase lässt sich die Stromstärke in Abhängigkeit von der Zeit berechnen. Allgemein gilt
+\begin{equation}
+	|Z| = \frac{U_{eff}}{I_{eff}}
+\end{equation} Für ohmschen Widerstand, Spule und Kondensator sind Scheinwiderstand und Phase
+\begin{align}
+	&\text{Ohmscher Widerstand } R & |Z|_{R} = R &,~\varphi = 0 \label{eq:Rohm} \\
+	&\text{Spule mit Induktivität } L & |Z|_{L} = \omega L &,~\varphi= \frac{\pi}{2} \\
+	&\text{Kondensator mit Kapazität } C & |Z|_{C} = \frac{1}{\omega C} &,~\varphi = -\frac{\pi}{2}
+\end{align}
+Da im Phasenraum $ Z_{R} $ senkrecht zu $ Z_{L} $ und $ Z_{C} $ ist, ist der Gesamtscheinwiderstand bei Reihenschaltung gegeben durch
+\begin{equation}
+	|Z| = \sqrt{|Z|_{R}^2 + (|Z|_{L} - |Z|_{C})^2}~,\qquad \tan\varphi = \frac{R_{W,L} - R_{W,C}}{R_{W,R}} \label{eq:Induk}
+\end{equation}
+Für den Wirkwiderstand gilt
+\begin{equation}
+	R_W = |Z| \cos\varphi = \frac{U_{eff}}{I_{eff}} \cos\varphi \label{eq:wirkohm}
+\end{equation}
 \section{Versuche}
 \subsection{Aufgabe 1}
 Ziel dieses Versuches ist die Bestimmung von Leerlaufspannung $U_0$ und Innenwiderstand $R_i$ von
@@ -172,14 +224,17 @@ Anhang von \cref{eq:leistung} kann mithilfe der Werte für $U_0$, $R_i$ aus dem 
   \label{fig:leistunga2}
 \end{figure}
 
-\subsection{Aufgabe 4}
-Da es keine weiteren Angaben zur Frequenz der Wechselspannung gab, wurde von den normalen 50 Hz ausgegangen.
+\section{Versuchsreihe 2}
 \begin{figure}[H] 
   \centering
 	\includegraphics[width=0.7\textwidth]{Schaltplan.png}
 	\caption{Schaltplan für die Aufgaben 4-8 \footcite{anleitung-ws2014}}
   \label{fig:kreisel1}
 \end{figure}
+In der zweiten Versuchsreihe wird die Zusammenhänge zwischen Spannung, Stromstärke und Leistung bei verschiedenen Bauteilen insbesondere bei Wechselstrom untersucht. Dazu wird eine Schaltung entsprechend Abbildung \ref{fig:kreisel1} aufgebaut bei der mithilfe des regelbaren Widerstandes $ R_1 $ verschiedene Spannungen angelegt werden können. Die Punkte $ A $ und $ B $ werden nacheinander durch verschiedene Verbraucher verbunden. Diese bestehen nacheinander aus einem ohmschen Widerstand, einem ohmschen Widerstand und einer Spule in Reihe, und einem ohmschen Widerstand, einer Spule und einem Kondensator in Reihe. Der ohmsche Widerstand im zweiten und dritten Verbraucher dient dabei der Vernachlässigung des Innenwiderstandes von Spule und Kondensator. Reguliert man nun die Spannung mittels $ R_1 $, so kann Stromstärke und Leistung in Abhängigkeit davon gemessen werden.
+\subsection{Aufgabe 4}
+Da es keine weiteren Angaben zur Frequenz der Wechselspannung gab, wurde von den normalen 50 Hz ausgegangen.
+
 In dem Aufbau wird kein Verbraucher angeschlossen um die Verlustleistung des Voltmeters zu bestimmen. Diese beträgt bei maximaler Spannung, $U_{Gleich}=27V$ oder $U_{Wechsel}=25,5V$, $P_{verlust}=1W$ und nimmt bei sinkenden Spannungen weiter ab.
 \subsection{Aufgabe 5}
 An den Punkten A und B wird ein ohmscher Widerstand angeschlossen, für den bei Wechsel- und Gleichspannung die möglichen Messwerte bestimmt werden.
@@ -225,13 +280,13 @@ An den Punkten A und B wird ein ohmscher Widerstand angeschlossen, für den bei 
 \end{figure}
 In dem Diagramm wurde nur der Fit für Gleichspannung eingetragen, da sich dieser fast mit dem von der Wechselspannung deckt und so eine größere Übersichtlichkeit erreicht wurde.
 
-Aufgrund des anscheinend sehr linearen Verlaufs der Messwerte für beide Spannungsarten und in Deckung mit der zu erwarteten Formel \ref{eq:Rohm} wurde mit \emph{gnuplot} nach dem \emph{least-squares}-Verfahren die Werte der beiden Spannungsarten gegen die Funktion $f(x)=m\cdot x+b$ gefittet. Ausgabe:
+Aufgrund des anscheinend sehr linearen Verlaufs der Messwerte für beide Spannungsarten und in Deckung mit der zu erwarteten Formel \eqref{eq:Rohm} wurde mit \emph{gnuplot} nach dem \emph{least-squares}-Verfahren die Werte der beiden Spannungsarten gegen die Funktion $f(x)=m\cdot x$ gefittet. Ausgabe:
 \begin{table}[H]
   \centering
-  \begin{tabular}{c | c | c | c}
-    Spannungsart & Variabel m & Variabel b & Varians der Residuals\\ \hline
-    Gleichspannung & 0,04 & 0,014 & 0,00024\\
-    Wechselspannung & 0,0422 & 0,007 & 0,00077
+  \begin{tabular}{c | c | c }
+    Spannungsart & Variabel m  & Unsicherheit\\ \hline
+    Gleichspannung & 0{,}040 & 0{,}002\\
+    Wechselspannung & 0{,}042 & 0{,}003
   \end{tabular}
   \caption{Linearer Fit zu Abbildung \ref{fig:UIOhmscher}}
   \label{tab:fitUIOhmscher}
@@ -353,9 +408,9 @@ Aus dem Fit \ref{tab:fitPUISpule} ergibt sich, wenn man den $b$ Achsenabschnitt,
 \begin{equation}
 U\cdot I=1,301\cdot P.
 \end{equation}
-Wenn man dies nun in \ref{eq:phase} einsetzt und nach dem Phasenwinkel $\varphi$ auflöst, erhält man
+Wenn man dies nun in \eqref{eq:phase} einsetzt und nach dem Phasenwinkel $\varphi$ auflöst, erhält man
 \begin{equation}
-\varphi = \pm arccos(\frac{1}{1,301}) = \pm 39,77^\circ.
+\varphi = \pm \arccos\left(\frac{1}{1{,}301}\right) \approx \pm 39{,}77^\circ.
 \end{equation}
 Da es sich um eine Schaltung bestehend aus nur einer Spule handelt, kann man allgemein sagen, dass die Stromstärke der Spannung folgt, woraus folgt, dass gilt
 \begin{equation}
@@ -366,11 +421,12 @@ Aus dem Fit \ref{tab:fitUISpule} ergibt sich unter der Vernachlässigung von b
 \begin{equation}
 I=0,034\Omega^{-1}\cdot U.
 \end{equation}
-Wenn man dies nun in die Formel \ref{eq:wirkohm} einsetzt erhält man
+Wenn man dies nun in die Formel \eqref{eq:wirkohm} einsetzt erhält man
 \begin{equation}
-R_W=\frac{U}{I}cos(\varphi)=\frac{U}{0,034\Omega^{-1}\cdot U}cos(\varphi)=\frac{1}{0,034\Omega^{-1}}cos(\varphi)= \frac{500}{17}cos(\varphi)\Omega \approx 22,61 \Omega
+R_W=\frac{U}{I}\cos(\varphi)=\frac{U}{0,034\Omega^{-1}\cdot U}\cos(\varphi)=\frac{1}{0,034\Omega^{-1}}\cos(\varphi)= \frac{500}{17}\cos(\varphi)\Omega \approx 22,61 \Omega
 \end{equation}
 \subsection{Aufgabe 7}
+In diesem Versuchsteil wird bei gleichem Aufbau wie in Aufgabe 6 eine Gleichspannung angelegt. Da der Wirkwiderstand der Spule bei Gleichstrom 0 wird, kann so der Innenwiderstand der Spule bestimmt werden.
 \begin{table}[H]
   \centering
   \begin{tabular}{c | c }
@@ -423,11 +479,12 @@ Wenn man dies nun in die Formel \ref{eq:Rohm} einsetzt erhält man
 \begin{equation}
 R_i=\frac{U}{I}=\frac{U}{0,041\Omega^{-1}\cdot U}=\frac{1}{0,041\Omega^{-1}}= \frac{1000}{41}\Omega = 24,\overline{39024} \Omega
 \end{equation}
-Aus der Formel \ref{eq:Induk} folgt
+Aus der Formel \eqref{eq:Induk} folgt
 \begin{equation}
-L=\sqrt{\frac{|Z|^2-R^2}{\omega^2}}\approx 0,96 H
+L=\sqrt{\frac{|Z|^2-R^2}{\omega^2}}\approx 0,052~\si{\henry}
 \end{equation}
 \subsection{Aufgabe 8}
+In diesem Versuchsteil wird zusätzlich ein Kondensator in Reihe geschaltet. Daraufhin wird Wechselspannung angelegt, und die Stromstärke und Leistung abhängig davon gemessen.
 \begin{figure}[H]
   \centering
   \begin{tikzpicture}
@@ -502,10 +559,10 @@ Ebenso kann man den Widerstand |Z| so wie bei Aufgabe 6 berechnen.
 
 Damit kann nun die Kapazität des Kondensators berechnet werden
 \begin{equation}
-C=\frac{1}{\omega^2L+\omega\sqrt{|Z|^2-R^2}}=10,54\mu F
+C=\frac{1}{\omega^2L+\omega\sqrt{|Z|^2-R^2}}=\SI{60.72}{\micro\farad}
 \end{equation}
 \section{Diskussion}
-\subsection{Aufgabe 1/2}
+\subsection{Versuchsreihe 1}
 Im ersten Versuch wurde überprüft, ob das Modell des Innenwiderstandes das reale Verhalten eines Akkumulators als Spannungsquelle gut beschreiben kann. Der offensichtlich lineare Zusammenhang in \cref{fig:fita1} bestätigt dies für alle drei Messreihen.
 Allerdings wurde im Versuch ein Vorwiderstand vor den Akku geschaltet, um den Effekt deutlicher sichtbar zu machen. Anhand des Farbcodes wurde ermittelt, dass dieser bei $R_V=\SI{18}{\ohm}\pm \SI{1}{\percent}$ liegt. Die relative Abweichung zum gemessenen Innenwiderstand beträgt
 \begin{itemize}
@@ -516,4 +573,6 @@ Allerdings wurde im Versuch ein Vorwiderstand vor den Akku geschaltet, um den Ef
 Es fällt auf, dass die gemessenen Innenwiderstände systematisch unterhalb des erwarteten Wertes liegen. Das Modell scheint also die Realität bei einer Zelle sehr gut zu beschreiben, während es bei mehreren Zellen ungenauer wird. \\
 
 Die an den Verbraucher abgegebene Leistung scheint nach \cref{fig:leistunga2} sehr gut durch den Zusammenhang aus \cref{eq:leistung} beschrieben zu werden. Da der Graph der Funktion aus \cref{eq:leistung} sehr gut mit den Messpunkten übereinstimmt, liegt auch das Maximum der Leistung beim berechneten Außenwiderstand $R_a=R_i$.
+\subsection{Versuchsreihe 2}
+Zumindest qualitativ ließen sich in allen Versuchsteilen die theoretisch ermittelten Zusammenhänge zeigen. Bei jeder Messreihe ließ sich Spannung gegen Stromstärke sowie Produkt aus Spannung und Stromstärke ohne Ausreißer und ohne größere Fehler linear gegeneinander Auftragen. Jedoch Fehlen bei den meisten Ergebnissen die Referenzwerte um festzustellen, ob die Werte auch qualitativ passen. Der einzige gegebene Referenzwert, die Kapazität des Kondensators, stimmt jedoch sehr gut mit unseren Ergebnissen überein. Der von uns bestimmte Wert $ \SI{60.72}{\micro\farad} $ weicht von dem angegebenen Wert nur um etwas mehr als $ \SI{1}{\percent} $ ab. Dennoch könnte dieses gute Ergebnis durch mehrere sich aufhebende Fehler begünstigt sein.
 \notecite{anleitung-ws2014}

@@ -39,7 +39,7 @@ Dazu wird ein Stöpselwiderstand $R_a$ in Reihe und ein Spannungsmessgerät zur 
   \centering
   \begin{tabular}{c c c} \toprule
     $R_a$ [\SI{\pm1}{\ohm}] & $U_{\text{Kl}}$ [\SI{\pm .015}{V}] & $I=U_{\text{Kl}}/R_a$ [\SI{\pm .5}{mA}] \\ \midrule
-    $\infty$ & \num{1.338} & - \\
+    $\infty$ & \num{1.338} & 0 \\
     0 & \num{0.021} & - \\
     5 & \num{0.303} & \num{60.6} \\
     10 & \num{.483} & \num{48.3} \\
@@ -61,7 +61,7 @@ Dazu wird ein Stöpselwiderstand $R_a$ in Reihe und ein Spannungsmessgerät zur 
   \centering
   \begin{tabular}{c c c} \toprule
     $R_a$ [\SI{\pm 1}{\ohm}] & $U_{\text{Kl}}$ [\SI{\pm .05}{V}] & $I=U_{\text{Kl}}/R_a$ [\SI{\pm 1.2}{mA}] \\ \midrule
-    $\infty$ & \num{4.00} & - \\
+    $\infty$ & \num{4.00} & 0 \\
     0 & \num{0.10} & - \\
     5 & \num{0.40} & \num{80} \\
     10 & \num{.70} & \num{70} \\
@@ -83,7 +83,7 @@ Dazu wird ein Stöpselwiderstand $R_a$ in Reihe und ein Spannungsmessgerät zur 
   \centering
   \begin{tabular}{c c c} \toprule
     $R_a$ [\SI{\pm1}{\ohm}] & $U_{\text{Kl}}$ [\SI{\pm .015}{V}] & $I=U_{\text{Kl}}/R_a$ [\SI{\pm .5}{mA}] \\ \midrule
-    $\infty$ & \num{1.323} & - \\
+    $\infty$ & \num{1.323} & 0 \\
     0 & \num{0.030} & - \\
     5 & \num{0.327} & \num{65.4} \\
     10 & \num{.495} & \num{49.5} \\
@@ -100,7 +100,77 @@ Dazu wird ein Stöpselwiderstand $R_a$ in Reihe und ein Spannungsmessgerät zur 
   \caption{Messergebnis für drei Zellen in Reihe}
   \label{tab:einezelle}
 \end{table}
-Wir beobachten bei allen drei Messungen eine Zunahme der Klemmspannung $U_{\text{Kl}}$ und Abnahme des Stromes $I$ bei höherem Lastwiderstand $R_a$. Die Werte für eine Zelle entsprechen bis auf geringe Abweichungen den Werten für drei Zellen in Reihe. Die größte Abweichung tritt für $R_a=\SI{5}{\ohm}$ auf und beträgt $\Delta U_0=(\SI{0.327}{V}-\SI{0.303}{V})/(\SI{0.303}{V})\approx \SI{8}{\percent}$.
+Wir beobachten bei allen drei Messungen eine Zunahme der Klemmspannung $U_{\text{Kl}}$ und Abnahme des Stromes $I$ bei höherem Lastwiderstand $R_a$. Die Werte für eine Zelle entsprechen bis auf geringe Abweichungen den Werten für drei Zellen in Reihe. Die größte Abweichung tritt für $R_a=\SI{5}{\ohm}$ auf und beträgt $\Delta U_0=(\SI{0.327}{V}-\SI{0.303}{V})/(\SI{0.303}{V})\approx \SI{8}{\percent}$.\\
+
+Aus \cref{eq:klemmspannung} erwarten wir einen linearen Zusammenhang zwischen Klemmspannung und Strom. Wir fitten also mit gnuplot nach dem \textit{least-squares}-Verfahren gegen $U_{\text{Kl}}(I)=U_0-R_i\cdot I$. Ausgabe:
+\begin{table}[H]
+  \centering
+  \begin{tabular}{c c c} \toprule
+    Messung & $U_0$ [\si{V}] & $R_i$ [\si{\ohm}] \\ \midrule
+    1 Zelle & \num{1.33(1)} & \num{17.2(2)} \\
+    3 Zellen parallel & \num{3.79(7)} & \num{44.9(16)} \\
+    3 Zellen in Reihe & \num{1.30(1)} & \num{15.6(4)}
+  \end{tabular}
+  \caption{Klemmspannung und Innenwiderstand aus Fit}
+  \label{tab:fita1}
+\end{table}
+
+\begin{figure}[H]
+  \centering
+  \begin{tikzpicture}
+    \begin{axis}[
+      width=15 cm,
+      height=9 cm,
+      xmin=-0.5, xmax=82,
+      ymin=0, ymax=4.1,
+      xlabel={Strom $I$ [\si{mA}]},
+      ylabel={Klemmspannung $U_{\text{Kl}}$ [\si{V}]},
+      legend entries={1 Zelle, 3 Zellen parallel, 3 Zellen in Reihe, $\num{1.33}-\num{0.0172}x$, $\num{3.79}-\num{0.0449}x$, $\num{1.30}-\num{0.0156}x$},
+      legend pos=north east,
+      domain=0:80,
+    ]
+    \addplot+[only marks,error bars/.cd, x dir=both, x fixed=0.5, y dir=both, y fixed=0.015]  file {1zelle.txt};
+    \addplot+[only marks,error bars/.cd, x dir=both, x fixed=1.2, y dir=both, y fixed=0.05]  file {3zellen_parallel.txt};
+    \addplot+[only marks,error bars/.cd, x dir=both, x fixed=0.5, y dir=both, y fixed=0.015]  file {3zellen_reihe.txt};
+    \pgfplotsset{cycle list shift=-3};
+    \addplot+[mark=none] {1.33-0.0172*x};
+    \addplot+[mark=none] {3.79-0.0449*x};
+    \addplot+[mark=none] {1.30-0.0156*x};
+    \end{axis}
+  \end{tikzpicture}
+  \caption{Klemmspannung $U_{\text{Kl}}$ abhängig vom Strom $I$ mit eingezeichnetem Fit}
+  \label{fig:fita1}
+\end{figure}
+\section{Aufgabe 2}
+Anhang von \cref{eq:leistung} kann mithilfe der Werte für $U_0$, $R_i$ aus dem vorherigen Aufgabenteil die an den Verbraucher abgegebene Leistung $P$ berechnet werden.
+
+\begin{figure}[H]
+  \centering
+  \begin{tikzpicture}
+    \begin{axis}[
+      width=12 cm,
+      height=9 cm,
+      xmin=4, xmax=101,
+      ymin=10, ymax=100,
+      xlabel={Außenwiderstand $R_a$ [\si{\ohm}]},
+      ylabel={Leistung am Verbraucher $P$ [\si{mW}]},
+      legend style={text height=3.4ex},
+      legend entries={1 Zelle, 3 Zellen parallel, 3 Zellen in Reihe,$10^3\cdot \frac{R_a\cdot \SI{1.33}{V}}{(R_a+\SI{17.2}{\ohm})^2}$, $10^3\cdot \frac{R_a\cdot \SI{3.79}{V}}{(R_a+\SI{44.9}{\ohm})^2}$, $10^3\cdot \frac{R_a\cdot \SI{1.30}{V}}{(R_a+\SI{15.6}{\ohm})^2}$},
+      legend pos=outer north east,                                  
+      domain=5:100,                                                 
+    ]
+    \addplot+[only marks,table/y expr=1000*\thisrowno{0}*(1.33)^2/(\thisrowno{0}+17.2)^2, error bars/.cd, x dir=both, x fixed=0.5, y dir=both, y fixed=0.001]  table {widerstaende.txt};
+    \addplot+[only marks,table/y expr=1000*\thisrowno{0}*(3.79)^2/(\thisrowno{0}+44.9)^2, error bars/.cd, x dir=both, x fixed=0.5, y dir=both, y fixed=0.001]  table {widerstaende.txt};
+    \addplot+[only marks,table/y expr=1000*\thisrowno{0}*(1.30)^2/(\thisrowno{0}+15.6)^2, error bars/.cd, x dir=both, x fixed=0.5, y dir=both, y fixed=0.001]  table {widerstaende.txt};
+    \pgfplotsset{cycle list shift=-3};
+    \addplot+[mark=none] {1000*x*1.33^2/(x+17.2)^2};
+    \addplot+[mark=none] {1000*x*3.79^2/(x+44.9)^2};
+    \addplot+[mark=none] {1000*x*1.30^2/(x+15.6)^2};
+    \end{axis}
+  \end{tikzpicture}
+  \caption{Leistung am Verbraucher abhängig vom Außenwiderstand}
+  \label{fig:leistunga2}
+\end{figure}
 
 \subsection{Aufgabe 4}
 Da es keine weiteren Angaben zur Frequenz der Wechselspannung gab, wurde von den normalen 50 Hz ausgegangen.
@@ -435,5 +505,15 @@ Damit kann nun die Kapazität des Kondensators berechnet werden
 C=\frac{1}{\omega^2L+\omega\sqrt{|Z|^2-R^2}}=10,54\mu F
 \end{equation}
 \section{Diskussion}
+\subsection{Aufgabe 1/2}
+Im ersten Versuch wurde überprüft, ob das Modell des Innenwiderstandes das reale Verhalten eines Akkumulators als Spannungsquelle gut beschreiben kann. Der offensichtlich lineare Zusammenhang in \cref{fig:fita1} bestätigt dies für alle drei Messreihen.
+Allerdings wurde im Versuch ein Vorwiderstand vor den Akku geschaltet, um den Effekt deutlicher sichtbar zu machen. Anhand des Farbcodes wurde ermittelt, dass dieser bei $R_V=\SI{18}{\ohm}\pm \SI{1}{\percent}$ liegt. Die relative Abweichung zum gemessenen Innenwiderstand beträgt
+\begin{itemize}
+  \item Für eine Zelle: $(\SI{18}{\ohm}-\SI{17.2}{\ohm})/\SI{18}{\ohm}\approx \SI{4.4}{\percent}$
+  \item Für drei Zellen parallel: $(\SI{18}{\ohm}-\SI{44.9/3}{\ohm})/\SI{18}{\ohm}\approx \SI{16.85}{\percent}$
+  \item Für drei Zellen in Reihe: $(\SI{18}{\ohm}-\SI{15.6}{\ohm})/\SI{18}{\ohm}\approx \SI{13.3}{\percent}$
+\end{itemize}
+Es fällt auf, dass die gemessenen Innenwiderstände systematisch unterhalb des erwarteten Wertes liegen. Das Modell scheint also die Realität bei einer Zelle sehr gut zu beschreiben, während es bei mehreren Zellen ungenauer wird. \\
 
+Die an den Verbraucher abgegebene Leistung scheint nach \cref{fig:leistunga2} sehr gut durch den Zusammenhang aus \cref{eq:leistung} beschrieben zu werden. Da der Graph der Funktion aus \cref{eq:leistung} sehr gut mit den Messpunkten übereinstimmt, liegt auch das Maximum der Leistung beim berechneten Außenwiderstand $R_a=R_i$.
 \notecite{anleitung-ws2014}

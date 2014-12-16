@@ -1,0 +1,71 @@
+\subsection{Fehlerrechnung}
+\subsubsection{Ohmscher Widerstand}
+Diese Fehlerrechnung wird bei der Gleichstrombrücke und der Wechselstrombrücke mit RC-Gliedern benötigt um die Unsicherheit $ \Delta R_x $ zu bestimmen
+\begin{flalign*}
+	R_x = \frac{l}{L -l} R_2
+\end{flalign*}
+\begin{flalign*}
+	\Delta R_x &= \sqrt{\left(\frac{\partial R_x}{\partial l }  \Delta l\right)^2 + \left( \frac{\partial R_x}{\partial L }  \Delta L \right)^2 + \left( \frac{\partial R_x}{\partial R_2 }  \Delta R_2 \right)^2} \\
+	&= \sqrt{\left(\frac{L}{(L-l)^2}R_2 \delta l\right)^2 
+	+ \left( \frac{l}{(L-l)^2}R_2  \Delta L \right)^2 
+	+ \left( \frac{l}{L -l}  \Delta R_2 \right)^2}
+\end{flalign*}
+
+\subsubsection{Reihen- und Parallelschaltung}
+Da die Gesetze für Widerstände und Kapazitäten die gleiche Form haben, werden sie hier gemeinsam behandelt. Für Reihenschaltung von Widerständen bzw. Parallelschaltung von Kondensatoren gilt \begin{equation*}
+	R = R_1 + R_2
+\end{equation*}
+Der Fehler setzt sich entsprechend auch additiv zusammen
+\begin{equation*}
+	\Delta R = \Delta R_1 + \Delta R_2
+\end{equation*}
+Bei Parallelschaltung von Widerständen bzw. Reihenschaltung von Kondensatoren gilt
+\begin{equation*}
+	R = \frac{1}{\frac{1}{R_1} + \frac{1}{R_2}}
+\end{equation*}
+\begin{flalign*}
+	\Delta R &= \sqrt{\left( \frac{\partial R}{\partial R_1} \Delta R_1 \right)^2
+					    + \left( \frac{\partial R}{\partial R_2} \Delta R_2 \right)^2} \\
+			&= \sqrt{\left( \frac{\Delta R_1}{R_1^2\left(\frac{1}{R_1} + \frac{1}{R_2}\right)^2} \right)^2
+				   + \left( \frac{\Delta R_2}{R_2^2\left(\frac{1}{R_1} + \frac{1}{R_2}\right)^2} \right)^2}
+\end{flalign*}
+
+\subsubsection{Kapazitäten}
+Diese Fehlerrechnung wird bei der Errechnung der Kapazität eines Kondensator anhand der Wheatstonebrücke benötigt
+\begin{equation*}
+	C_x = \frac{L - l}{l}C_2 = \left(\frac{L}{l} - 1\right) C_2
+\end{equation*}
+\begin{flalign*}
+	\Delta C_x &= \sqrt{\left(\frac{\partial C_x}{\partial l} \Delta l\right)^2
+					 + \left(\frac{\partial C_x}{\partial L} \Delta L\right)^2
+					 + \left(\frac{\partial C_x}{\partial C_2} \Delta C_2\right)^2} \\
+		&= \sqrt{\left(\frac{L}{l^2} C_2 \Delta l\right)^2
+			   + \left(\frac{1}{l} C_2 \Delta L\right)^2
+			   + \left(\frac{L - l}{l} \Delta C_2\right)^2}
+\end{flalign*}
+
+\subsubsection{Maxwellbrücke}
+Der Fehler für den Innenwiderstand ergibt sich durch
+\begin{equation*}
+	R_x = R_2 R_3 \frac{1}{R_4}
+\end{equation*}
+\begin{flalign*}
+	\Delta R_x &= \sqrt{\left(\frac{\partial R_x}{\partial R_2} \Delta R_2\right)^2
+					  + \left(\frac{\partial R_x}{\partial R_3} \Delta R_3\right)^2
+					  + \left(\frac{\partial R_x}{\partial R_4} \Delta R_4\right)^2} \\
+			   &= \sqrt{\left(R_3 \frac{1}{R_4} \Delta R_2\right)^2
+			   		  + \left(R_2 \frac{1}{R_4} \Delta R_3\right)^2
+			   		  + \left(R_2 R_3 \frac{1}{R_4^2} \Delta R_4\right)^2} \\
+\end{flalign*}
+Der Fehler für die Induktivität ergibt sich durch
+\begin{equation*}
+	L_x = R_2 R_3 C_4
+\end{equation*}
+\begin{flalign*}
+	\Delta L_x &= \sqrt{\left(\frac{\partial L_x}{\partial R_2} \Delta R_2\right)^2
+					  + \left(\frac{\partial L_x}{\partial R_3} \Delta R_3\right)^2
+					  + \left(\frac{\partial L_x}{\partial C_4} \Delta C_4\right)^2} \\
+			   &= \sqrt{\left(R_3 C_4 \Delta R_2\right)^2
+					  + \left(R_2 C_4 \Delta R_3\right)^2
+					  + \left(R_2 R_3 \Delta C_4\right)^2} \\
+\end{flalign*}

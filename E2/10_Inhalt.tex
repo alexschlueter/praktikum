@@ -1,5 +1,59 @@
 \section{Einführung}
 \subsection{Wheatstonesche Brücke}
+Die Wheatstonesche Brücke ist eine Schaltung zur Bestimmung eines unbekannten ohmschen Widerstandes $R_1$. Dazu werden bekannte Widerstände $R_2$ bis $R_4$ so gewählt, dass der in der Mitte des Schaltbildes gemessene Strom $I_M$ verschwindet. 
+\begin{figure}[h]
+  \centering
+  \includegraphics{wheat1.jpg}
+  \caption{Wheatstonesche Brücke}
+  \label{fig:wheat1}
+\end{figure}
+\begin{figure}[h]
+  \centering
+  \includegraphics{wheatgleich.jpg}
+  \caption{Gleichstrombrücke}
+  \label{fig:wheatgleich}
+\end{figure}
+Bei der Gleichstrombrücke werden die Widerstände $R_3$ und $R_4$ durch ein Potentiometer ersetzt.
+Es gilt der Zusammenhang:
+\begin{equation}
+  R_x=\frac{l}{L-l}\cdot R_2
+  \label{eq:wheat1}
+\end{equation}
+Dabei ist $R_x$ der unbekannte Widerstand.
+\begin{figure}[H]
+  \centering
+  \includegraphics{wheatC.jpg}
+  \caption{Wechselstrombrücke (C-Bestimmung)}
+  \label{fig:wheatC}
+\end{figure}
+Die Brücke kann angepasst werden, um allgemeine komplexwertige Impedanzen zu bestimmen. Die Kapazität $C$ eines Kondensators (vgl. Schaltbild~\cref{fig:wheatC}) ergibt sich aus
+\begin{equation}
+  C_x=\frac{L-l}{l}C_2
+  \label{eq:wheatkondensator}
+\end{equation}
+\begin{figure}[H]
+  \centering
+  \includegraphics{wheatCR.jpg}
+  \caption{Wechselstrombrücke (C- und R-Bestimmung)}
+  \label{fig:wheatCR}
+\end{figure}
+Wird eine Kapazität $C_x$ mit einem ohmschen Widerstand $R_x$ in Reihe geschaltet, so können dieses mittels Wechselstrombrücke~\cref{fig:wheatCR} bestimmt werden:
+\begin{equation}
+  R_x=\frac{l}{L-l}\cdot R_2 \qquad \text{und} \qquad C_x=\frac{L-l}{l}\cdot C_2
+  \label{eq:wheatCR}
+\end{equation}
+\begin{figure}[H]
+  \centering
+  \includegraphics{maxwell.jpg}
+  \caption{Maxwell-Brücke}
+  \label{fig:maxwell}
+\end{figure}
+Durch die Maxwellbrücke (\cref{fig:maxwell}) kann eine unbekannte Induktivität $L_x$ in Serie mit einem ohmschen Widerstand $R_x$ ermittelt werden:
+\begin{equation}
+  R_x=\frac{R_3}{R_4}R_2 \qquad und \qquad L_x=R_2 R_3 C_4
+  \label{eq:maxwell}
+\end{equation}
+Die Abbildungen wurden aus \footcite{anleitung-ws2014} übernommen.
 \subsection{Thermoelement}
 \subsubsection{Seebeck-Effekt}
 Unter dem Seebeck-Effekt versteht man das Auftreten einer Spannung zwischen zwei Leiterenden, wenn  längs des Leiters ein Temperaturgradient vorliegt. Die Spannung entsteht aus dem bestreben der Elektronen von dem wärmeren Enden, mit mehr kinetischer Energie, zu dem kälteren Ende mit einer höheren Elektronendichte zu kommen. Diese auftretende Spannung nennt sich Thermospannung und ist proportional zur Temperaturdifferenz der Leiterenden. Es gilt

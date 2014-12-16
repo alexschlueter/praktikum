@@ -19,6 +19,74 @@ Der Peltier-Effekt beschreibt die Umkehrung des Seebeck-Effekts, durch einen Auf
 \end{equation}
 \section{Versuche}
 \subsection{Wheatstonesche Brücke}
+
+\subsubsection{Gleichstrombrücke}
+Für den ersten Versuchsteil wird eine Gleichstrombrücke entsprechen Abbildung \ref{fig:gleichbruecke} aufgebaut. Der Widerstand $ R_2 $ war auf dem Bauteil mit $ \SI{270}{\ohm} $ angegeben. Wir nehmen eine Unsicherheit von $ \pm\SI{.5}{\ohm} $ an. Die Gesamtlänge des Potentiometers beträgt $ L = \SI{100.0(1)}{\centi\meter} $. Nacheinander werden als unbekannter Widerstand $ R_x $ ein Widerstand mit der Kennzeichnung E4/8, ein Widerstand mit der Kennzeichnung E4/2, beide Widerstände in Reihe, beide Widerstände parallel und eine Spule angeschlossen. Die Spule verhält sich bei Gleichstrom genau wie ein ohmscher Widerstand. Bei jedem der unbekannten Widerstände wird die Stellung des Potentiometers gesucht, bei der Strom $ I_M $ verschwindet. Dazu wird zunächst ein Schutzwiderstand mit dem Strommessgerät in Reihe geschaltet um dieses vor Überlastung zu schützen. Ist der Strom fast $ 0 $ wird der Schutzwiderstand durch betätigen eines Schalters kurzgeschlossen, so dass das Potentiometer mit höherer Genauigkeit eingestellt werden kann. Wenn kein messbarer Strom mehr fließt wird die Abgleichbedingung als erfüllt angenommen, und das linke Streckenstück $ l $ als Messwert genommen. Mithilfe von \eqref{eq:Rgleich} lässt sich dann $ R_x $ errechnen. Zusammen mit der Fehlerrechnung aus dem Anhang erhalten wir so
+\begin{table}[H]
+	\centering
+	\begin{tabular}{r|cc}
+		 & $ l $ $ [\si{\centi\meter}] $ & $ R_x $ $ [\si{\ohm}] $ \\\hline
+		E4/8 & $ \num{41.8(1)} $ & $ \num{193.92(94)} $\\
+		E4/2 & $ \num{32.1(1)} $ & $ \num{127.64(66)} $\\
+		Reihenschaltung & $ \num{54.4(1)} $ & $ \num{322.11(159)} $\\
+		Parallelschaltung & $ \num{22.1(1)} $ & $ \num{76.60(48)} $\\
+		Spule & $ \num{48.4(1)} $ & $ \num{253.26(122)} $
+	\end{tabular}
+	\caption{Messwerte und errechnete Widerstände}
+\end{table}
+Die Widerstände bei Parallel- und Reihenschaltung lassen sich auch anhand der bekannten Gesetze für Parallel- und Reihenschaltung errechnen. Es gilt für Reihenschaltung
+\begin{equation*}
+	R_r = R_1 + R_2
+\end{equation*}
+und für Parallelschaltung
+\begin{equation*}
+	R_p = \frac{1}{\frac{1}{R_1} + \frac{1}{R_2}}
+\end{equation*}
+Dadurch erhalten wir rechnerische Vergleichswerte. Die Fehlerrechnung ist im Anhang
+\begin{table}[H]
+	\centering
+	\begin{tabular}{r|cc}
+			& Rechnerisch $ [\si{\ohm}] $ & Gemessen $ [\si{\ohm}] $ \\\hline
+			Reihenschaltung & $ \num{321.56(159)} $ & $ \num{322.11(159)} $\\
+			Parallelschaltung & $ \num{76,98(18)} $ & $ \num{76.60(48)} $
+	\end{tabular}
+	\caption{Vergleich mit Gesetz für Parallel- bzw. Reihenschaltung}
+\end{table}
+
+\subsubsection{Wechselstrombrücke zur Kapazitätsbestimmung}
+Bei der Wechselstrombrücke verwendet man die Verallgemeinerung von Widerständen auf Impendanzen. Der Schaltkreis wird entsprechend Abbildung \ref{fig:Cbruecke} aufgebaut. Das Oszilloskop muss in diesem Versuch anstelle des Strommessgerätes verwendet werden, da Wechselstrom angelegt wird. Normale Messgeräte sind häufig zu träge um Stromverlauf bei Wechselstrom anzuzeigen und zeigen daher stattdessen das arithmetische Mittel des Stroms an. Das arithmetische Mittel einer Sinus-Welle ist $ 0 $, so dass auch ohne Erfüllung der Abgleichbedingung ein normales Messgerät anzeigen könnte, dass kein Strom fließe. Ansonsten entspricht der Aufbau im Wesentlichen der Gleichstrombrücke. Für die Kapazität des Kondensators $ C_2 $ ist auf dem Bauteil $ C_2 = \SI{2.2}{\micro\farad} $, als Unsicherheit nehmen wir $ \pm \SI{.05}{\micro\farad} $ an. Das Potentiometer ist das selbe wie bei der Gleichstrombrücke ($ L = \SI{100.0(1)}{\centi\meter} $). Für $ C_x $ werden nacheinander ein kurzer, dicker Kondensator, ein langer, dünner Kondensator, beide in Reihe und beide parallel angeschlossen. Die Abgleichbedingung wird als erfüllt angenommen, wenn das Oszilloskop einen vernachlässigbar kleinen Ausschlag zeigt. Das linke Streckenstück des Potentiometer wird gemessen und in \eqref{eq:Cwechsel} eingesetzt. Mit der Fehlerrechnung aus dem Anhang ergeben sich die folgenden Werte
+\begin{table}[H]
+	\centering
+	\begin{tabular}{r|cc}
+		 & $ l $ $ [\si{\centi\meter}] $ & $ C_x $ $ [\si{\micro\farad}] $ \\\hline
+		 kurzer Kondensator & $ \num{80.5(01)} $ & $ \num{0.533(0013)} $\\
+		 langer Kondensator & $ \num{30.5(01)} $ & $ \num{5.013(0117)} $\\
+		 beide in Reihe & $ \num{82.0(01)} $ & $ \num{0.483(0012)} $\\
+		 beide parallel & $ \num{28.4(01)} $ & $ \num{5.546(0129)} $\\
+	\end{tabular}
+	\caption{Messwerte und errechnete Kapazitäten}
+\end{table}
+Die Gesamtkapazität der in Reihe und parallel geschalteten Kondensatoren lässt sich alternativ auch aus den Kapazitätsgesetz für Reihen- und Parallelschaltung bestimmen. Dieses lautet für Parallelschaltung
+\begin{equation*}
+	C_p = C_1 + C_2
+\end{equation*}
+und für Reihenschaltung
+\begin{equation*}
+	C_r = \frac{\frac{1}{C_1}}+{\frac{1}{C_2}}
+\end{equation*}
+Die entsprechenden Fehlerrechnungen sind im Anhang. Die daraus resultierenden Vergleichswerte lauten:
+\begin{table}[H]
+	\centering
+	\begin{tabular}{r|cc}
+		 & Rechnerisch $ [\si{\micro\farad}] $ & Gemessen $ [\si{\micro\farad}] $ \\\hline
+		 Reihenschaltung & $ \num{0.482(0093)} $ & $ \num{0.483(0012)} $ \\
+		 Parallelschaltung & $ \num{5.546(0130)} $ & $ \num{5.546(0129)} $
+	\end{tabular}
+	\caption{Vergleich mit Gesetz für Parallel- bzw. Reihenschaltung}
+\end{table}
+
+\subsubsection{Wechselstrombrücke zur Kapazitäts- und Widerstandsbestimmung eines RC-Gliedes}
+
 \subsection{Thermoelement}
 Der Versuch wird wie in dem Schema \ref{fig:Thermoaufbau} aufgebaut und das Referenzbecken wird auf $T_2=1,6^\circ C$ mit Hilfe von Eiswasser gehalten. Nun wird das Becken 1 mit Hilfe einer Heizplatte erst bis auf $T_1=100^\circ C$ erhitzt und anschließend wieder auf die Ausgangstemperatur herunter gekühlt. Um den Abkühlprozess zu beschleunigen wird langsam Eis in das Becken 1 gegeben. Während des Aufwärmens und Abkühlens wird bei regelmäßigen Temperaturabständen die Spannung am Voltmeter bestimmt.
 \begin{figure}[htbp] 

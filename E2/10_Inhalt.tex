@@ -3,13 +3,13 @@
 Die Wheatstonesche Brücke ist eine Schaltung zur Bestimmung eines unbekannten ohmschen Widerstandes $R_1$. Dazu werden bekannte Widerstände $R_2$ bis $R_4$ so gewählt, dass der in der Mitte des Schaltbildes gemessene Strom $I_M$ verschwindet. 
 \begin{figure}[h]
   \centering
-  \includegraphics{wheat1.jpg}
+  \includegraphics[width=.5\textwidth]{wheat1.jpg}
   \caption{Wheatstonesche Brücke}
   \label{fig:wheat1}
 \end{figure}
 \begin{figure}[h]
   \centering
-  \includegraphics{wheatgleich.jpg}
+  \includegraphics[width=.5\textwidth]{wheatgleich.jpg}
   \caption{Gleichstrombrücke}
   \label{fig:wheatgleich}
 \end{figure}
@@ -22,7 +22,7 @@ Es gilt der Zusammenhang:
 Dabei ist $R_x$ der unbekannte Widerstand.
 \begin{figure}[H]
   \centering
-  \includegraphics{wheatC.jpg}
+  \includegraphics[width=.5\textwidth]{wheatC.jpg}
   \caption{Wechselstrombrücke (C-Bestimmung)}
   \label{fig:wheatC}
 \end{figure}
@@ -33,7 +33,7 @@ Die Brücke kann angepasst werden, um allgemeine komplexwertige Impedanzen zu be
 \end{equation}
 \begin{figure}[H]
   \centering
-  \includegraphics{wheatCR.jpg}
+  \includegraphics[width=.5\textwidth]{wheatCR.jpg}
   \caption{Wechselstrombrücke (C- und R-Bestimmung)}
   \label{fig:wheatCR}
 \end{figure}
@@ -44,7 +44,7 @@ Wird eine Kapazität $C_x$ mit einem ohmschen Widerstand $R_x$ in Reihe geschalt
 \end{equation}
 \begin{figure}[H]
   \centering
-  \includegraphics{maxwell.jpg}
+  \includegraphics[width=.5\textwidth]{maxwell.jpg}
   \caption{Maxwell-Brücke}
   \label{fig:maxwell}
 \end{figure}
@@ -140,6 +140,28 @@ Die entsprechenden Fehlerrechnungen sind im Anhang. Die daraus resultierenden Ve
 \end{table}
 
 \subsubsection{Wechselstrombrücke zur Kapazitäts- und Widerstandsbestimmung eines RC-Gliedes}
+Genau wie bei der alleinigen Kapazitätsbestimmung muss auch die gleichzeitige Kapazitäts- und Widerstandsbestimmung aus den gleichen Gründen mit einem Oszilloskop anstelle des Strommessgerätes durchgeführt werden. Der Schaltkreis wird Abbildung \ref{fig:wheatCR} entsprechend aufgebaut. Bei der Durchführung muss beachtet werden, dass die Gesamtimpendanz $ Z_x = R_x + Z_{C_x} $ komplex ist und somit durch das zweite Potentiometer $ R_2 $ Real- und Imaginärteil gleichzeitig abgeglichen werden müssen. Das heißt, dass zum herstellen der Abgleichbedingung beide Potentiometer richtig eingestellt werden müssen. Der verwendete bekannte Kondensator $ C_2 $ und das eine Potentiometer sind die selben wie im vorherigen Versuch ($ C_2 = \SI{2.20(5)}{\micro\farad} $, $ L = \SI{100.0(1)}{\centi\meter} $). Schließt man nun verschiedene RC-Glieder, bestehend aus jeweils einem Widerstand und einem Kondensator aus den vorherigen Versuchen in Reihe geschaltet, kann die Kombination aus $ R_2 $ und $ l $ bestimmt werden, so dass die Abgleichbedingung erfüllt ist. Aus \eqref{eq:wheatCR} lässt sich $ C_x $ und $ R_x $ errechnen. Die Fehlerrechnung ist im Anhang zu finden. Wir erhalten die folgenden Werte
+\begin{table}[H]
+	\centering
+	\begin{tabular}{r|cccc}
+		& $ l $ $ [\si{\centi\meter}] $ & $ R_2 $ $ [\si{\ohm}] $ & $ R_x $ $ [\si{\ohm}] $ & $ C_x $ $ [\si{\micro\farad}] $  \\\hline
+		E4/2, kurzer Kondensator & $ \num{80.5(01)} $ & $ \num{36(4)} $ & $ \num{148.62(1656)} $ & $ \num{0.533(0013)} $\\
+		E4/8, kurzer Kondensator & $ \num{80.5(01)} $ & $ \num{51(4)} $ & $ \num{210.54(1660)} $ & $ \num{0.533(0013)} $\\
+		E4/8, langer Kondensator & $ \num{30.5(01)} $ & $ \num{441(1)} $ & $ \num{193.53(105)} $ & $ \num{5.013(0117)} $\\
+		E4/2, langer Kondensator & $ \num{30.5(01)} $ & $ \num{290(1)} $ & $ \num{127.27(077)} $ & $ \num{5.013(0117)} $\\
+	\end{tabular}
+	\caption{Messwerte und errechnete Kapazitäten, Widerstände}
+\end{table}
+
+\subsubsection{Maxwellbrücke}
+Zum gleichzeitigen Bestimmen von Innenwiderstand und Induktivität eine Spule kann die Maxwellbrücke (Abbildung \ref{fig:maxwell}) verwendet werden. Der Kondensator $ C_4 $ und der Widerstand $ R_3 $ in dieser Schaltung sind die selben wie $ C_2 $ bzw. $ R_2 $ aus den vorherigen Versuchen ($ C_4 =  \SI{2.20(5)}{\micro\farad} $, $ R_3 = \SI{270.0(5)}{\ohm} $). Ist die Abgleichbedingung erfüllt, kann mit \eqref{eq:maxwell} Induktivität und Innenwiderstand errechnet werden. Die Fehlerrechnung ist im Anhang. Bei unserer Durchführung erhielten wir
+\begin{table}[H]
+	\centering
+	\begin{tabular}{cccc}
+		$ R_2 $ $ [\si{\ohm}] $ & $ R_4 $ $ [\si{\ohm}] $ & $ R_x $ $ [\si{\ohm}] $ & $ L_x $ $ [\si{\henry}] $ \\ \hline
+		$ \num{260(5)} $ & $ \num{272(5)} $ & $ \num{258.09(688)} $ & $ \num{0.1544(00046)} $
+	\end{tabular}
+\end{table}
 
 \subsection{Thermoelement}
 Der Versuch wird wie in dem Schema \ref{fig:Thermoaufbau} aufgebaut und das Referenzbecken wird auf $T_2=1,6^\circ C$ mit Hilfe von Eiswasser gehalten. Nun wird das Becken 1 mit Hilfe einer Heizplatte erst bis auf $T_1=100^\circ C$ erhitzt und anschließend wieder auf die Ausgangstemperatur herunter gekühlt. Um den Abkühlprozess zu beschleunigen wird langsam Eis in das Becken 1 gegeben. Während des Aufwärmens und Abkühlens wird bei regelmäßigen Temperaturabständen die Spannung am Voltmeter bestimmt.

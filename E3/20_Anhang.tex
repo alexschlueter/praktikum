@@ -19,3 +19,23 @@ Aus der Formel \ref{eq:mitfeld} ergibt sich nach dem Einsetzen der Kraftformeln 
   \caption{Kräftegleichgewichte}
   \label{fig:kraftegleich}
 \end{figure}
+
+\subsection{Fehlerrechnung}
+Fehler für den Radius der Tröpfchen
+\begin{align*}
+	r &= 3 \sqrt{\frac{\eta v_\downarrow}{2(\rho_{Öl} - \rho_L)g}} \\
+	\Delta r &= \left|\frac{\partial r}{\partial v_\downarrow} \Delta v_\downarrow\right| \\
+	&= \frac{3}{2} \sqrt{\frac{\eta}{2(\rho_{Öl} - \rho_L)gv_\downarrow}} \Delta v_\downarrow
+\end{align*}
+Fehler für die Ladung des Öltröpfchens
+\begin{align*}
+	Q &= \frac{18\pi d}{U} \sqrt{\frac{\eta^3 v_\downarrow}{2(\rho_{Öl} - \rho_L)g}}(v_\downarrow + v_\uparrow) = \frac{6\pi\eta d}{U} r (v_\downarrow + v_\uparrow) \\
+	\Delta Q &= \sqrt{\left(\frac{\partial Q}{\partial d} \Delta d\right)^2 + 
+					\left(\frac{\partial Q}{\partial U} \Delta U\right)^2 + 
+					\left(\frac{\partial Q}{\partial v_\downarrow} \Delta v_\downarrow\right)^2 + 
+					\left(\frac{\partial Q}{\partial v_\uparrow} \Delta  v_\uparrow\right)^2} \\
+	\frac{\partial Q}{\partial d} &= \frac{18\pi}{U} \sqrt{\frac{\eta^3 v_\downarrow}{2(\rho_{Öl} - \rho_L)g}}(v_\downarrow + v_\uparrow) \\
+	\frac{\partial Q}{\partial U} &= -\frac{18\pi}{U^2} \sqrt{\frac{\eta^3 v_\downarrow}{2(\rho_{Öl} - \rho_L)g}}(v_\downarrow + v_\uparrow) \\
+	\frac{\partial Q}{\partial v_\uparrow} &= \frac{18\pi}{U} \sqrt{\frac{\eta^3 v_\downarrow}{2(\rho_{Öl} - \rho_L)g}} \\
+	\frac{\partial Q}{\partial v_\downarrow} &= \frac{18\pi}{U} \sqrt{\frac{\eta^3 v_\downarrow}{2(\rho_{Öl} - \rho_L)g}} + \frac{9\pi d}{U} \sqrt{\frac{\eta^3 }{2(\rho_{Öl} - \rho_L)gv_\downarrow}}(v_\downarrow + v_\uparrow) \\
+\end{align*}

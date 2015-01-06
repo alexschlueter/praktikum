@@ -92,10 +92,13 @@ Mit \textit{gnuplot} wird nach dem least-squares-Verfahren ein linearer Fit gege
 \end{figure}
 Wir lesen $\eta=\SI{1.824(2)e-5}{\pascal.s}$ ab.
 
-Der Luftdruck wurde mit einem Barometer gemessen: $p=\SI{990.9(1)}{mbar}$.
-Die Dichte der Luft berechnen wir zu $\rho_L=(T_0\cdot p/(T\cdot p_0))=\SI{1.204}{kg/m^3}$.
+Der Luftdruck wurde mit einem Barometer gemessen: $p=\SI{990.9(1)}{mbar}$.\\
 
-Für die mittlere freie Weglänge ergibt sich $\lambda=3\eta \cdot \sqrt{\pi \rho_L/(8p)}/\rho_L=\SI{99.32}{nm}$.
+Die Dichte der Luft berechnen wir zu $\rho_L=(T_0\cdot p/(T\cdot p_0))=\SI{1.204}{kg/m^3}$.\\
 
-Wir führen mit \cref{eq:korrektur} pro beobachtetes Teilchen eine Iteration durch, um $\eta_{korr}$ zu bestimmen. Die Werte liegen im Bereich zwischen $\num{.91}\eta$ und $\num{.96}\eta$.
+Für die mittlere freie Weglänge ergibt sich $\lambda=3\eta \cdot \sqrt{\pi \rho_L/(8p)}/\rho_L=\SI{99.32}{nm}$. \\
+
+Wir führen mit \cref{eq:korrektur} pro beobachtetes Teilchen eine Iteration durch, um $\eta_{korr}$ zu bestimmen. Die Werte liegen im Bereich zwischen $\num{.91}\eta$ und $\num{.96}\eta$. \\
+
+Die Dichte von Öl wurde gemittelt aus den in \footcite{anleitung-ws2014} angegebenen Werten: $\rho_{Öl}=\SI{877}{kg/m^3}-(21-15)/(25-15)\cdot \SI{6}{kg/m^3}=\SI{834.4}{kg/m^3}$.
 \notecite{anleitung-ws2014}

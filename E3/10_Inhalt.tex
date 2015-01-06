@@ -40,16 +40,29 @@ Wobei mit der mittleren freien Weglänge in Luft $\lambda$, dem Tröpfenradius $
 \section{Durchführung}
 Bei der Zeitbestimmung für die Strecke die ein Tropfen zurücklegt, werden die Zeiten separat für fünf Durchgänge bestimmt und später gemittelt, um eventuelle grobe Messfehler erkennen zu können. 
 \section{Auswertung}
-\begin{table}
+\begin{sidewaystable}
   \centering
   \begin{tabular}{c c c c c c c c} \toprule
-    $U$ [\si{V}] & $t_{\uparrow}$ [\si{s}] & $t_{\downarrow}$ [\si{s}] & $v_{\uparrow}$ [\si{mm/s}] & $v_{\downarrow}$ [\si{mm/s}] & $r$ [\si{mm}] & $Q$ [\si{C}] & $Q/e$ \\ \midrule
-
-    test \\ \bottomrule
+    $U$ [\si{V}] & $t_{\uparrow}$ [\si{s}] & $t_{\downarrow}$ [\si{s}] & $v_{\uparrow}$ [\si{mm/s}] & $v_{\downarrow}$ [\si{mm/s}] & $r$ [\si{\micro m}] & $Q$ [\si{\atto C}] & $Q/e$ \\ \midrule
+	\num{578(2)} & \num{10.55(063)} & \num{4.52(027)} & \num{0.0948(00057)} & \num{0.2214(00131)} & \num{1.460(0043)} & \num{1.518(0112)} & \num{9.475(0700)} \\
+	\num{575(2)} & \num{18.57(119)} & \num{3.47(015)} & \num{0.0538(00034)} & \num{0.2880(00120)} & \num{1.665(0035)} & \num{1.901(0110)} & \num{11.865(0686)} \\
+	\num{571(2)} & \num{23.73(140)} & \num{9.06(027)} & \num{0.0421(00025)} & \num{0.1104(00033)} & \num{1.031(0016)} & \num{0.506(0021)} & \num{3.158(0132)} \\
+	\num{571(2)} & \num{21.92(130)} & \num{5.48(032)} & \num{0.0456(00027)} & \num{0.1826(00107)} & \num{1.326(0039)} & \num{0.999(0078)} & \num{6.235(0485)} \\
+	\num{569(2)} & \num{18.28(192)} & \num{9.58(036)} & \num{0.0547(00058)} & \num{0.1043(00039)} & \num{1.002(0019)} & \num{0.513(0029)} & \num{3.201(0183)} \\
+	\num{500(2)} & \num{11.60(075)} & \num{12.59(015)} & \num{0.0862(00055)} & \num{0.0794(00009)} & \num{0.874(0005)} & \num{0.521(0019)} & \num{3.253(0120)} \\
+	\num{500(2)} & \num{12.55(084)} & \num{12.06(022)} & \num{0.0797(00054)} & \num{0.0829(00015)} & \num{0.893(0008)} & \num{0.524(0020)} & \num{3.274(0128)} \\
+	\num{564(2)} & \num{11.38(094)} & \num{12.07(027)} & \num{0.0879(00073)} & \num{0.0828(00018)} & \num{0.893(0010)} & \num{0.488(0024)} & \num{3.045(0149)} \\
+	\num{564(2)} & \num{14.14(092)} & \num{10.22(055)} & \num{0.0707(00046)} & \num{0.0978(00053)} & \num{0.970(0026)} & \num{0.529(0034)} & \num{3.300(0215)} \\
+	\num{563(2)} & \num{12.03(073)} & \num{9.29(034)} & \num{0.0831(00050)} & \num{0.1077(00039)} & \num{1.018(0018)} & \num{0.633(0030)} & \num{3.949(0189)} \\
+	\num{564(2)} & \num{24.07(138)} & \num{9.29(010)} & \num{0.0415(00024)} & \num{0.1076(00012)} & \num{1.018(0006)} & \num{0.494(0011)} & \num{3.082(0071)} \\
+	\num{563(2)} & \num{15.62(056)} & \num{10.52(060)} & \num{0.0640(00023)} & \num{0.0950(00054)} & \num{0.956(0027)} & \num{0.492(0032)} & \num{3.070(0199)} \\
+	\num{563(2)} & \num{7.86(014)} & \num{6.28(023)} & \num{0.1272(00022)} & \num{0.1592(00059)} & \num{1.238(0023)} & \num{1.179(0048)} & \num{7.360(0303)} \\
+	\num{564(2)} & \num{14.64(064)} & \num{10.26(026)} & \num{0.0683(00030)} & \num{0.0974(00024)} & \num{0.968(0012)} & \num{0.519(0018)} & \num{3.238(0110)} \\
+	\bottomrule
   \end{tabular}
   \caption{Messergebnisse}
   \label{tab:ergebnisse}
-\end{table}
+\end{sidewaystable}
 Mit \textit{gnuplot} wird nach dem least-squares-Verfahren ein linearer Fit gegen die drei in der Anleitung~\footcite{anleitung-ws2014} angegebenen Werte durchgeführt, um die dynamische Viskosität $\eta$ von Luft bei $T=\SI{21\pm.5}{\degreeCelsius}$ (gemessen mit Thermometer) bestimmen.
 \begin{figure}[H]
   \centering

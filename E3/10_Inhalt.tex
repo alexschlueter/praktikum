@@ -40,5 +40,42 @@ Wobei mit der mittleren freien Weglänge in Luft $\lambda$, dem Tröpfenradius $
 \section{Durchführung}
 Bei der Zeitbestimmung für die Strecke die ein Tropfen zurücklegt, werden die Zeiten separat für fünf Durchgänge bestimmt und später gemittelt, um eventuelle grobe Messfehler erkennen zu können. 
 \section{Auswertung}
+\begin{table}
+  \centering
+  \begin{tabular}{c c c c c c c c} \toprule
+    $U$ [\si{V}] & $t_{\uparrow}$ [\si{s}] & $t_{\downarrow}$ [\si{s}] & $v_{\uparrow}$ [\si{mm/s}] & $v_{\downarrow}$ [\si{mm/s}] & $r$ [\si{mm}] & $Q$ [\si{C}] & $Q/e$ \\ \midrule
+
+    test \\ \bottomrule
+  \end{tabular}
+  \caption{Messergebnisse}
+  \label{tab:ergebnisse}
+\end{table}
+
+\begin{figure}[H]
+  \centering
+  \begin{tikzpicture}
+    \begin{axis}[
+      width=15 cm,
+      height=9 cm,
+      xmin=19, xmax=31,
+      ymin=1.815e-5, ymax=1.87e-5,
+      xlabel={Temperatur {\si{\degreeCelsius}}},
+      ylabel={Dynamische Viskosität von Luft $\nu$ [\si{\pascal.s}]},
+      domain=0.1:105,
+    ]
+    \addplot plot [only marks,mark=o]  coordinates {
+      (20,1.819e-5)
+      (26.85,1.86e-5)
+      (30,1.867e-5)
+    };
+    \addplot plot [only marks,mark=x]  coordinates {
+      (21,1.82479e-5)
+    };
+    \addplot plot [mark=none] {1.72e-5+x*4.99e-8};
+    \end{axis}
+  \end{tikzpicture}
+  \caption{Gemessene Spannung gegen Differenz der Temperatur der Probebecken}
+  \label{fig:Thermo}
+\end{figure}
 
 \notecite{anleitung-ws2014}

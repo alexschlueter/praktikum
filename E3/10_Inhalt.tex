@@ -29,7 +29,7 @@ Dabei ist es wichtig, dass die beiden Kondensatorplatten waagerecht zueinander s
 Diese beiden Formel \ref{eq:keinfeld} und \ref{eq:mitfeld} können nun nach dem Radius $r$ und der Ladung $Q$ des Tropfen umgestellt werden.(Herleitung siehe Anhang)
 \begin{gather}
 r=3\sqrt{\frac{\eta v_{\downarrow}}{2(\rho_{Öl}-\rho_L)g}}\label{eq:radius}\\
-Q = \frac{18 \pi d}{U}\sqrt{\frac{\eta^3 v_{\downarrow}}{2(\rho_{Öl}-\rho_L)g}}(v_{\downarrow}+v_{\uparrow})
+Q = \frac{18 \pi d}{U}\sqrt{\frac{\eta^3 v_{\downarrow}}{2(\rho_{Öl}-\rho_L)g}}(v_{\downarrow}+v_{\uparrow})\label{eq:ladung}
 \end{gather}
 \subsection{Korrektur}
 Da man Tropfen in einer Größenordnung der freien Weglänge der Luftmoleküle beobachtet, gilt das Stokessche Gesetz nicht bzw. es muss modifiziert werden, da es nur für eine homogene Flüssigkeitsumgebung gilt. So muss mit einer korrigierten Viskosität gerechnet werden.
@@ -40,6 +40,46 @@ Wobei mit der mittleren freien Weglänge in Luft $\lambda$, dem Tröpfenradius $
 \section{Durchführung}
 Bei der Zeitbestimmung für die Strecke die ein Tropfen zurücklegt, werden die Zeiten separat für fünf Durchgänge bestimmt und später gemittelt, um eventuelle grobe Messfehler erkennen zu können. 
 \section{Auswertung}
+Mit \textit{gnuplot} wird nach dem least-squares-Verfahren ein linearer Fit gegen die drei in der Anleitung~\footcite{anleitung-ws2014} angegebenen Werte durchgeführt, um die dynamische Viskosität $\eta$ von Luft bei $T=\SI{21\pm.5}{\degreeCelsius}$ (gemessen mit Thermometer) zu bestimmen.
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+  \begin{axis}[
+    width=15 cm,
+    height=9 cm,
+    xmin=19, xmax=31,
+    ymin=1.815e-5, ymax=1.87e-5,
+    xlabel={Temperatur {\si{\degreeCelsius}}},
+    ylabel={Dynamische Viskosität von Luft $\eta$ [\si{\pascal.s}]},
+    domain=0.1:105,
+  ]
+  \addplot plot [only marks,mark=o]  coordinates {
+    (20,1.819e-5)
+    (26.85,1.86e-5)
+    (30,1.867e-5)
+  };
+  \addplot plot [only marks,mark=x, error bars/.cd, x dir=both, x explicit]  coordinates {
+    (21,1.82479e-5) +- (.5,0)
+  };
+  \addplot plot [mark=none] {1.72e-5+x*4.99e-8};
+  \end{axis}
+\end{tikzpicture}
+\caption{Fit der dynamischen Viskosität von Luft}
+\label{fig:dynviskos}
+\end{figure}
+Wir lesen $\eta=\SI{1.824(2)e-5}{\pascal.s}$ ab.
+
+Der Luftdruck wurde mit einem Barometer gemessen: $p=\SI{990.9(1)}{mbar}$.\\
+
+Die Dichte der Luft berechnen wir zu $\rho_L=(T_0\cdot p/(T\cdot p_0))=\SI{1.204}{kg/m^3}$.\\
+
+Für die mittlere freie Weglänge ergibt sich $\lambda=3\eta \cdot \sqrt{\pi \rho_L/(8p)}/\rho_L=\SI{99.32}{nm}$. \\
+
+Wir führen mit \cref{eq:korrektur} pro beobachtetes Teilchen eine Iteration durch, um $\eta_{korr}$ zu bestimmen. Die Werte liegen im Bereich zwischen $\num{.91}\eta$ und $\num{.96}\eta$. \\
+
+Die Dichte von Öl wurde gemittelt aus den in \footcite{anleitung-ws2014} angegebenen Werten: $\rho_{Öl}=\SI{877}{kg/m^3}-(21-15)/(25-15)\cdot \SI{6}{kg/m^3}=\SI{834.4}{kg/m^3}$. \\
+
+Wir berechnen nun die Mittelwerte der Steig- und Fallzeiten, daraus $v_{\uparrow}$ bzw. $v_{\downarrow}$ und daraus mithilfe von \cref{eq:radius} $r$ und mithilfe von \cref{eq:ladung} $Q$.
 \begin{sidewaystable}
   \centering
   \begin{tabular}{c c c c c c c c} \toprule
@@ -63,42 +103,47 @@ Bei der Zeitbestimmung für die Strecke die ein Tropfen zurücklegt, werden die 
   \caption{Messergebnisse}
   \label{tab:ergebnisse}
 \end{sidewaystable}
-Mit \textit{gnuplot} wird nach dem least-squares-Verfahren ein linearer Fit gegen die drei in der Anleitung~\footcite{anleitung-ws2014} angegebenen Werte durchgeführt, um die dynamische Viskosität $\eta$ von Luft bei $T=\SI{21\pm.5}{\degreeCelsius}$ (gemessen mit Thermometer) bestimmen.
+Wir tragen $Q/e$ für jedes gemessene Teilchen in ein Diagramm ein:
+
 \begin{figure}[H]
-  \centering
-  \begin{tikzpicture}
-    \begin{axis}[
-      width=15 cm,
-      height=9 cm,
-      xmin=19, xmax=31,
-      ymin=1.815e-5, ymax=1.87e-5,
-      xlabel={Temperatur {\si{\degreeCelsius}}},
-      ylabel={Dynamische Viskosität von Luft $\eta$ [\si{\pascal.s}]},
-      domain=0.1:105,
-    ]
-    \addplot plot [only marks,mark=o]  coordinates {
-      (20,1.819e-5)
-      (26.85,1.86e-5)
-      (30,1.867e-5)
-    };
-    \addplot plot [only marks,mark=x, error bars/.cd, x dir=both, x explicit]  coordinates {
-      (21,1.82479e-5) +- (.5,0)
-    };
-    \addplot plot [mark=none] {1.72e-5+x*4.99e-8};
-    \end{axis}
-  \end{tikzpicture}
-  \caption{Fit der dynamischen Viskosität von Luft}
-  \label{fig:dynviskos}
+\centering
+\begin{tikzpicture}
+  \begin{axis}[
+    width=15 cm,
+    height=15 cm,
+    xmin=0.1, xmax=14.9,
+    ymin=0, ymax=13,
+    xlabel={Teilchen Nr.},
+    ylabel={$Q/e$},
+    domain=0:15,
+    ymajorgrids=true
+  ]
+  \addplot plot [only marks,mark=x,error bars/.cd, y dir=both, y explicit]  coordinates {
+    (1,9.475) +- (0,0.7)
+    (2,11.865) +- (0,0.686)
+    (3,3.158) +- (0,0.132)
+    (4,6.235) +- (0,0.485)
+    (5,3.201) +- (0,0.183)
+    (6,3.253) +- (0,0.120)
+    (7,3.274) +- (0,0.128)
+    (8,3.045) +- (0,0.149)
+    (9,3.300) +- (0,0.215)
+    (10,3.949) +- (0,0.189)
+    (11,3.082) +- (0,0.071)
+    (12,3.070) +- (0,0.199)
+    (13,7.360) +- (0,0.303)
+    (14,3.238) +- (0,0.110)
+  };
+  \addplot [mark=none] {3};
+  \addplot [mark=none] {4};
+  \addplot [mark=none] {6};
+  \addplot [mark=none] {7};
+  \addplot [mark=none] {9};
+  \addplot [mark=none] {10};
+  \addplot [mark=none] {12};
+  \end{axis}
+\end{tikzpicture}
+\caption{Vielfache der Elementarladung}
+\label{fig:ladungsvielfache}
 \end{figure}
-Wir lesen $\eta=\SI{1.824(2)e-5}{\pascal.s}$ ab.
-
-Der Luftdruck wurde mit einem Barometer gemessen: $p=\SI{990.9(1)}{mbar}$.\\
-
-Die Dichte der Luft berechnen wir zu $\rho_L=(T_0\cdot p/(T\cdot p_0))=\SI{1.204}{kg/m^3}$.\\
-
-Für die mittlere freie Weglänge ergibt sich $\lambda=3\eta \cdot \sqrt{\pi \rho_L/(8p)}/\rho_L=\SI{99.32}{nm}$. \\
-
-Wir führen mit \cref{eq:korrektur} pro beobachtetes Teilchen eine Iteration durch, um $\eta_{korr}$ zu bestimmen. Die Werte liegen im Bereich zwischen $\num{.91}\eta$ und $\num{.96}\eta$. \\
-
-Die Dichte von Öl wurde gemittelt aus den in \footcite{anleitung-ws2014} angegebenen Werten: $\rho_{Öl}=\SI{877}{kg/m^3}-(21-15)/(25-15)\cdot \SI{6}{kg/m^3}=\SI{834.4}{kg/m^3}$.
 \notecite{anleitung-ws2014}

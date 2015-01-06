@@ -1,0 +1,44 @@
+\section{Einführung}
+Mit dem Millikanversuch ist es möglich durch Beobachtung der Geschwindigkeit von geladenen Flüssigkeitstropfen in einem Kondensator möglich Rückschlüsse auf die Elementarladung zu ziehen. Als Flüssigkeit wurde ein Öl gewählt, da es sich im Gegensatz zu Wasser kaum verflüchtigt. Diese Eigenschaft ist notwendig, da die Masse der Tropfen während der Beobachtung konstant bleiben muss.
+
+Wenn sich ein Öltropfen zwischen den Kondensatorplatten befindet, wirken die folgenden Kräfte auf ihn:
+\begin{table}[H]
+	\centering
+	\begin{tabular}{r c  c  l}
+	Gewichtskraft & $\vec{F}_G$ & = & $m\vec{g}=V\rho_{Öl}\vec{g}=\frac{4}{3}\pi r^3 \rho_{Öl}\vec{g}$\\
+	Kraft im elektrischen Feld & $\vec{F}_{el}$ & = & $Q\vec{E}$ mit $|\vec{E}|=\frac{U}{d}$\\
+	Auftrieb & $\vec{F}_{A}$ & = & $V\rho_L\vec{g}=\frac{4}{3}\pi r^3 \rho_L\vec{g}$\\
+	Reibungskraft & $\vec{F}_{R}$ & = & $6\pi \eta r\vec{v}$
+	\end{tabular}
+\end{table}
+Nach kurzer Zeit spielt sich zwischen diesen Kräften ein Gleichgewicht ein, welches je nach Polung der Kondensatoren und Bewegungsrichtung des Tropfen unterschiedlich ist. Unter der Bedingung, dass sich der Tropfen nicht zu schnell bewegen darf, aber auch nicht fast stehen darf, weil beide Fälle die Messung durch die kurzen zumessenden Zeiten oder den Brownschen Effekt der Molekularbewegung ungenauer machen, ergeben sich folgende Gleichgewichte:
+\begin{enumerate}
+\item Bei ausgeschaltetem elektrischen Feld:
+\begin{equation}
+|\vec{F}_G|=|\vec{F}_R|+|\vec{F}_A|
+\label{eq:keinfeld}
+\end{equation}
+\item Bei senkrecht nach unten orientiertem elektrischen Feld und Kraft im elektrischen Feld stärker als die um die Auftriebskraft verminderte Gewichtskraft:
+\begin{equation}
+|\vec{F}_G|+|\vec{F}_R|=|\vec{F}_{el}|+|\vec{F}_A|
+\label{eq:mitfeld}
+\end{equation}
+\end{enumerate}
+Dabei ist es wichtig, dass die beiden Kondensatorplatten waagerecht zueinander sind, da ansonsten die Kraft $\vec{F}_{el}$ nicht parallel zu den anderen Kräften wirken.
+
+Diese beiden Formel \ref{eq:keinfeld} und \ref{eq:mitfeld} können nun nach dem Radius $r$ und der Ladung $Q$ des Tropfen umgestellt werden.(Herleitung siehe Anhang)
+\begin{gather}
+r=3\sqrt{\frac{\eta v_{\downarrow}}{2(\rho_{Öl}-\rho_L)g}}\label{eq:radius}\\
+Q = \frac{18 \pi d}{U}\sqrt{\frac{\eta^3 v_{\downarrow}}{2(\rho_{Öl}-\rho_L)g}}(v_{\downarrow}+v_{\uparrow})
+\end{gather}
+\subsection{Korrektur}
+Da man Tropfen in einer Größenordnung der freien Weglänge der Luftmoleküle beobachtet, gilt das Stokessche Gesetz nicht bzw. es muss modifiziert werden, da es nur für eine homogene Flüssigkeitsumgebung gilt. So muss mit einer korrigierten Viskosität gerechnet werden.
+\begin{eqnarray}
+\eta_{korr}=\frac{\eta}{1+\frac{A\lambda}{r}}
+\end{eqnarray}
+Wobei mit der mittleren freien Weglänge in Luft $\lambda$, dem Tröpfenradius $r$ und einer empirischen Konstante $A=0,863$ gerechnet wird.
+\section{Durchführung}
+Bei der Zeitbestimmung für die Strecke die ein Tropfen zurücklegt, werden die Zeiten separat für fünf Durchgänge bestimmt und später gemittelt, um eventuelle grobe Messfehler erkennen zu können. 
+\section{Auswertung}
+
+\notecite{anleitung-ws2014}

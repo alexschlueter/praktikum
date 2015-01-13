@@ -1,0 +1,13 @@
+\subsection{Fehlerrechnung}
+\subsubsection{Stromstärke}
+\begin{equation}
+\Delta I = \sqrt{(\frac{\Delta U}{R})^2+(\frac{U\cdot 5\% \cdot R}{R^2})^2}
+\end{equation}
+\subsection{Herleitung}
+\begin{eqnarray*}
+|I_{min}|\sqrt{2} &=& \frac{|U|}{R}\sqrt{2}=\sqrt{\frac{1}{R^2}+(\omega C -\frac{1}{\omega L})^2}\cdot |U|\\
+\Rightarrow \frac{2}{R^2} &=& \frac{1}{R^2}+(\omega C -\frac{1}{\omega L})^2\\
+\Rightarrow \frac{1}{R} &=& \omega_0C_1-\frac{1}{\omega_0L}\textit{ oder }\frac{1}{R} = \omega_0C_2+\frac{1}{\omega_0L}\\
+\Rightarrow \frac{2}{R} &=& \omega_0C_1-\omega_0C_2\\
+\iff R &=& \frac{2}{\omega_0(C_1-C_2)}
+\end{eqnarray*}

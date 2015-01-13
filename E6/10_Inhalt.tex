@@ -1,8 +1,50 @@
 \section{Einführung}
 Resonanzkreise werden im allgemeinen als Frequenzfilter genutzt, um das Empfangen von nur speziellen Frequenzen zu ermöglichen.
 \subsection{Serienresonanzkreis}
+Der Strom $I$ wird wie folgt berechnet:
+\begin{equation}
+  |I|=\frac{|U|}{\sqrt{R^2+(\omega L-\frac{1}{\omega C})^2}}
+  \label{eq:serienstrom}
+\end{equation}
 \subsection{Parallelresonanzkreis}
 \section{Versuch: Serienresonanzkreis}
+Wir überprüfen den aus \cref{eq:serienstrom} erwarteten Zusammenhang, indem wir die obigen Daten mit gnuplot gegen die Funktion $I(C)$ plotten. Wir erhalten:
+\begin{table}[H]
+  \centering
+  \begin{tabular}{c c c c} \toprule
+    Parameter & für \SI{500}{\ohm} & für \SI{200}{\ohm} & für \SI{0}{\ohm} \\ \midrule
+    $R$ & \SI{694(326)}{\ohm} & \SI{385(283)}{\ohm}  & \SI{30(2041)}{\ohm} \\
+    $L$ & \SI{94.06(53)}{\henry} & \SI{93.88(24)}{\henry} & \SI{93.84(16)}{\henry} \\ \bottomrule 
+  \end{tabular}
+  \caption{Fit}
+  \label{tab:serienfit}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+  \begin{axis}[
+    width=15 cm,
+    height=9 cm,
+    xmin=75, xmax=105,
+    ymin=0, ymax=6,
+    xlabel={$1/C$ [\si{mF^{-1}}]},
+    ylabel={$I$ [\si{mA}]},
+    domain=50:250,
+    cycle list name=color list
+  ]
+  \addplot+ plot [only marks,mark=x]  table[x expr=1/\thisrowno{0}, y index=2] {serie.csv};
+  \addplot+ plot [only marks,mark=asterisk]  table[x expr=1/\thisrowno{3}, y index=5] {serie.csv};
+  \addplot+ plot [only marks,mark=square]  table[x expr=1/\thisrowno{6}, y index=8] {serie.csv};
+  \pgfplotsset{cycle list shift=-3};
+  \addplot+ plot [samples=500, mark=none] {1000*2.01/sqrt(694^2+(1000*94.06-x/(1000*10^(-6)))^2)};
+  \addplot+ plot [samples=500, mark=none] {1000*2.01/sqrt(385^2+(1000*93.88-x/(1000*10^(-6)))^2)};
+  \addplot+ plot [samples=500, mark=none] {1000*2.01/sqrt(30^2+(1000*93.84-x/(1000*10^(-6)))^2)};
+  \end{axis}
+\end{tikzpicture}
+\caption{Fit der dynamischen Viskosität von Luft}
+\label{fig:dynviskos}
+\end{figure}
 \section{Versuch: Parallelresonanzkreis}
 An dem Aufbau \ref{fig:aufbauparallel} wird eine Spannung von $U_\approx=\pm 5V$ mit einer Frequenz von $F=(1 \pm 0,005) kHz$ angelegt und es wird der Spannungsabfall am $10\Omega$ Widerstand für unterschiedliche Kapazitäten und Widerstände $R_p$ bestimmt. Der Fehler der Kapazität war mit $1\% $ der eingestellten Kapazität gegeben und der Fehler der Spannung ergab sich aus der Genauigkeit des Messgeräts.
 \begin{figure}[h]

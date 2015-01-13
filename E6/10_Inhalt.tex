@@ -8,7 +8,7 @@ Der Strom $I$ wird wie folgt berechnet:
 \end{equation}
 \subsection{Parallelresonanzkreis}
 \section{Versuch: Serienresonanzkreis}
-Wir überprüfen den aus \cref{eq:serienstrom} erwarteten Zusammenhang, indem wir die obigen Daten mit gnuplot gegen die Funktion $I(C)$ plotten. Wir erhalten:
+Wir überprüfen den aus \cref{eq:serienstrom} erwarteten Zusammenhang, indem wir die obigen Daten mit gnuplot gegen die Funktion $I(C)$ fitten. Wir erhalten:
 \begin{table}[H]
   \centering
   \begin{tabular}{c c c c} \toprule
@@ -19,19 +19,20 @@ Wir überprüfen den aus \cref{eq:serienstrom} erwarteten Zusammenhang, indem wi
   \caption{Fit}
   \label{tab:serienfit}
 \end{table}
-
+Es fällt eine gute Übereinstimmung in den Werten für $L$ auf. Dagegen haben die $R$-Werte jeweils einen so hohen Fehler, dass sie fast unbrauchbar sind.
 \begin{figure}[H]
 \centering
 \begin{tikzpicture}
   \begin{axis}[
     width=15 cm,
     height=9 cm,
-    xmin=75, xmax=105,
-    ymin=0, ymax=6,
+    xmin=80, xmax=105,
+    ymin=0, ymax=7,
     xlabel={$1/C$ [\si{mF^{-1}}]},
     ylabel={$I$ [\si{mA}]},
     domain=50:250,
-    cycle list name=color list
+    cycle list name=color list,
+    legend entries={$500 \si{\ohm}$, $200 \si{\ohm}$, $0 \si{\ohm}$, Fit für $500 \si{\ohm}$, Fit für $200 \si{\ohm}$, Fit für $0 \si{\ohm}$}
   ]
   \addplot+ plot [only marks,mark=x]  table[x expr=1/\thisrowno{0}, y index=2] {serie.csv};
   \addplot+ plot [only marks,mark=asterisk]  table[x expr=1/\thisrowno{3}, y index=5] {serie.csv};
@@ -42,9 +43,10 @@ Wir überprüfen den aus \cref{eq:serienstrom} erwarteten Zusammenhang, indem wi
   \addplot+ plot [samples=500, mark=none] {1000*2.01/sqrt(30^2+(1000*93.84-x/(1000*10^(-6)))^2)};
   \end{axis}
 \end{tikzpicture}
-\caption{Fit der dynamischen Viskosität von Luft}
-\label{fig:dynviskos}
+\caption{Fit der Stromstärke in Abhängigkeit des Kehrwertes der Kapazität}
+\label{fig:serienfit}
 \end{figure}
+Obwohl die Werte direkt gegen den aus der Theorie erwarteten Zusammenhang \cref{eq:serienstrom} gefittet wurden, ist ein großer Unterschied zwischen Fit und Messwerten erkennbar. Der Ort des Maximums wird vom Fit noch recht gut getroffen, jedoch weichen die Höhe des Maximums sowie der Abfall stark ab: Die Messwerte fallen deutlich langsamer als der Fit zu beiden Seiten des Maximums. 
 \section{Versuch: Parallelresonanzkreis}
 An dem Aufbau \ref{fig:aufbauparallel} wird eine Spannung von $U_\approx=\pm 5V$ mit einer Frequenz von $F=(1 \pm 0,005) kHz$ angelegt und es wird der Spannungsabfall am $10\Omega$ Widerstand für unterschiedliche Kapazitäten und Widerstände $R_p$ bestimmt. Der Fehler der Kapazität war mit $1\% $ der eingestellten Kapazität gegeben und der Fehler der Spannung ergab sich aus der Genauigkeit des Messgeräts.
 \begin{figure}[h]

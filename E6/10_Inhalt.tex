@@ -12,7 +12,7 @@ Bei dem Serienresonanzkreis sind Ohmsche Widerstände, Spulen und Kondensatoren 
 \end{equation}
 Außerdem gilt analog zu Ohmschen Gesetz im Wechselstromkreis
 \begin{equation}
-	|I| = \frac{|U|}{|Z_G|} = \frac{|U|}{\sqrt{R^2 + \left(\omega L - \frac{1}{\omega C}\right)^2}}
+	|I| = \frac{|U|}{|Z_G|} = \frac{|U|}{\sqrt{R^2 + \left(\omega L - \frac{1}{\omega C}\right)^2}} \label{eq:serienstrom}
 \end{equation}
 Die Resonanz ist bei maximaler Stromstärke erreicht. Da der Ohmsche Widerstand und die Spannung bezüglich der Frequenz konstant sind ist dies erreicht für
 \begin{equation}
@@ -30,7 +30,6 @@ Kennt man nun die Kapazitäten $ C_1, C_2 $, für die $ |I| = \frac{|I_{max}|}{\
 		&= \frac{1}{2\omega_0} \left|\left(\frac{1}{C_0} - \frac{1}{C_1}\right) - \left(\frac{1}{C_0} - \frac{1}{C_2}\right)\right| 
 		= \frac{1}{2\omega_0} \left|\frac{1}{C_2} - \frac{1}{C_1}\right|
 \end{align}
-
 \subsection{Parallelresonanzkreis}
 Beim Parallelresonanzkreis werden analog zum Serienresonanzkreis ohmscher Widerstand, Kondensator und Spule parallel geschaltet. Daher müssen zur Bestimmung der Gesamtimpendanz die Kehrwerte der Impendanzen addiert werden \begin{equation}
 	\frac{1}{|Z|} = |Y| = \left|\frac{1}{R} + \frac{1}{\mathrm i \omega L} + \mathrm i \omega C\right| = \sqrt{\frac{1}{R^2} + \left(\omega C - \frac{1}{\omega L}\right)^2}
@@ -50,6 +49,48 @@ Da Höhe und Breite des Peaks im direkten Zusammenhang stehen, lässt sich die G
 	Q = \frac{\omega_0}{\Delta \omega}
 \end{equation}
 \section{Versuch: Serienresonanzkreis}
+Wir überprüfen den aus \cref{eq:serienstrom} erwarteten Zusammenhang, indem wir die obigen Daten mit gnuplot gegen die Funktion $I(C)$ fitten. Wir erhalten:
+\begin{table}[H]
+  \centering
+  \begin{tabular}{c c c c} \toprule
+    Parameter & für \SI{500}{\ohm} & für \SI{200}{\ohm} & für \SI{0}{\ohm} \\ \midrule
+    $R$ & \SI{694(326)}{\ohm} & \SI{385(283)}{\ohm}  & \SI{30(2041)}{\ohm} \\
+    $L$ & \SI{94.06(53)}{\henry} & \SI{93.88(24)}{\henry} & \SI{93.84(16)}{\henry} \\ \bottomrule 
+  \end{tabular}
+  \caption{Fit}
+  \label{tab:serienfit}
+\end{table}
+Es fällt eine gute Übereinstimmung in den Werten für $L$ auf. Dagegen haben die $R$-Werte jeweils einen so hohen Fehler, dass sie fast unbrauchbar sind.
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+  \begin{axis}[
+    width=15 cm,
+    height=9 cm,
+    xmin=80, xmax=105,
+    ymin=0, ymax=7,
+    xlabel={$1/C$ [\si{mF^{-1}}]},
+    ylabel={$I$ [\si{mA}]},
+    domain=50:250,
+    cycle list name=color list,
+    legend entries={$500 \si{\ohm}$, $200 \si{\ohm}$, $0 \si{\ohm}$, Fit für $500 \si{\ohm}$, Fit für $200 \si{\ohm}$, Fit für $0 \si{\ohm}$}
+  ]
+  \addplot+ plot [only marks,mark=x]  table[x expr=1/\thisrowno{0}, y index=2] {serie.csv};
+  \addplot+ plot [only marks,mark=asterisk]  table[x expr=1/\thisrowno{3}, y index=5] {serie.csv};
+  \addplot+ plot [only marks,mark=square]  table[x expr=1/\thisrowno{6}, y index=8] {serie.csv};
+  \pgfplotsset{cycle list shift=-3};
+  \addplot+ plot [samples=500, mark=none] {1000*2.01/sqrt(694^2+(1000*94.06-x/(1000*10^(-6)))^2)};
+  \addplot+ plot [samples=500, mark=none] {1000*2.01/sqrt(385^2+(1000*93.88-x/(1000*10^(-6)))^2)};
+  \addplot+ plot [samples=500, mark=none] {1000*2.01/sqrt(30^2+(1000*93.84-x/(1000*10^(-6)))^2)};
+  \end{axis}
+\end{tikzpicture}
+\caption{Fit der Stromstärke in Abhängigkeit des Kehrwertes der Kapazität}
+\label{fig:serienfit}
+\end{figure}
+Obwohl die Werte direkt gegen den aus der Theorie erwarteten Zusammenhang \cref{eq:serienstrom} gefittet wurden, ist ein großer Unterschied zwischen Fit und Messwerten erkennbar. Der Ort des Maximums wird vom Fit noch recht gut getroffen, jedoch weichen die Höhe des Maximums sowie der Abfall stark ab: Die Messwerte fallen deutlich langsamer als der Fit zu beiden Seiten des Maximums. Auch die aus der Theorie erwartete Symmetrie ist bei unseren Messwerten nicht gegeben. Wir nehmen an, dass die regelbare Kapazität zu stark Fehleranfällig war. Auch während der Durchführung ist Aufgefallen, das oft nicht der eingestellte Wert dem Tatsächlichen entsprach, und sich dies erst besserte wenn man den Regler festhielt um das Einrasten zu erzwingen.
+
+\subsection{Innenwiderstand der Spule}
+Mit einem Multimeter lies sich ein Widerstand von $ \SI{52.2(1)}{\ohm} $ bestimmen. Jedoch ist kein Vergleich mit den Ergebnissen der vorherigen Versuchen möglich, da dort eine zu große Unsicherheit angenommen werden musste. Zumindest stimmte aber die Größenordnung der vorherigen Ergebnisse.
 \section{Versuch: Parallelresonanzkreis}
 An dem Aufbau \ref{fig:aufbauparallel} wird eine Spannung von $U_\approx=\pm 5V$ mit einer Frequenz von $F=(1 \pm 0,005) kHz$ angelegt und es wird der Spannungsabfall am $10\Omega$ Widerstand für unterschiedliche Kapazitäten und Widerstände $R_p$ bestimmt. Der Fehler der Kapazität war mit $1\% $ der eingestellten Kapazität gegeben und der Fehler der Spannung ergab sich aus der Genauigkeit des Messgeräts.
 \begin{figure}[h]

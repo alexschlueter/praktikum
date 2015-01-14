@@ -1,7 +1,54 @@
 \section{Einführung}
 Resonanzkreise werden im allgemeinen als Frequenzfilter genutzt, um das Empfangen von nur speziellen Frequenzen zu ermöglichen.
 \subsection{Serienresonanzkreis}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.4\textwidth]{elresonanz_reihe}
+	\caption{Schaltbild des Serienresonanzkreises}
+	\label{fig:aufbaureihe}
+\end{figure}
+Bei dem Serienresonanzkreis sind Ohmsche Widerstände, Spulen und Kondensatoren in Reihe geschaltet. Bei der Berechnung werden dazu alle Ohmschen Widerstände und Innenwiderstände zu einem Gesamtwiderstand zusammengefasst und analog auch die Kondensatoren und Spulen zu Gesamtkapazitäten und Gesamtinduktivitäten zusammengefasst. Im einfachsten Fall ergibt sich das Schaltbild Abbildung \ref{fig:aufbaureihe}. Diese Schaltung wird mit der komplexen Betrachtung des Wechselstroms berechnet. Die komplexe Impendanz setzt sich bei Reihenschaltung additiv zusammen. Es gilt \begin{equation}
+	Z_G = Z_R + Z_L + Z_C = R + \mathrm i\omega L + \frac{1}{\mathrm{i}\omega C} = R + \mathrm i \left(\omega L - \frac{1}{\omega L}\right)
+\end{equation}
+Außerdem gilt analog zu Ohmschen Gesetz im Wechselstromkreis
+\begin{equation}
+	|I| = \frac{|U|}{|Z_G|} = \frac{|U|}{\sqrt{R^2 + \left(\omega L - \frac{1}{\omega C}\right)^2}}
+\end{equation}
+Die Resonanz ist bei maximaler Stromstärke erreicht. Da der Ohmsche Widerstand und die Spannung bezüglich der Frequenz konstant sind ist dies erreicht für
+\begin{equation}
+	\omega_0 L - \frac{1}{\omega_0 C} = 0 \quad \Leftrightarrow \quad \omega_0 = \frac{1}{\sqrt{LC}} \label{eq:resbed}
+\end{equation}
+und es gilt 
+\begin{equation}
+	|I_{max}| = |I(\omega_0)| = \frac{|U|}{R}
+\end{equation}
+Kennt man nun die Kapazitäten $ C_1, C_2 $, für die $ |I| = \frac{|I_{max}|}{\sqrt{2}} $ gilt kann man daraus den Ohmschen Widerstand errechnen. In diesem Fall gilt \begin{align}
+	|Z| &= \sqrt 2 |Z_{min}| = \sqrt{2 R^2} \stackrel{!}{=} \sqrt{R^2 + \left(\omega_0 L - \frac{1}{\omega_0 C_{1,2}}\right)^2} \\
+	\Rightarrow~ R^2 &= \left(\omega_0 L - \frac{1}{\omega_0 C{1,2}}\right)^2 = \left(\frac{1}{\omega_0C_0} - \frac{1}{\omega_0 C{1,2}}\right)^2 \\
+	\Rightarrow R &= \frac{1}{\omega_0} \left|\frac{1}{C_0} - \frac{1}{C_{1,2}}\right|
+		= \frac{1}{2\omega_0} \left(\left|\frac{1}{C_0} - \frac{1}{C_1}\right| + \left|\frac{1}{C_0} - \frac{1}{C_2}\right|\right) \\
+		&= \frac{1}{2\omega_0} \left|\left(\frac{1}{C_0} - \frac{1}{C_1}\right) - \left(\frac{1}{C_0} - \frac{1}{C_2}\right)\right| 
+		= \frac{1}{2\omega_0} \left|\frac{1}{C_2} - \frac{1}{C_1}\right|
+\end{align}
+
 \subsection{Parallelresonanzkreis}
+Beim Parallelresonanzkreis werden analog zum Serienresonanzkreis ohmscher Widerstand, Kondensator und Spule parallel geschaltet. Daher müssen zur Bestimmung der Gesamtimpendanz die Kehrwerte der Impendanzen addiert werden \begin{equation}
+	\frac{1}{|Z|} = |Y| = \left|\frac{1}{R} + \frac{1}{\mathrm i \omega L} + \mathrm i \omega C\right| = \sqrt{\frac{1}{R^2} + \left(\omega C - \frac{1}{\omega L}\right)^2}
+\end{equation}
+Zudem gilt \begin{equation}
+	|I| = \frac{|U|}{|Z|} = |Y||U| = \sqrt{\frac{1}{R^2} + \left(\omega C - \frac{1}{\omega L}\right)^2} U
+\end{equation}
+Analog zur Serienresonanzschaltung wir $ |Y_{min}| $ erreicht für \begin{equation}
+	\omega C - \frac{1}{\omega L} = 0 \quad \Leftrightarrow \quad \omega = \frac{1}{\sqrt{LC}}
+\end{equation}
+\subsection{Güte}
+Damit eine Schaltung möglichst gut als Frequenzfilter genutzt werden kann, ist es wichtig, dass der Peak bei dieser Frequenz möglichst schmal ist. Daher bezeichnet man als Güte $ Q $ die Überhöhung des Resonanzpeaks. \begin{equation}
+	|U_{L,max}| = |U_{C,max}| = Q|U| \qquad \text{nach Definition von Q}
+\end{equation}
+Da Höhe und Breite des Peaks im direkten Zusammenhang stehen, lässt sich die Güte auch durch die Halbwertsbreite der Resonanzkurve bestimmen. Es gilt
+\begin{equation}
+	Q = \frac{\omega_0}{\Delta \omega}
+\end{equation}
 \section{Versuch: Serienresonanzkreis}
 \section{Versuch: Parallelresonanzkreis}
 An dem Aufbau \ref{fig:aufbauparallel} wird eine Spannung von $U_\approx=\pm 5V$ mit einer Frequenz von $F=(1 \pm 0,005) kHz$ angelegt und es wird der Spannungsabfall am $10\Omega$ Widerstand für unterschiedliche Kapazitäten und Widerstände $R_p$ bestimmt. Der Fehler der Kapazität war mit $1\% $ der eingestellten Kapazität gegeben und der Fehler der Spannung ergab sich aus der Genauigkeit des Messgeräts.

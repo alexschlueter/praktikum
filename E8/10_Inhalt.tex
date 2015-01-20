@@ -144,7 +144,7 @@ Wie in Abbildung~\ref{fig:aufbau} c) gezeigt wird der Strom für unterschiedlich
 \end{figure}
 Die Fehlerbalken sind sehr kurz und deshalb schwer zu erkennen.
 
-Aufgrund des anscheinend Wurzel artigem Verlaufs der Messwerte, besonders im Bereich bis $3V$, wurde mit \emph{gnuplot} nach dem \emph{least-squares}-Verfahren die Werte gegen die Funktion $f(x)=a\cdot\sqrt{x}$ gefittet. Ausgabe:
+Aufgrund des anscheinend Wurzel-artigem Verlaufs der Messwerte, besonders im Bereich bis $3V$, wurde mit \emph{gnuplot} nach dem \emph{least-squares}-Verfahren die Werte gegen die Funktion $f(x)=a\cdot\sqrt{x}$ gefittet. Ausgabe:
 \begin{table}[H]
   \centering
   \begin{tabular}{c | c | c }
@@ -191,8 +191,55 @@ Aufgrund des anscheinend quadratischem Verlaufs der Messwerte wurde mit \emph{gn
     b & $\num{-0,0533435}$ & $\pm\num{0,4446}$ \\
     c & $\num{1,05214}$ & $\pm\num{0,6146}$ \\
   \end{tabular}
-  \caption{Quadratischer Fit zu Abbildung \ref{fig:ntc}}
+  \caption{Quadratischer Fit zu Abbildung~\ref{fig:ntc}}
   \label{tab:fitntc}
+\end{table}
+\subsection{Glimmlampe}
+Wie in Abbildung~\ref{fig:aufbau} e) gezeigt wird der Strom für unterschiedliche Spannnungen gemessen. Dabei wird zuerst durch langsames Hochdrehen der Spannung bis zur Zündung der Lampe die Zündspannung bestimmt. Anschließend wird die Spannung langsam reduziert, bis die Glimmlampe erlischt, um die Löschspannung zu bestimmen. Wir erhalten als Mittelwerte für jeweils drei Messungen:
+\begin{table}[H]
+  \centering
+  \begin{tabular}{c | c}
+    Zündspannung & \SI{112.0(1)}{V} \\ \hline
+    Löschspannung & \SI{83.3(1)}{V} \\
+  \end{tabular}
+  \caption{Messergebnis zur Glimmlampe}
+  \label{tab:glimm}
+\end{table}
+
+Anschließend messen wir den Strom von der höchstmöglichen bis zur Löschspannung durch:
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+  \begin{axis}[
+    width=15 cm,
+    height=9 cm,
+    xmin=83.2, xmax=86.9,
+    ymin=1.2, ymax=15.8,
+    xlabel={$U$ [\si{V}]},
+    ylabel={$I$ [\si{mA}]},
+    domain=83.2:86.9,
+    cycle list name=color list,
+    legend entries={Messwerte, $ax+b$},
+    legend pos=north west
+  ]
+  \addplot+ plot [only marks,mark=x, error bars/.cd, x dir=both, x fixed=0.1, y dir=both, y fixed=0.02]  table {glimm.txt};
+  \addplot+ plot [mark=none] {3.93146*x-325.67};
+  \end{axis}
+\end{tikzpicture}
+\caption{Messwerte für die Glimmlampe}
+\label{fig:glimm}
+\end{figure}
+Aufgrund des anscheinend linearen Verlaufs der Messwerte wurde mit \emph{gnuplot} nach dem \emph{least-squares}-Verfahren die Werte gegen die Funktion $f(x)=a\cdot x +b$ gefittet. Ausgabe:
+\begin{table}[H]
+  \centering
+  \begin{tabular}{c | c | c }
+    Variable   & Wert & Unsicherheit\\ \hline
+    a & $\num{3.93146}$ & $\pm\num{0.07344}$ \\
+    b & $\num{-325.67}$ & $\pm\num{6.243}$ \\
+  \end{tabular}
+  \caption{Linearer Fit zu Abbildung \ref{fig:glimm}}
+  \label{tab:fitglimm}
 \end{table}
 \subsection{Temperaturabhängigkeit des Widerstandes eines Metalldrahtes}
 Der Zusammenhang aus der Theorie gilt für den spezifischen Widerstand $\rho$, jedoch messen wir im Versuch den Widerstand $R=\rho\cdot l/A$, wobei $l$ die Länge des Leiters und $A$ die Querschnittsfläche ist. Wir gehen näherungsweise davon aus, dass die thermische Ausdehnung während des Versuches gering ist und nehmen deshalb $l$ und $A$ als konstant an. Für den Fit definieren wir $C\coloneqq \rho_0\cdot l/A$.

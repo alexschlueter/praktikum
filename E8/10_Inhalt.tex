@@ -26,7 +26,7 @@ Wie in Abbildung \ref{fig:aufbau} a) gezeigt wird der Strom für unterschiedlich
     legend pos=north west
   ]
   \addplot+ plot [only marks,mark=x]  table {Diode.txt};
-  \addplot+ plot [samples=500, mark=none] {5.61784*10^(-7)*(1.69598*10^11)^x};
+  \addplot+ plot [samples=200, mark=none] {5.61784*10^(-7)*(1.69598*10^11)^x};
   \end{axis}
 \end{tikzpicture}
 \caption{Messwerte und Fit für eine Diode in Durchlassrichtung}
@@ -36,7 +36,7 @@ Aufgrund des anscheinend exponentiellen Verlaufs der Messwerte wurde mit \emph{g
 \begin{table}[H]
   \centering
   \begin{tabular}{c | c | c }
-    Variabel   & Wert & Unsicherheit\\ \hline
+    Variable  & Wert & Unsicherheit\\ \hline
     a & $\num{5.61784d-7}$ & $\pm\num{3.084d-8}$ \\
     b & $\num{1.69598d+11}$ & $\pm\num{1.319d+10}$
   \end{tabular}
@@ -61,7 +61,7 @@ Wie in Abbildung \ref{fig:aufbau} b) gezeigt wird der Strom für unterschiedlich
     legend pos=north west
   ]
   \addplot+ plot [only marks,mark=x]  table {Diodesperr.txt};
-  \addplot+ plot [samples=500, mark=none] {1.50271*10^(-7)*(42.7533)^x};
+  \addplot+ plot [samples=200, mark=none] {1.50271*10^(-7)*(42.7533)^x};
   \end{axis}
 \end{tikzpicture}
 \caption{Messwerte und Fit für eine Zenerdiode in Sperrrichtung}
@@ -71,7 +71,7 @@ Aufgrund des anscheinend exponentiellen Verlaufs der Messwerte wurde mit \emph{g
 \begin{table}[H]
   \centering
   \begin{tabular}{c | c | c }
-    Variabel   & Wert & Unsicherheit\\ \hline
+    Variable & Wert & Unsicherheit\\ \hline
     a & $\num{1.50271d-7}$ & $\pm\num{5.433d-8}$ \\
     b & $\num{42.7533}$ & $\pm\num{3.073}$
   \end{tabular}
@@ -94,7 +94,7 @@ Aufgrund des anscheinend exponentiellen Verlaufs der Messwerte wurde mit \emph{g
     legend pos=north west
   ]
   \addplot+ plot [only marks,mark=x]  table {Diodedurch.txt};
-  \addplot+ plot [samples=500, mark=none] {3.08803*10^(-11)*(9.72068*10^16)^x};
+  \addplot+ plot [samples=200, mark=none] {3.08803*10^(-11)*(9.72068*10^16)^x};
   \end{axis}
 \end{tikzpicture}
 \caption{Messwerte und Fit für eine Zenerdiode in Durchlassrichtung}
@@ -104,7 +104,7 @@ Aufgrund des anscheinend exponentiellen Verlaufs der Messwerte wurde mit \emph{g
 \begin{table}[H]
   \centering
   \begin{tabular}{c | c | c }
-    Variabel   & Wert & Unsicherheit\\ \hline
+    Variable & Wert & Unsicherheit\\ \hline
     a & $\num{3.08803d-11}$ & $\pm\num{3.759d-12}$ \\
     b & $\num{9,72068d16}$ & $\pm\num{1.673d16}$
   \end{tabular}
@@ -130,7 +130,7 @@ Wie in Abbildung \ref{fig:aufbau} c) gezeigt wird der Strom für unterschiedlich
     legend pos=north west
   ]
   \addplot+ plot [only marks,mark=x]  table {Lampe.txt};
-  \addplot+ plot [samples=500, mark=none] {14.9315*sqrt(x)};
+  \addplot+ plot [samples=200, mark=none] {14.9315*sqrt(x)};
   \end{axis}
 \end{tikzpicture}
 \caption{Messwerte und Fit für eine Lampe}
@@ -140,7 +140,7 @@ Aufgrund des anscheinend Wurzel artigem Verlaufs der Messwerte, besonders im Ber
 \begin{table}[H]
   \centering
   \begin{tabular}{c | c | c }
-    Variabel   & Wert & Unsicherheit\\ \hline
+    Variable & Wert & Unsicherheit\\ \hline
     a & $\num{14,9315}$ & $\pm\num{0,2092}$ \\
    
   \end{tabular}
@@ -166,7 +166,7 @@ Wie in Abbildung \ref{fig:aufbau} d) gezeigt wird der Strom für unterschiedlich
     legend pos=north west
   ]
   \addplot+ plot [only marks,mark=x]  table {NTC1.txt};
-  \addplot+ plot [samples=500, mark=none] {0.316693*x^2-0.0533435*x+1.05214};
+  \addplot+ plot [samples=200, mark=none] {0.316693*x^2-0.0533435*x+1.05214};
   \end{axis}
 \end{tikzpicture}
 \caption{Messwerte und Fit für eine NTC-Widerstand}
@@ -176,15 +176,82 @@ Aufgrund des anscheinend quadratischem Verlaufs der Messwerte wurde mit \emph{gn
 \begin{table}[H]
   \centering
   \begin{tabular}{c | c | c }
-    Variabel   & Wert & Unsicherheit\\ \hline
+    Variable   & Wert & Unsicherheit\\ \hline
     a & $\num{0,316693}$ & $\pm\num{0,05691}$ \\
     b & $\num{-0,0533435}$ & $\pm\num{0,4446}$ \\
     c & $\num{1,05214}$ & $\pm\num{0,6146}$ \\
   \end{tabular}
-  \caption{Linearer Fit zu Abbildung \ref{fig:Lampe}}
-  \label{tab:fitlampe}
+  \caption{Quadratischer Fit zu Abbildung \ref{fig:ntc}}
+  \label{tab:fitntc}
 \end{table}
+\subsection{Temperaturabhängigkeit des Widerstandes eines Metalldrahtes}
+Der Zusammenhang aus der Theorie gilt für den spezifischen Widerstand $\rho$, jedoch messen wir im Versuch den Widerstand $R=\rho\cdot l/A$, wobei $l$ die Länge des Leiters und $A$ die Querschnittsfläche ist. Wir gehen näherungsweise davon aus, dass die thermische Ausdehnung während des Versuches gering ist und nehmen deshalb $l$ und $A$ als konstant an. Für den Fit definieren wir $C\coloneqq \rho_0\cdot l/A$.
 
+Die Messwerte werden für Aufheizen bzw. Abkühlen getrennt mit \emph{gnuplot} nach dem \emph{least-squares}-Verfahren gegen die aus der Theorie erwartete Funktion $R(T)=C(1+\alpha\cdot T$ gefittet. 
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+  \begin{axis}[
+    width=15 cm,
+    height=9 cm,
+    xmin=22, xmax=90,
+    ymin=5.5, ymax=7,
+    xlabel={$T$ [\si{\degreeCelsius}]},
+    ylabel={$R$ [\si{\ohm}]},
+    domain=22:90,
+    cycle list name=color list,
+    legend entries={Messwerte, $C_{\text{auf}}(1+\alpha_{\text{auf}}\cdot T)$},
+    legend pos=north west
+  ]
+  \addplot+ plot [only marks,mark=x, error bars/.cd, x dir=both, x fixed=2, y dir=both, y fixed=0.126]  table {aufheizen.txt};
+  \addplot+ plot [mark=none] {5.06455*(1+0.00448047*x)};
+  \end{axis}
+\end{tikzpicture}
+\caption{Messwerte und Fit fürs Aufheizen}
+\label{fig:aufheizen}
+\end{figure}
 
+\begin{table}[H]
+  \centering
+  \begin{tabular}{c | c}
+    Variable & Wert \\ \hline
+    $C_{\text{auf}}$ & $\SI{5.06455(3523)}{\ohm}$ \\
+    $\alpha_{\text{auf}}$ & $\SI{4.48047(16030)}{\milli\ohm\per\degreeCelsius}$ \\
+  \end{tabular}
+  \caption{Fit zu Abbildung~\ref{fig:aufheizen}}
+  \label{tab:fitaufheizen}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+  \begin{axis}[
+    width=15 cm,
+    height=9 cm,
+    xmin=24, xmax=89,
+    ymin=5.5, ymax=7,
+    xlabel={$T$ [\si{\degreeCelsius}]},
+    ylabel={$R$ [\si{\ohm}]},
+    domain=24:87,
+    cycle list name=color list,
+    legend entries={Messwerte, $C_{\text{ab}}(1+\alpha_{\text{ab}}\cdot T)$},
+    legend pos=north west
+  ]
+  \addplot+ plot [only marks,mark=x, error bars/.cd, x dir=both, x fixed=2, y dir=both, y fixed=0.126]  table {abkuehlen.txt};
+  \addplot+ plot [mark=none] {5.06929*(1+0.00430956*x)};
+  \end{axis}
+\end{tikzpicture}
+\caption{Messwerte und Fit fürs Abkühlen}
+\label{fig:abkuehlen}
+\end{figure}
+\begin{table}[H]
+  \centering
+  \begin{tabular}{c | c}
+    Variable & Wert \\ \hline
+    $C_{\text{ab}}$ & $\SI{5.06929(2510)}{\ohm}$ \\
+    $\alpha_{\text{ab}}$ & $\SI{4.30956(10240)}{\milli\ohm\per\degreeCelsius}$ \\
+  \end{tabular}
+  \caption{Fit zu Abbildung~\ref{fig:abkuehlen}}
+  \label{tab:fitabkuehlen}
+\end{table}
 \section{Diskussion}
 \notecite{anleitung-ws2014}

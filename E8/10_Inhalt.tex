@@ -338,4 +338,11 @@ Die Messwerte werden für Aufheizen bzw. Abkühlen getrennt mit \emph{gnuplot} n
   \label{tab:fitabkuehlen}
 \end{table}
 \section{Diskussion}
+\textbf{Diode in Durchlassrichtung:} Da die Spannung in Durchlassrichtung angelegt wurde, haben wir erwartet, dass die Anzahl der Ladungsträger in der Raumladungszone zunimmt und dadurch die Leitfähigkeit mit höherer Spannung steigt. In \cref{fig:diode} steigt der Strom ab einer Spannung von ca. $\SI{0.6}{mV}$ exponentiell an, d.h. das Verhältnis $1/R=I/U$ nimmt zu. Dies enspricht wie erwartet einer Zunahme der elektrischen Leifähigkeit, da sich die Länge bzw. Querschnittsfläche des Halbleiters während der Messung nicht ändern.
+
+\textbf{Zehnerdiode:} Im Vergleich von \cref{fig:diodesperr} zu \cref{fig:diodedurch} fällt auf, dass die Leitfähigkeit der Diode in Durchlassrichtung deutlich früher ansteigt als in Sperrrichtung, nämlich werden \SI{5}{mA} schon bei ca. $\SI{0.6}{mV}$ statt erst bei $\SI{4.5}{mV}$ durchgelassen. Wie oben bedeutet der exponentielle Anstieg eine Zunahme der Leitfähigkeit. Für den Anstieg des Stromes trotz Sperrspannung ist der \textit{Lawinendurchbruch} bzw. der \textit{Zehnerdurchbruch} verantwortlich, vlg. \footcite{anleitung-ws2014}.
+
+\textbf{Glühlampe:} In \cref{fig:Lampe} ist zu sehen, dass die Steigung $1/R=I/U$ abnimmt, was aufgrund der (näherungsweise) konstanten Länge und Querschnittsfläche des Leiters eine abnehmende Leitfähigkeit bedeutet. Der Draht in der Glühlampe ist also ein \textit{Kaltleiter}. Erklärt werden kann dies durch Zunahme von temperaturbedingten Schwingungen des Atomgitters im Draht, sodass die Elektronen schwerer den Leiter passieren können.
+
+\textbf{NTC:} Hier nimmt die Steigung in \cref{fig:ntc} und damit die Leitfähigkeit des Bauteils mit höherer Spannung zu. Der NTC ist ein Halbleiter, also steigt die Dichte der Elektronen mit der Temperatur (vgl. \footcite{anleitung-ws2014}). Da bei höherem Stromfluss die Temperatur im Bauteil steigt, erklärt dies die positive Krümmung der Kennlinie. Beim Versuch musste nach Einstellen der Spannung mehrere Minuten gewartet werden, bevor ein näherungsweise konstanter Strom am Multimeter abgelesen werden konnte. Dies bestätigt die Temperaturabhängigkeit der Leitfähigkeit.
 \notecite{anleitung-ws2014}

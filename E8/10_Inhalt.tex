@@ -1,9 +1,36 @@
 \section{Einführung}
+Abhängig vom Bauteil können Stromstärke und Spannung in verschiedensten Verhältnissen stehen. Diese Verhältnisse werden Grafisch dargestellt als Kennlinien bezeichnet. 
+\subsection{Warm- und Kaltleiter}
+Aus dem Ohmschen Gesetz ist ein einfaches Verhältnis zwischen Spannung und Stromstärke bekannt. Die Spannung $ U $ ist direkt proportional zur Stromstärke $ I $, wobei der Widerstand $ R $ einen Proportionalitätskoeffizienten darstellt 
+\begin{equation}
+	U = R\cdot I
+\end{equation}
+Bei einem idealen ohmschen Widerstand steigt somit die Spannung linear mit der Stromstärke. Der elektrische Widerstand lässt sich aus dem spezifischen elektrischen Widerstand $ \rho $ und der Geometrie des Leiters errechnen. Für homogene Leiter gilt
+\begin{equation}
+	R = \rho\int\nolimits_l\frac{\mathrm dr}{A(r)} 
+\end{equation}
+Analog dazu sind elektrischer Leitwert der Kehrwert des elektrischen Widerstandes und spezifische elektrische Leitfähigkeit der Kehrwert des spezifischen elektrischen Widerstandes.  \\
+Der spezifische elektrische Widerstand ist material- und temperaturabhängig. Für kleine Temperaturdifferenzen in der Größenordnung von $ \SI{100}{\kelvin} $ verhält sich der spezifische elektrische Widerstand linear zur Temperatur $ T $
+\begin{equation}
+	\rho = \rho_0 [1 + \alpha(T - T_0)]
+\end{equation}
+Dabei ist $ \rho_0 $ der spezifische Widerstand bei der Temperatur $ T_0 $ und $ \alpha $ Proportionalitätskonstante. Entsprechend ist $ \alpha $ gegeben durch
+\begin{equation}
+	\alpha = \frac{1}{\rho_0} \frac{\Delta \rho}{\Delta T}
+\end{equation}
+In jedem realen Leiter wird durch den Stromfluss eine Verlustleistung erzeugt, die den Leiter erwärmt. Dieses Prinzip ist insbesondere bei einer Glühlampe zu beobachten. Der Draht wird fängt durch den Stromfluss an zu glühen und emittiert dadurch Licht. Da sich mit der Zunahme der Temperatur der spezifische elektrische Widerstand ändert ist die $ I $-$ U $-Kurve nicht linear. Bei Warmleitern wie Metallen flacht die Kurve mit zunehmender Spannung ab, bei Kaltleitern dagegen wird die Kurve zunehmend steiler.
+
+\subsection{Halbleiter}
+Halbleiter zeichnen sich dadurch aus, dass für kleine Spannungen der Strom bevorzugt in eine Richtung fließt. Meistens werden dazu heutzutage Grenzschichten aus n-dotierten und p-dotierten Silizium verwenden. Dabei besitzt das n-Dotierte Silizium durch ein eingearbeitetes Element aus der fünften Hauptgruppe freie negative Ladung, während das p-dotierte Silizium durch ein Element der dritten Hauptgruppe freie positive Ladung besitzt. An der Grenzschicht diffundieren die freien negativen Ladungen in die p-Schicht und es wird ein Elektrisches Feld mit negativem Pol an der p-Schicht erzeugt. Dieses Feld wird Raumladungszone genannt. Durch den Ladungsübergang in die p-Schicht existieren hier weniger freie Ladungen und somit nimmt der Widerstand zu. Legt man den positiven Pol der äußeren Spannung an der p-Schicht an, so wirkt man dem elektrischen Feld entgegen und in der Raumladungszone sind mehr freie Ladungen, so dass die Leitfähigkeit zunimmt.
+
+\subsection{Glimmlampe}
+Bei der Glimmlampe werden zwischen einer Kathode und einer Anode eine Spannung angelegt. Ist diese Spannung zu klein, kann kein Strom fließen. Ab der Zündspannung kommt es zum Überschlag, so dass das enthaltene Gas ionisiert wird. Durch die Ionisierung kann nun auch bei geringerer Spannung Strom fließen, bis die Löschspannung unterschritten wird. Das Ionisierte Gas emittiert bei der Entladung elektromagnetische Wellen. Je nach Gas können diese im Bereich des sichtbaren Lichts liegen. 
+
 \section{Versuch}
 Im Folgendem werden die Kennlienen von verschieden Bauteilen mit dem Aufbau \ref{fig:aufbau} bestimmt. Sämtliche Messwerte für die Spannung wurden mit einem Messfehler von $\Delta U = V$ bzw. $\Delta I = mA$ aufgenommen.
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=.8\textwidth]{aufbau.png}
+	\includegraphics[width=.8\textwidth]{Aufbau.png}
 	\caption{Messaufbau für unterschiedliche Leiter}
 	\label{fig:aufbau}
 \end{figure}
@@ -31,7 +58,7 @@ Aufgrund des anscheinend exponentiellen Verlaufs der Messwerte wurde mit \emph{g
 Wie in Abbildung \ref{fig:aufbau} b) gezeigt wird der Strom für unterschiedliche Spannung gemessen, um daraus eine U-I-Kennlinie zu ermitteln. Dies wird jedoch einmal mit einer Polung in Durchlassrichtung und einmal in Sperrrichtung getan.
 \begin{figure}[H]
 \centering
-\input{Diodesperr.tex}
+\input{diodesperr}
 \caption{Messwerte und Fit für eine Zenerdiode in Sperrrichtung}
 \label{fig:diodesperr}
 \end{figure}

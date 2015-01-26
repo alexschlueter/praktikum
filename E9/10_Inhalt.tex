@@ -1,0 +1,53 @@
+\section{Einführung}
+In diesem Versuch werden die Magnetfelder von verschiedenen Spulen und Spulenanordnungen untersucht. Insbesondere sind dies eine lange Zylinderspule, eine kurze Ringspule, eine Helmholtz-Spule und ein magnetisches Quadrupol. Die theoretischen Grundlagen dieser magnetischen Felder lassen sich auf vier einfachen Gleichungen aufbauen, den so genannten Maxwell-Gleichungen. Darauf wird hier jedoch verzichtet.
+\subsection{Biot-Savart-Gesetz}
+Das Biot-Savart-Gesetz erlaubt die Bestimmung von magnetischen Feldern, die durch allgemeine stromdurchflossene Leiter erzeugt werden. Es lässt sich in differentieller Form und äquivalent in Integralform darstellen
+\begin{equation}
+	\di \vec{B}(\vec{r}) = \frac{\mu_0}{4\pi} I \frac{\di\vec{r'}\times (\vec{r} - \vec{r'})}{|\vec{r} - \vec{r'}|^3} \quad \Leftrightarrow \quad 
+	\vec{B}(\vec{r}) = \frac{\mu_0}{4\pi} I \int\nolimits_{\mathbb{R}^3} \frac{\di\vec{r'}\times (\vec{r} - \vec{r'})}{|\vec{r} - \vec{r'}|^3}
+\end{equation}
+Dieses Gesetz sagt im wesentlichen aus, dass Leiter und Leiterkombinationen, bei denen die Stromstärke $ I $ in allen Leitern gleich ist, sich das magnetische Feld $ \mathrm{B} $ alleine aus der Geometrie des Leiters errechnen lässt und proportional zu Stromstärke ist.
+Daraus lässt sich wenigstens numerisch für beliebige, bekannte Leitergeometrie die Feldstärke und Richtung des Magnetfeldes an jedem Ort berechnen. Einige für den Versuch relevanten Spezialfälle werden im Folgenden betrachtet.
+
+\subsection{Feld einer Leiterschleife}
+Eine Leiterschleife ist eine Spule aus nur einer Windung, oder mit gegen den Radius vernachlässigbarer Länge. Somit wird für den Fall einer Spule zur Berechnung angenommen, dass alle Windungen am gleichen Ort sind und somit die Feldstärke proportional zur Windungszahl zunimmt. Zudem zerlegt man das Magnetfeld in eine Komponente $ B_\perp $ senkrecht zur Symmetrieachse und eine Komponente $ B_\parallel $ parallel zur Achse. Auf der Symmetrieachse heben sich die $ B_\perp $ Komponenten, die durch die jeweils gegenüber liegenden Spulenstücke erzeugt werden gegenseitig auf, so dass in der Summe $ B_\perp = \SI{0}{\tesla} $ wird. %TODO: reicht für heute.
+\section{Versuch}
+\subsection{Versuchskomponenten}
+Die Versuchskomponenten, die zur Durchführung verwendet werden sind eine Messspule, eine lange Spule und zwei Spulen kurze Spulen. Beide kurzen Spulen zusammen werden später auch, je nach Schaltung, als Quadrupol und Helmholtz-Spule verwendet wird. Die relevanten Eigenschaften sind zum Teil den Beschriftungen der Bauteile zu entnehmen und werden dann als nicht Fehlerbehaftet angenommen. Der Durchmesser der kurzen Spule ist nicht angegeben und wurde mit einem Messschieber gemessen. Die Messwerte sind in Tabelle \ref{tab:eigenschaftenSpulen} zu finden.
+\begin{landscape}
+\begin{table}
+\thispagestyle{plain}
+\begin{tabular}{r|cc||r|cc||r|cc}
+	\multicolumn{3}{c}{Messspule} & \multicolumn{3}{c}{lange Spule} & \multicolumn{3}{c}{kurze Spule} \\
+	Messgröße & Messwert & Fehler & Messgröße & Messwert & Fehler & Messgröße & Messwert & Fehler \\ \hline
+	eff. Fläche & $ \SI{.157}{\square\meter} $ & (abgelesen) & Windungszahl & $ 200 $ & (abgelesen) & Windungszahl & 330 & (abgelesen) \\
+	& & & Radius & $ \SI{20}{\milli\meter} $ & (abgelesen) & Innendurchmesser & \multicolumn{2}{c}{\SI{14.98(2)}{\centi\meter}} \\
+	& & & Länge & $ \SI{300}{\milli\meter} $ & (abgelesen) & Außendurchmesser & \multicolumn{2}{c}{$ \SI{11.98(2)}{\centi\meter} $}	
+\end{tabular}
+\label{tab:eigenschaftenSpulen}
+\caption{Physikalische Eigenschaften der Spulen}
+\end{table}
+\end{landscape}
+
+\subsection{Magnetfeld einer langen Spule}
+In diesem Feld wird das Magnetfeld entlang der Mittelachse einer langen Spule untersucht. Dazu wird die Spule an eine Wechselstromquelle von nicht mehr als $ \SI{3}{\ampere} $ angeschlossen. Bei höherer Stromstärke könnte sich die Spule überhitzen und somit geschädigt werden. Jedoch erwärmt sich die Spule auch unterhalb von $ \SI{3}{\ampere} $, so dass der Strom nachgeregelt werden muss um dem zunehmenden ohmschen Widerstand entgegen zu wirken. Daraufhin wird die Messspule an verschiedene Stellen im entstehenden Magnetfeld der langen Spule geschoben und die jeweils induzierte Spannung gemessen. \\
+Aus der Theorie der langen Spule ist zu erwarten, dass das Magnetfeld mittig in der Spule nahezu homogen ist, während es am Rand und außerhalb der Spule abfällt. In großer Entfernung ist die Feldstärke nahezu Antiproportional zum Abstand von der Spule zu erwarten.
+In unserem Fall betrug der Spulenstrom während der Durchführung $ I = \SI{2.90(3)}{\ampere} $.
+
+%TODO: Diagramm
+
+\subsection{Axialkomponente des Magnetfeldes einer kurzen Spule}
+
+\subsection{Magnetfeld in horizontal Symmetrieebene einer kurzen Spule}
+
+\subsection{Feldvektoren}
+
+\subsection{Magnetfeld einer Helmholtz-Spule}
+Die Helmholtz-Spule wird aufgebaut, indem zwei kurze Spulen im Abstand entsprechend des Radius der Spulen aufgebaut werden. Dann wird eine Stromquelle angeschlossen, so dass in beiden Spulen der gleiche Strom in die gleiche Richtung fließt. Um sicher zu stellen, dass in beiden Spulen der gleiche Strom fließt, sollten diese in Reihe geschaltet sein. Der maximale Strom darf hierbei $ \SI{1}{A} $ betragen um Überlastung vorzubeugen und muss um dem durch Erwärmung zunehmenden ohmschen Widerstand der Spulen entgegen zu wirken gegebenen Falls während der Durchführung nachgeregelt werden. \\
+Daraufhin schiebt man die Messspule an verschiedene Stellen entlang der Symmetrie-Achse der Helmholtzspule und misst anhand des induzierten Stroms an der Spule die Axialkomponente des Magnetfeldes aus. Dieses Vorgehen wiederholt man mit einer um $ \SI{90}{\degree} $ gedrehten Messspule und erhält entsprechend die Radialkomponente, sowie mittig zwischen den Spulen entlang einer Achse senkrecht zur Symmetrieachse jeweils für Axial- und Radialkomponente.\\
+Die Theorie der Hemholtz-Spule lässt zwischen den Spulen ein homogenes Feld erwarten, das erst nahe der Spulen beginnt abzunehmen. Dieses Feld ist radial ausgerichtet, so dass eine verschwindende Radialkomponente erwartet wird. \\
+Während unserer Durchführung betrug der Spulenstrom $ I= \SI{1.000(3)}{A} $.
+
+\section{Diskussion}
+\subsection{lange Spule}
+Das homogene Feld entlang der Achse der Spule in der Mitte ist gut zu erkennen. Von der Mitte bis $ \SI{40}{\milli\meter} $ vor dem Ende der Spule ist das Magnetfeld um weniger als $ \SI{10}{\percent} $ gefallen. Ab etwa $ \SI{30}{\milli\meter} $ vor Spulenende beginnt das Feld immer schneller abzufallen. %TODO: Das ist noch nicht alles

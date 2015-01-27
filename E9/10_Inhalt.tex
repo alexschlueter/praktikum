@@ -68,8 +68,8 @@ Die Versuchskomponenten, die zur Durchführung verwendet werden sind eine Messsp
 	& & & Radius & $ \SI{20}{\milli\meter} $ & (abgelesen) & Innendurchmesser & \multicolumn{2}{c}{\SI{14.98(2)}{\centi\meter}} \\
 	& & & Länge & $ \SI{300}{\milli\meter} $ & (abgelesen) & Außendurchmesser & \multicolumn{2}{c}{$ \SI{11.98(2)}{\centi\meter} $}	
 \end{tabular}
-\label{tab:eigenschaftenSpulen}
 \caption{Physikalische Eigenschaften der Spulen}
+\label{tab:eigenschaftenSpulen}
 \end{table}
 \end{landscape}
 
@@ -79,7 +79,7 @@ Aus der Theorie der langen Spule ist zu erwarten, dass das Magnetfeld mittig in 
 In unserem Fall betrug der Spulenstrom während der Durchführung $ I = \SI{2.90(3)}{\ampere} $. 
 
 \begin{figure}[H]
-\input{langeSpule}
+\input{gnuplot/langeSpule}
 \caption{Magnetfeld der langen Spule in Abhängigkeit der Position}
 \end{figure}
 
@@ -98,7 +98,7 @@ Analog zur langen Spule wird die Axialkomponente des Magnetfeldes auf der Achse 
     xmin=-3, xmax=17,
     ymin=0.1, ymax=3.17,
     xlabel={Abstand zum Mittelpunkt der Spule $s$ [\si{cm}]},
-    ylabel={$B$ [\si{\micro T}]},
+    ylabel={$B_\parallel$ [\si{\micro T}]},
     domain=-3:17,
     legend entries={Messwerte, $\num{9.231e2}/(6.74^2+x^2)$},
     legend pos=north east
@@ -107,13 +107,12 @@ Analog zur langen Spule wird die Axialkomponente des Magnetfeldes auf der Achse 
   \addplot+ plot [mark=none, samples=15, samples=150] {9.231e2/(6.74^2+x^2)^(3/2)};
   \end{axis}
 \end{tikzpicture}
-\caption{Messwerte und berechnete Kurve für $B_\parallel$ auf der Achse einer kurzen Spule}
+\caption{Messwerte und berechnete Kurve für $B_\parallel$ auf der Achse einer Helmholtz-Spule}
 \label{fig:axialaufachsekurz}
+\end{figure}
 
 Die Kurve im Diagramm entspricht dem Zusammenhang~\cref{eq:dipol} aus der Theorie, wobei $\frac{\mu_0\cdot m}{2\pi}\approx \SI{9.231e2}{\micro T.cm^2}$ und $R=\SI{6.74}{cm}$ eingesetzt wurden.
 Zu sehen ist, dass der Kurvenverlauf im Allgemeinen mit den Messwerten übereinstimmt. Allerdings weichen fast alle Messwerte leicht nach oben ab. Der Wert für $s=\SI{2}{cm}$ weicht so weit nach oben ab, dass wir einen groben Messfehler vermuten.
-\end{figure}
-
 \subsection{Magnetfeld in horizontal Symmetrieebene einer kurzen Spule}
 
 \subsection{Feldvektoren}
@@ -124,6 +123,27 @@ Daraufhin schiebt man die Messspule an verschiedene Stellen entlang der Symmetri
 Die Theorie der Hemholtz-Spule lässt zwischen den Spulen ein homogenes Feld erwarten, das erst nahe der Spulen beginnt abzunehmen. Dieses Feld ist radial ausgerichtet, so dass eine verschwindende Radialkomponente erwartet wird. \\
 Während unserer Durchführung betrug der Spulenstrom $ I= \SI{1.000(3)}{A} $.
 
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+  \begin{axis}[
+    width=15 cm,
+    height=9 cm,
+    xmin=-12, xmax=160,
+    ymin=0.4, ymax=4.6,
+    xlabel={Abstand zum Mittelpunkt zwischen den Spulen $x$ [\si{mm}]},
+    ylabel={$B_\parallel$ [\si{mT}]},
+    domain=-12:160,
+    legend entries={Messwerte, \cref{eq:helmholtz}},
+    legend pos=north east
+  ]
+  \addplot+ plot [only marks,mark=x, error bars/.cd, x dir=both, x fixed=1, y dir=both, y fixed=0.003]  table {helmaxialaufachse.csv};
+  \addplot+ plot [mark=none, samples=150] {2.073e1*(6.74)^2*(((6.74)^2+((6.74)/2+x/10)^2)^(-3/2)+((6.74)^2+((6.74)/2-x/10)^2)^(-3/2))};
+  \end{axis}
+\end{tikzpicture}
+\caption{Messwerte und berechnete Kurve für $B_\parallel$ auf der Achse einer kurzen Spule}
+\label{fig:axialaufachsehelm}
+\end{figure}
 \section{Diskussion}
 \subsection{Lange Spule}
 Das homogene Feld entlang der Achse der Spule in der Mitte ist gut zu erkennen. Von der Mitte bis $ \SI{40}{\milli\meter} $ vor dem Ende der Spule ist das Magnetfeld um weniger als $ \SI{10}{\percent} $ gefallen. Ab etwa $ \SI{30}{\milli\meter} $ vor Spulenende beginnt das Feld immer schneller abzufallen. Im Kurvenverlauf stimmt die tatsächlich gemessene Kurve sehr gut mit der aus der Theorie erwarteten überein. Lediglich im inneren der Spule ist das Feld geringfügig stärker als erwartet. Dies könnte darauf zurück zu führen sein, dass die metallische Messspule eine höhere relative Permeabilität als die umgebende Luft besitzt und somit das Magnetfeld verstärkt, wenn sie sich in der langen Spule befindet. Jedoch haben wir die Messspule nicht auf ferromagnetische Eigenschaften hin untersucht. Dennoch ist der Fehler nur sehr geringfügig. Berücksichtigt man die Grenzen der Vertrauensintervalle, so liegt die relative Abweichung gerade mal bei etwa $ \SI{1.36}{\percent} $.

@@ -4,16 +4,19 @@ In diesem Versuch werden die Magnetfelder von verschiedenen Spulen und Spulenano
 Das Biot-Savart-Gesetz erlaubt die Bestimmung von magnetischen Feldern, die durch allgemeine stromdurchflossene Leiter erzeugt werden. Es lässt sich in differentieller Form und äquivalent in Integralform darstellen
 \begin{equation}
 	\di \vec{B}(\vec{r}) = \frac{\mu_0}{4\pi} I \frac{\di\vec{r'}\times (\vec{r} - \vec{r'})}{|\vec{r} - \vec{r'}|^3} \quad \Leftrightarrow \quad 
-	\vec{B}(\vec{r}) = \frac{\mu_0}{4\pi} I \int\nolimits_{\mathbb{R}^3} \frac{\di\vec{r'}\times (\vec{r} - \vec{r'})}{|\vec{r} - \vec{r'}|^3}
+	\vec{B}(\vec{r}) = \frac{\mu_0}{4\pi} I \int\nolimits_{\text{Leiter}} \frac{\di\vec{r'}\times (\vec{r} - \vec{r'})}{|\vec{r} - \vec{r'}|^3}
 \end{equation}
 Dieses Gesetz sagt im wesentlichen aus, dass Leiter und Leiterkombinationen, bei denen die Stromstärke $ I $ in allen Leitern gleich ist, sich das magnetische Feld $ \mathrm{B} $ alleine aus der Geometrie des Leiters errechnen lässt und proportional zu Stromstärke ist.
 Daraus lässt sich wenigstens numerisch für beliebige, bekannte Leitergeometrie die Feldstärke und Richtung des Magnetfeldes an jedem Ort berechnen. Einige für den Versuch relevanten Spezialfälle werden im Folgenden betrachtet.
 
 \subsection{Feld einer Leiterschleife}
-Eine Leiterschleife ist eine Spule aus nur einer Windung, oder mit gegen den Radius vernachlässigbarer Länge. Somit wird für den Fall einer Spule zur Berechnung angenommen, dass alle Windungen am gleichen Ort sind und somit die Feldstärke proportional zur Windungszahl zunimmt. Zudem zerlegt man das Magnetfeld in eine Komponente $ B_\perp $ senkrecht zur Symmetrieachse und eine Komponente $ B_\parallel $ parallel zur Achse. Auf der Symmetrieachse heben sich die $ B_\perp $ Komponenten, die durch die jeweils gegenüber liegenden Spulenstücke erzeugt werden gegenseitig auf, so dass in der Summe $ B_\perp = \SI{0}{\tesla} $ wird. %TODO: reicht für heute.
+Eine Leiterschleife ist eine Spule aus nur einer Windung, oder mit gegen den Radius vernachlässigbarer Länge. Somit wird für den Fall einer Spule zur Berechnung angenommen, dass alle Windungen am gleichen Ort sind und somit die Feldstärke proportional zur Windungszahl zunimmt. Zudem zerlegt man das Magnetfeld in eine Komponente $ B_\perp $ senkrecht zur Symmetrieachse und eine Komponente $ B_\parallel $ parallel zur Achse. Auf der Symmetrieachse heben sich die $ B_\perp $ Komponenten, die durch die jeweils gegenüber liegenden Spulenstücke erzeugt werden gegenseitig auf, so dass in der Summe $ B_\perp = \SI{0}{\tesla} $ wird. Die Axialkomponente aller Spulenstücke sind gleich gerichtet. Daher lässt sich diese durch ein Integral über die Leiterschleife berechnen
+\begin{equation}
+ 	B_\parallel = \frac{\mu_0}{4\pi} I \int \frac{\di\vec{r'}\times (\vec{r} - \vec{r'})}{|\vec{r} - \vec{r'}|^3} \vec{e_r} = \frac{\mu_0}{4\pi} I \int \frac{\di\vec{r'}\times (\vec{r} - \vec{r'})}{|\vec{r} - \vec{r'}|^3} \vec{e_r}
+\end{equation}
 \section{Versuch}
 \subsection{Versuchskomponenten}
-Die Versuchskomponenten, die zur Durchführung verwendet werden sind eine Messspule, eine lange Spule und zwei Spulen kurze Spulen. Beide kurzen Spulen zusammen werden später auch, je nach Schaltung, als Quadrupol und Helmholtz-Spule verwendet wird. Die relevanten Eigenschaften sind zum Teil den Beschriftungen der Bauteile zu entnehmen und werden dann als nicht Fehlerbehaftet angenommen. Der Durchmesser der kurzen Spule ist nicht angegeben und wurde mit einem Messschieber gemessen. Die Messwerte sind in Tabelle \ref{tab:eigenschaftenSpulen} zu finden.
+Die Versuchskomponenten, die zur Durchführung verwendet werden sind eine Messspule, eine lange Spule und zwei Spulen kurze Spulen. Beide kurzen Spulen zusammen werden später auch, je nach Schaltung, als Quadrupol und Helmholtz-Spule verwendet wird. Die relevanten Eigenschaften sind zum Teil den Beschriftungen der Bauteile zu entnehmen und werden dann als nicht Fehlerbehaftet angenommen. Der Durchmesser der kurzen Spule ist nicht angegeben und wurde mit einem Messschieber gemessen. Die Messwerte sind in Tabelle \ref{tab:eigenschaftenSpulen} zu finden. Zudem wurde die induzierte Spannung an der Messspule gemessen, wenn in den anderen Spulen keine Strom floss. Diese betrug $ \SI{0}{\milli\volt} $ in der feinsten Einstellung des Multimeters, so dass im Folgenden von keinem Offset der gemessenen Induktionsspannungen ausgegangen wird.
 \begin{landscape}
 \begin{table}
 \thispagestyle{plain}
@@ -32,9 +35,15 @@ Die Versuchskomponenten, die zur Durchführung verwendet werden sind eine Messsp
 \subsection{Magnetfeld einer langen Spule}
 In diesem Feld wird das Magnetfeld entlang der Mittelachse einer langen Spule untersucht. Dazu wird die Spule an eine Wechselstromquelle von nicht mehr als $ \SI{3}{\ampere} $ angeschlossen. Bei höherer Stromstärke könnte sich die Spule überhitzen und somit geschädigt werden. Jedoch erwärmt sich die Spule auch unterhalb von $ \SI{3}{\ampere} $, so dass der Strom nachgeregelt werden muss um dem zunehmenden ohmschen Widerstand entgegen zu wirken. Daraufhin wird die Messspule an verschiedene Stellen im entstehenden Magnetfeld der langen Spule geschoben und die jeweils induzierte Spannung gemessen. \\
 Aus der Theorie der langen Spule ist zu erwarten, dass das Magnetfeld mittig in der Spule nahezu homogen ist, während es am Rand und außerhalb der Spule abfällt. In großer Entfernung ist die Feldstärke nahezu Antiproportional zum Abstand von der Spule zu erwarten.
-In unserem Fall betrug der Spulenstrom während der Durchführung $ I = \SI{2.90(3)}{\ampere} $.
+In unserem Fall betrug der Spulenstrom während der Durchführung $ I = \SI{2.90(3)}{\ampere} $. 
 
-%TODO: Diagramm
+\begin{figure}[H]
+\input{langeSpule}
+\caption{Magnetfeld der langen Spule in Abhängigkeit der Position}
+\end{figure}
+
+Im Diagramm wurde die Magnetfeldstärke gegen die Position der Messspule aufgetragen. Dazu wurden zunächst mit Hilfe von \eqref{eq:indSpannung} die gemessenen Spannungen in die Feldstärke umgerechnet. Die dazu gehörige Fehlerrechnung ist im Anhang unter \eqref{eq:indSpannungErr}. Dann wurde zum Vergleich die Kurve die nach \eqref{eq:langeSpule} zu erwarten ist eingezeichnet so wie ein Fit der Messwerte nach dem \textit{least squares Verfahren}. Der im beim Fit ermittelte Wert für $ I\cdot n $ beträgt $ I\cdot n = \SI{1987.2(69)}{\ampere\per\meter} $. Der aus gemessener Stromstärke und abgelesener Windungszahl und Spulenlänge errechnete Vergleichswert beträgt $ I\cdot n = \SI{1933.3(200)}{\ampere\per\meter} $. Da nur die Stromstärke als Fehlerbehaftet angenommen wir ergibt sich der Fehler aus dem gleich bleibenden relativen Fehler.
+
 
 \subsection{Axialkomponente des Magnetfeldes einer kurzen Spule}
 

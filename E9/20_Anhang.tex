@@ -4,3 +4,13 @@ Da Windungszahl und Fläche der Spule sowie die Frequenz des Wechselstroms als n
 \begin{equation}
 	\Delta B_{eff} = \left|\frac{\partial }{\partial U_{eff}} \frac{U_{eff}}{\omega NF} \Delta U_{eff}\right| = \left|\frac{\Delta U_{eff}}{\omega N F}\right|
 \end{equation}
+
+\subsection{Volumen Zylinder}
+Das Volumen eines Zylinders ist gegeben durch \begin{equation*}
+	V = \pi h R^2
+\end{equation*}
+Nach gauß'scher Fehlerfortpflanzung ist die Unsicherheit gegeben durch
+\begin{align}
+	\Delta V &= \pi \sqrt{\left(\frac{\partial}{\partial h} h R^2 \Delta h\right)^2 + \left( \frac{\partial}{\partial R} hR^2 \Delta R\right)^2} \notag \\
+	&= \pi \sqrt{\left(R^2 \Delta h\right)^2 + \left(  2hR \Delta R\right)^2} \label{eq:zylinderErr}
+\end{align}

@@ -22,6 +22,7 @@ Für mehrere Windungen entspricht die Feldstärke das entsprechende Vielfache.
 Eine Helmholtz-Spule besteht aus zwei gleichen koaxial angeordneten Leiterschleifen. Diese haben den Radius $ R $ sowie Abstand $ d = R $ voneinander. In beiden Schleifen soll der gleiche Strom in die gleiche Richtung fließen. Das Magnetfeld ergibt sich dann aus der Summe der Felder der beiden Leiterschleifen, die jeweils um $ R/2 $ in positive bzw. negative Achsenrichtung vom Ursprung verschoben sind. Das Gesamtfeld bei Windungszahl $ N $ ist somit
 \begin{equation}
 	B = N\cdot \frac{\mu_0}{2} I \left(\frac{R^2}{\left(R^2 + \left(x + \frac{R}{2}\right)^2\right)^{3/2}} + \frac{R^2}{\left(R^2 + \left(x - \frac{R}{2}\right)^2\right)^{3/2}}\right)
+    \label{eq:helmholtz}
 \end{equation}
 
 \subsection{Feld einer langen Zylinderspule}
@@ -51,7 +52,7 @@ erwartet. Somit gilt
 \end{equation}
 setzt man dies in \eqref{eq:ampereGesetz} ein, so erhält man 
 \begin{equation}
-	U_eff = \omega B_{eff} NF \qquad \Leftrightarrow \qquad B_{eff} = \frac{U_{eff}}{\omega NF}
+  U_{eff} = \omega B_{eff} NF \qquad \Leftrightarrow \qquad B_{eff} = \frac{U_{eff}}{\omega NF}
 \end{equation}
 Die induzierte Spannung lässt sich zum Beispiel mit einem Multimeter einfach und zuverlässig messen.
 \newpage
@@ -107,7 +108,7 @@ Analog zur langen Spule wird die Axialkomponente des Magnetfeldes auf der Achse 
   \addplot+ plot [mark=none, samples=15, samples=150] {9.231e2/(6.74^2+x^2)^(3/2)};
   \end{axis}
 \end{tikzpicture}
-\caption{Messwerte und berechnete Kurve für $B_\parallel$ auf der Achse einer Helmholtz-Spule}
+\caption{Messwerte und berechnete Kurve für $B_\parallel$ auf der Achse einer kurzen Spule}
 \label{fig:axialaufachsekurz}
 \end{figure}
 
@@ -141,8 +142,50 @@ Während unserer Durchführung betrug der Spulenstrom $ I= \SI{1.000(3)}{A} $.
   \addplot+ plot [mark=none, samples=150] {2.073e1*(6.74)^2*(((6.74)^2+((6.74)/2+x/10)^2)^(-3/2)+((6.74)^2+((6.74)/2-x/10)^2)^(-3/2))};
   \end{axis}
 \end{tikzpicture}
-\caption{Messwerte und berechnete Kurve für $B_\parallel$ auf der Achse einer kurzen Spule}
+\caption{Messwerte und berechnete Kurve für $B_\parallel$ auf der Achse einer Helmholtz-Spule}
 \label{fig:axialaufachsehelm}
+\end{figure}
+Die Radialkomponente wurde 6 mal auf der Achse gemessen. Innerhalb des Fehlers war $B_\bot=0$ wie erwartet. 
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+  \begin{axis}[
+    width=15 cm,
+    height=9 cm,
+    xmin=-5, xmax=88,
+    ymin=0, ymax=9,
+    xlabel={Abstand zur Spulenachse $x$ [\si{mm}]},
+    ylabel={$B_\bot$ [\si{\micro T}]},
+    domain=-12:160,
+    legend entries={Messwerte},
+    legend pos=north east
+  ]
+  \addplot+ plot [only marks,mark=x, error bars/.cd, x dir=both, x fixed=1, y dir=both, y fixed=2]  table {helmradialsenkrecht.csv};
+  \end{axis}
+\end{tikzpicture}
+\caption{Messwerte für $B_\bot$ senkrecht zur Achse bei einer Helmholtz-Spule}
+\label{fig:radialsenkrechthelm}
+\end{figure}
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+  \begin{axis}[
+    width=15 cm,
+    height=9 cm,
+    xmin=-5, xmax=235,
+    ymin=-0.5, ymax=4.75,
+    xlabel={Abstand zur Spulenachse $x$ [\si{mm}]},
+    ylabel={$B_\parallel$ [\si{mT}]},
+    domain=-12:160,
+    legend entries={Messwerte},
+    legend pos=north east
+  ]
+  \addplot+ plot [only marks,mark=x, error bars/.cd, x dir=both, x fixed=1, y dir=both, y fixed=0.002]  table {helmaxialsenkrecht.csv};
+  \end{axis}
+\end{tikzpicture}
+\caption{Messwerte für $B_\parallel$ senkrecht zur Achse bei einer Helmholtz-Spule}
+\label{fig:axialsenkrechthelm}
 \end{figure}
 \section{Diskussion}
 \subsection{lange Spule}

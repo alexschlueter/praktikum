@@ -11,10 +11,51 @@ Daraus lässt sich wenigstens numerisch für beliebige, bekannte Leitergeometrie
 
 \subsection{Feld einer Leiterschleife}
 Eine Leiterschleife ist eine Spule aus nur einer Windung, oder mit gegen den Radius vernachlässigbarer Länge. Somit wird für den Fall einer Spule zur Berechnung angenommen, dass alle Windungen am gleichen Ort sind und somit die Feldstärke proportional zur Windungszahl zunimmt. Zudem zerlegt man das Magnetfeld in eine Komponente $ B_\perp $ senkrecht zur Symmetrieachse und eine Komponente $ B_\parallel $ parallel zur Achse. Auf der Symmetrieachse heben sich die $ B_\perp $ Komponenten, die durch die jeweils gegenüber liegenden Spulenstücke erzeugt werden gegenseitig auf, so dass in der Summe $ B_\perp = \SI{0}{\tesla} $ wird. Die Axialkomponente aller Spulenstücke sind gleich gerichtet. Daher lässt sich diese durch ein Integral über die Leiterschleife berechnen
+\begin{align}
+ 	B_\parallel &= \frac{\mu_0}{4\pi} I \int \frac{\di\vec{r'}\times (\vec{r} - \vec{r'})}{|\vec{r} - \vec{r'}|^3} \vec{e_r} = \frac{\mu_0}{4\pi} I \int \frac{\di\vec{r'}\times (\vec{r} - \vec{r'})}{|\vec{r} - \vec{r'}|^3} \vec{e_r}
+ 	 = \frac{\mu_0}{4\pi} I \frac{R}{(R^2 + x^2)^{3/2}} \cdot 2\pi R \notag \\
+ 	&= \frac{\mu_0}{2}I \frac{R^2}{(R^2 + x^2)^{3/2}}
+\end{align}
+Für mehrere Windungen entspricht die Feldstärke das entsprechende Vielfache.
+
+\subsection{Feld einer Helmholtz-Spule}
+Eine Helmholtz-Spule besteht aus zwei gleichen koaxial angeordneten Leiterschleifen. Diese haben den Radius $ R $ sowie Abstand $ d = R $ voneinander. In beiden Schleifen soll der gleiche Strom in die gleiche Richtung fließen. Das Magnetfeld ergibt sich dann aus der Summe der Felder der beiden Leiterschleifen, die jeweils um $ R/2 $ in positive bzw. negative Achsenrichtung vom Ursprung verschoben sind. Das Gesamtfeld bei Windungszahl $ N $ ist somit
 \begin{equation}
- 	B_\parallel = \frac{\mu_0}{4\pi} I \int \frac{\di\vec{r'}\times (\vec{r} - \vec{r'})}{|\vec{r} - \vec{r'}|^3} \vec{e_r} = \frac{\mu_0}{4\pi} I \int \frac{\di\vec{r'}\times (\vec{r} - \vec{r'})}{|\vec{r} - \vec{r'}|^3} \vec{e_r}
+	B = N\cdot \frac{\mu_0}{2} I \left(\frac{R^2}{\left(R^2 + \left(x + \frac{R}{2}\right)^2\right)^{3/2}} + \frac{R^2}{\left(R^2 + \left(x - \frac{R}{2}\right)^2\right)^{3/2}}\right)
 \end{equation}
-\section{Versuch}
+
+\subsection{Feld einer langen Zylinderspule}
+Bei der langen Zylinderspule sind viele Windungen $ N $ auf eine Länge $ L $ gleichmäßig verteilt. Zur besseren Berechenbarkeit geht man in sehr guter Näherung von einer homogenen Windungsdichte $ n = N/L $ aus, mit der die Summe der Felder aller Windungen als Integral über die Länge der Spule darstellen lässt.
+\begin{align}
+	B &= N\cdot\frac{\mu_0}{2} I \frac{R^2\int\limits_{0}^{L} \frac{\di a}{(R^2 + (x-a)^2)^{3/2}}}{L} = n \frac{\mu_0}{2} I R^2 \int\limits_{0}^{L} \frac{\di a}{(R^2 + (x+a)^2)^{3/2}} \notag \\
+	B &= n \frac{\mu_0}{2} IR^2 \left(\frac{x + L}{\sqrt{R^2 + (x + L)^2}} - \frac{x}{\sqrt{R^2 + x^2}}\right)
+\end{align}
+Das Feld ist in der Mitte der Spule am stärksten und nahezu konstant. Erst nahe dem Rand beginnt das Feld stark abzuschwächen mit Wendepunkten genau an den Enden der Spule.
+
+\subsection{Feld eines magnetischen Quadrupols}
+Magnetische Quadrupole können ähnlich der Helmholtz-Spule durch zwei koaxiale Leiterschleifen mit je $ N $ Windungen gebildet werden. Jedoch entspricht im Gegensatz zur Helmholtz-Spule der Abstand $ d = 2R $, also den doppelten Radius anstatt den halben. Zudem soll die Stromstärke in den beiden Schleifen zwar im Betrag gleich sein, jedoch entgegengesetzt gerichtet. In hinreichen großer Entfernung von den Schleifen gilt auf der Symmetrieachse für das Magnetfeld
+\begin{equation}
+	B = \frac{3\mu_0IR^3}{x^4}
+\end{equation}
+\subsection{Messen von Magnetfeldern}
+Nach dem ampèreschen Gesetz wird in eine Leiterschleife der Fläche $ F $ und Windungszahl $ N $ eine Spannung von 
+\begin{equation}
+	U = \dot{B} NF \label{eq:ampereGesetz}
+\end{equation}
+induziert. Bei Anlegen von Wechselstrom wird auch ein mit gleicher Frequenz oszillierendes magnetisches Feld \begin{equation}
+	B(t) = B_0 \sin(\omega t)
+\end{equation}
+erwartet. Somit gilt
+\begin{equation}
+	\dot B(t) = \omega B_0 \cos(\omega t) \quad \text{und} \quad \dot B_{eff} = \omega B_{eff}
+\end{equation}
+setzt man dies in \eqref{eq:ampereGesetz} ein, so erhält man 
+\begin{equation}
+	U_eff = \omega B_{eff} NF \qquad \Leftrightarrow \qquad B_{eff} = \frac{U_{eff}}{\omega NF}
+\end{equation}
+Die induzierte Spannung lässt sich zum Beispiel mit einem Multimeter einfach und zuverlässig messen.
+\newpage
+\section{Versuche}
 \subsection{Versuchskomponenten}
 Die Versuchskomponenten, die zur Durchführung verwendet werden sind eine Messspule, eine lange Spule und zwei Spulen kurze Spulen. Beide kurzen Spulen zusammen werden später auch, je nach Schaltung, als Quadrupol und Helmholtz-Spule verwendet wird. Die relevanten Eigenschaften sind zum Teil den Beschriftungen der Bauteile zu entnehmen und werden dann als nicht Fehlerbehaftet angenommen. Der Durchmesser der kurzen Spule ist nicht angegeben und wurde mit einem Messschieber gemessen. Die Messwerte sind in Tabelle \ref{tab:eigenschaftenSpulen} zu finden. Zudem wurde die induzierte Spannung an der Messspule gemessen, wenn in den anderen Spulen keine Strom floss. Diese betrug $ \SI{0}{\milli\volt} $ in der feinsten Einstellung des Multimeters, so dass im Folgenden von keinem Offset der gemessenen Induktionsspannungen ausgegangen wird.
 \begin{landscape}
@@ -34,7 +75,7 @@ Die Versuchskomponenten, die zur Durchführung verwendet werden sind eine Messsp
 
 \subsection{Magnetfeld einer langen Spule}
 In diesem Feld wird das Magnetfeld entlang der Mittelachse einer langen Spule untersucht. Dazu wird die Spule an eine Wechselstromquelle von nicht mehr als $ \SI{3}{\ampere} $ angeschlossen. Bei höherer Stromstärke könnte sich die Spule überhitzen und somit geschädigt werden. Jedoch erwärmt sich die Spule auch unterhalb von $ \SI{3}{\ampere} $, so dass der Strom nachgeregelt werden muss um dem zunehmenden ohmschen Widerstand entgegen zu wirken. Daraufhin wird die Messspule an verschiedene Stellen im entstehenden Magnetfeld der langen Spule geschoben und die jeweils induzierte Spannung gemessen. \\
-Aus der Theorie der langen Spule ist zu erwarten, dass das Magnetfeld mittig in der Spule nahezu homogen ist, während es am Rand und außerhalb der Spule abfällt. In großer Entfernung ist die Feldstärke nahezu Antiproportional zum Abstand von der Spule zu erwarten.
+Aus der Theorie der langen Spule ist zu erwarten, dass das Magnetfeld mittig in der Spule nahezu homogen ist, während es am Rand und außerhalb der Spule abfällt. Der Abfall ist dabei weit von der Spule entfernt wieder schächer als unmittelbar am Rand.
 In unserem Fall betrug der Spulenstrom während der Durchführung $ I = \SI{2.90(3)}{\ampere} $. 
 
 \begin{figure}[H]
@@ -42,7 +83,7 @@ In unserem Fall betrug der Spulenstrom während der Durchführung $ I = \SI{2.90
 \caption{Magnetfeld der langen Spule in Abhängigkeit der Position}
 \end{figure}
 
-Im Diagramm wurde die Magnetfeldstärke gegen die Position der Messspule aufgetragen. Dazu wurden zunächst mit Hilfe von \eqref{eq:indSpannung} die gemessenen Spannungen in die Feldstärke umgerechnet. Die dazu gehörige Fehlerrechnung ist im Anhang unter \eqref{eq:indSpannungErr}. Dann wurde zum Vergleich die Kurve die nach \eqref{eq:langeSpule} zu erwarten ist eingezeichnet so wie ein Fit der Messwerte nach dem \textit{least squares Verfahren}. Der im beim Fit ermittelte Wert für $ I\cdot n $ beträgt $ I\cdot n = \SI{1987.2(69)}{\ampere\per\meter} $. Der aus gemessener Stromstärke und abgelesener Windungszahl und Spulenlänge errechnete Vergleichswert beträgt $ I\cdot n = \SI{1933.3(200)}{\ampere\per\meter} $. Da nur die Stromstärke als Fehlerbehaftet angenommen wir ergibt sich der Fehler aus dem gleich bleibenden relativen Fehler.
+Im Diagramm wurde die Magnetfeldstärke gegen die Position der Messspule aufgetragen. Dazu wurden zunächst mit Hilfe von \eqref{eq:indSpannung} die gemessenen Spannungen in die Feldstärke umgerechnet. Die dazu gehörige Fehlerrechnung ist im Anhang unter \eqref{eq:indSpannungErr}. Dann wurde zum Vergleich die Kurve die nach \eqref{eq:langeSpule} zu erwarten ist eingezeichnet so wie ein Fit der Messwerte nach dem \textit{least squares Verfahren} mit Hilfe von \textit{Gnuplot}. Der im beim Fit ermittelte Wert für $ \mu_r I n $ beträgt $ \mu_r I n = \SI{1987.2(69)}{\ampere\per\meter} $. Der aus gemessener Stromstärke und abgelesener Windungszahl und Spulenlänge errechnete Vergleichswert beträgt $ \mu_r I n = \SI{1933.3(200)}{\ampere\per\meter} $. Da nur die Stromstärke als Fehlerbehaftet angenommen wir ergibt sich der Fehler aus dem gleich bleibenden relativen Fehler.
 
 
 \subsection{Axialkomponente des Magnetfeldes einer kurzen Spule}
@@ -85,4 +126,4 @@ Während unserer Durchführung betrug der Spulenstrom $ I= \SI{1.000(3)}{A} $.
 
 \section{Diskussion}
 \subsection{lange Spule}
-Das homogene Feld entlang der Achse der Spule in der Mitte ist gut zu erkennen. Von der Mitte bis $ \SI{40}{\milli\meter} $ vor dem Ende der Spule ist das Magnetfeld um weniger als $ \SI{10}{\percent} $ gefallen. Ab etwa $ \SI{30}{\milli\meter} $ vor Spulenende beginnt das Feld immer schneller abzufallen. %TODO: Das ist noch nicht alles
+Das homogene Feld entlang der Achse der Spule in der Mitte ist gut zu erkennen. Von der Mitte bis $ \SI{40}{\milli\meter} $ vor dem Ende der Spule ist das Magnetfeld um weniger als $ \SI{10}{\percent} $ gefallen. Ab etwa $ \SI{30}{\milli\meter} $ vor Spulenende beginnt das Feld immer schneller abzufallen. Im Kurvenverlauf stimmt die tatsächlich gemessene Kurve sehr gut mit der aus der Theorie erwarteten überein. Lediglich im inneren der Spule ist das Feld geringfügig stärker als erwartet. Dies könnte darauf zurück zu führen sein, dass die metallische Messspule eine höhere relative Permeabilität als die umgebende Luft besitzt und somit das Magnetfeld verstärkt, wenn sie sich in der langen Spule befindet. Jedoch haben wir die Messspule nicht auf ferromagnetische Eigenschaften hin untersucht. Dennoch ist der Fehler nur sehr geringfügig. Berücksichtigt man die Grenzen der Vertrauensintervalle, so liegt die relative Abweichung gerade mal bei etwa $ \SI{1.36}{\percent} $.

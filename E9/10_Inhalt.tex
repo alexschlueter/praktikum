@@ -46,6 +46,32 @@ Im Diagramm wurde die Magnetfeldstärke gegen die Position der Messspule aufgetr
 
 
 \subsection{Axialkomponente des Magnetfeldes einer kurzen Spule}
+Analog zur langen Spule wird die Axialkomponente des Magnetfeldes auf der Achse einer kurzen Spule vermessen. Diesmal wird der Spulenstrom auf $I=\SI{0.98(1)}{\ampere}$ gehalten.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+  \begin{axis}[
+    width=15 cm,
+    height=9 cm,
+    xmin=-3, xmax=17,
+    ymin=0.1, ymax=3.17,
+    xlabel={Abstand zum Mittelpunkt der Spule $s$ [\si{cm}]},
+    ylabel={$B$ [\si{\micro T}]},
+    domain=-3:17,
+    legend entries={Messwerte, $\num{9.231e2}/(6.74^2+x^2)$},
+    legend pos=north east
+  ]
+  \addplot+ plot [only marks,mark=x, error bars/.cd, x dir=both, x fixed=0.1, y dir=both, y fixed=0.04]  table {ringaxial.csv};
+  \addplot+ plot [mark=none, samples=15, samples=150] {9.231e2/(6.74^2+x^2)^(3/2)};
+  \end{axis}
+\end{tikzpicture}
+\caption{Messwerte und berechnete Kurve für $B_\parallel$ auf der Achse einer kurzen Spule}
+\label{fig:axialaufachsekurz}
+
+Die Kurve im Diagramm entspricht dem Zusammenhang~\cref{eq:dipol} aus der Theorie, wobei $\frac{\mu_0\cdot m}{2\pi}\approx \SI{9.231e2}{\micro T.cm^2}$ und $R=\SI{6.74}{cm}$ eingesetzt wurden.
+Zu sehen ist, dass der Kurvenverlauf im Allgemeinen mit den Messwerten übereinstimmt. Allerdings weichen fast alle Messwerte leicht nach oben ab. Der Wert für $s=\SI{2}{cm}$ weicht so weit nach oben ab, dass wir einen groben Messfehler vermuten.
+\end{figure}
 
 \subsection{Magnetfeld in horizontal Symmetrieebene einer kurzen Spule}
 

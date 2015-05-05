@@ -1,0 +1,65 @@
+\section{Einführung}
+Licht breitet sich als Transversalwelle aus, d.h. die Schwingungsrichtung der E- und B-Feldvektoren steht senkrecht zur Ausbreitungsrichtung. Bleibt die Schwingungsrichtung in einer zeitlich festen Ebene mit der Ausbreitungsrichtung, so heisst das Licht \emph{linear polarisiert}. Dreht sich die Schwingungsebene mit der Zeit, so spricht man von \emph{elliptisch} polarisiertem Licht. Bleibt dabei auch noch die Amplitude zeitlich konstant, handelt es sich sogar um eine \emph{zirkulare} Polarisation.
+
+\subsection{Gesetz von Malus}
+Durch selektive Absorption in einem sog. dichroitischen Material kann die Polarisationsebene von einfallendem linear polarisiertem Licht gedreht werden. Dieses Material hat eine ausgezeichnete Durchlassrichtung, sodass der parallel hierzu polarisierte Lichtanteil (in der Idealisierung) vollständig durchgelassen, der hierzu senkrechte Teil vollständig absorbiert wird. Dieses Material wird in einem Polarisator verwendet.
+
+Mathematisch zerlegt man den $\vec{E}$-Vektor in die Anteile $\vec{E}=\vec{E}_\parallel + \vec{E}_\perp$. Ist $\alpha$ der Winkel zwischen $\vec{E}$ und der Durchlassrichtung, so berechnet man $\vec{E}_\parallel$ durch $\vec{E}_\parallel=\vec{E}\cdot \cos(\alpha)$. Also ist die Intensität hinter dem Polarisator gegeben durch
+\begin{equation}
+	I=|\vec{E}\cdot\cos(\alpha)|^2=E^2\cdot\cos(\alpha)^2=I_0\cdot\cos(\alpha)^2
+	\label{eq:malus}
+\end{equation}
+
+\subsection{Anisotropische Medien}
+In sog. anisotropen Medien ist die Antwort des Mediums auf Anregung durch einfallende elektromagentische Wellen abhängig von der Polarisations- und Ausbreitungsrichtung der einfallenden Wellen. Bei Kristallen ist dies durch die Anordnung und Orientierung der Atome in der Kristallstruktur bedingt.
+
+In einem doppelbrechenden Kristall ist eine optische Achse ausgezeichnet, die sich aus der Symmetrie ergibt. Fällt Licht parallel zur optischen Achse ein, so ist der Brechungsindex unabhängig von der Polarisation des Lichtes. Fällt das Licht jedoch mit einem Winkel $\varphi\neq 0$ zur optischen Achse ein, führt die Anisotropie zu einer Aufspaltung des Strahles in einen ordentlichen und einen außerordentlichen Strahl. Diese sind senkrecht zueinander polarisiert und breiten sich mit unterschiedlichen Geschwindigkeiten (Brechungsindizes $n_1$ bzw. $n_2$) im Kristall aus, sodass beim Austritt ein Phasenunterschied besteht. Die optische Weglängendifferenz zwischen den Strahlen beträgt $d(n_2-n_1)$ für ein Plättchen mit Dicke $d$.
+
+\subsubsection{$\lambda/2$-Platte}
+Bei einem $\lambda/2$-Plättchen gilt $d(n_2-n_1)=\lambda/2$, wobei $\lambda$ die Frequenz des einfallenden Lichtes ist. Sei $\varphi$ der Winkel des einfallenden E-Vektors zur opt. Achse, dann besteht bei Austritt der Welle ein Phasenunterschied von $\pi$ zwischen den Teilstrahlen, sodass der E-Feldvektor nach erneuter Überlagerung um $\Delta\varphi=2\varphi$ zur ursprünglichen Richtung gedreht ist.
+
+\subsection{Reflexion an Glasplatte}
+Bei Auftreffen einer elektromagnetischen Welle auf eine Grenzfläche wird durch die Flächennormale am Auftreffpunkt und Wellenvektor die \emph{Einfallsebene} festgelegt. Senkrecht dazu polarisiertes Licht heisst \emph{s-polarisiert}, paralleles Licht \emph{p-polarisiert}. Der Reflexionskoeffizient $R$ beschreibt den Verhältnis des reflektierten Lichtes zum einfallenden Licht und hängt vom Einfallswinkel und der Polarisation des einfallenden Lichtes ab. Bei dem \emph{Brewsterwinkel} $\alpha_B$ steht der reflektierte Strahl senkrecht auf dem transmittierten und der p-polarisierte Anteil wird gar nicht reflektiert. Dieser Winkel errechnet sich für eine Glasplatte mit Brechungsindex $n$ durch:
+\begin{equation}
+	\tan(\alpha_B)=n
+	\label{eq:brewster}
+\end{equation}
+
+\subsection{Optische Aktivität}
+In bestimmten Stoffen dreht sich die Polarisationsebene des einfallenden Lichtes um einen Winkel $\alpha$, der proportional zur Dicke $d$ der durchlaufenen Schicht ist. In Flüssigkeiten wie Zuckerlösung liegt dies begründet in der Chiralität der Moleküle, d.h. die Moleküle haben einen ausgezeichneten Drehsinn und reagieren auf Anregung durch linkshändig zirkular polarisiertes Licht anders als auf rechtshändig zirkular polarisiertes.
+
+Durchläuft ein Lichstrahl eine Zuckerlösung der Konzentration $c$ und Länge $l$, so dreht sich die Polarisationsebene um
+\begin{equation}
+	\alpha=\alpha_s\cdot c\cdot l\qquad\text{,}
+	\label{eq:zucker}
+\end{equation}
+wobei die Proportionalitätskonstante $\alpha_s$ \emph{spezifisches optisches Drehvermögen} genannt wird.
+\refstepcounter{section}
+\addcontentsline{toc}{section}{\protect\numberline{\thesection}Versuche}
+
+\newpage
+\refstepcounter{subsection}
+\addcontentsline{toc}{subsection}{\protect\numberline{\thesubsection}Das Gesetz von Malus}
+\refstepcounter{subsection}
+\addcontentsline{toc}{subsection}{\protect\numberline{\thesubsection}Die $\lambda/2$-Platte}
+\refstepcounter{subsection}
+\addcontentsline{toc}{subsection}{\protect\numberline{\thesubsection}Das Reflexionsvermögen einer Glasplatte}
+\refstepcounter{subsection}
+\addcontentsline{toc}{subsection}{\protect\numberline{\thesubsection}Konzentrationsbestimmungen von Blutzucker}
+
+\subsection{Kalkspat}
+Ein Kalkspatkristall wurde in den Strahlengang vor einen Analysator gestellt. Bei Drehen der Durchlassrichtung des Analysators wurde beobachtet, dass zwei Lichtpunkte auf der Wand hinter dem Kalkspat abwechselnd hell / dunkel wurden. Der erste Punkt hatte für einen Analysatorwinkel von $\SI{115(5)}{\degree}$ ein Intensitätsmaximum, der zweite bei $\SI{20(10)}{\degree}$. 
+\newpage
+\refstepcounter{section}
+\addcontentsline{toc}{section}{\protect\numberline{\thesection}Diskussion}
+\refstepcounter{subsection}
+\addcontentsline{toc}{subsection}{\protect\numberline{\thesubsection}Das Gesetz von Malus}
+\refstepcounter{subsection}
+\addcontentsline{toc}{subsection}{\protect\numberline{\thesubsection}Die $\lambda/2$-Platte}
+\refstepcounter{subsection}
+\addcontentsline{toc}{subsection}{\protect\numberline{\thesubsection}Das Reflexionsvermögen einer Glasplatte}
+\refstepcounter{subsection}
+\addcontentsline{toc}{subsection}{\protect\numberline{\thesubsection}Konzentrationsbestimmungen von Blutzucker}
+\subsection{Kalkspat}
+Wie erwartet wurde die Aufspaltung des einfallenden Lichtes durch Doppelbrechung in einen ordentlichen und einen außerodentlichen Strahl beobachtet. Die Winkeldifferenz zwischen den Polarisationsrichtungen der beiden Strahlen beträgt ungefähr $\SI{90}{\degree}$. D.h. die beiden Strahlen waren im Rahmen des Fehlers senkrecht zueinander polarisiert, was mit der Erwartung aus der Einführung konsistent ist.
+

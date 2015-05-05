@@ -12,6 +12,7 @@
 *.bbl
 *.swp
 *.synctex*
+*.tps
 
 
 desktop.ini

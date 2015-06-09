@@ -13,6 +13,11 @@
 *.swp
 *.synctex*
 *.tps
+*.tmp
+*.dep
+*.dpth
+*.md5
+*.auxlock
 
 
 desktop.ini

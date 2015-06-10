@@ -110,10 +110,10 @@ In ein Reagenzglas wurden mit einer Pipette \SI{1.00(2)}{ml} destilliertes Wasse
 
 Zu sehen ist, dass die Temperatur wie erwartet abfällt. Nach ca. \SI{220}{s} erreicht sie vorerst einen Tiefpunkt bei \SI{-5.5}{\degreeCelsius}. Bis zu diesem Zeitpunkt wurde während des Versuches beobachtet, dass das Wasser noch nicht gefroren war. Bei $t_1=\SI{223(1)}{s}$ bildete sich Frost an der Reagenzglaswand und die Temperatur stieg schnell auf \SI{0.4}{\degreeCelsius} an, wo sie bis $t_2=\SI{385(1)}{s}$ konstant blieb (vgl vertikale Linien in \cref{fig:kaeltemaschine}). Ab da folgte ein monotoner Abfall auf \SI{-25.4}{\degreeCelsius}.
 
-Um die Steigung der Abkühlkurve zu bestimmen, wurde mit gnuplot nach dem \emph{least-squares-}Verfahren der Bereich zwischen \SI{13.2}{s} und {150}{s} gegen die Funktion $f(x)=a\cdot x+b$ gefittet (rote Linie in \cref{fig:kaeltemaschine}). Dieser Bereich wurde so gewählt, da in den ersten \SI{13}{s} noch keine Temperaturänderung gemessen wurde (Anlaufphase des Motors, Reagenzglas muss sich erst abkühlen) und da bei größerem Abstand zur Zimmertemperatur der Wärmeverlust durch Wärmeleitung des Zylinderglases zu groß wird.
-Die Steigung beträgt $a=\SI{-0.1482(5)}{\degreeCelsius\per\s}$, was einer Kühlleistung von 
+Um die Steigung der Abkühlkurve zu bestimmen, wurde mit gnuplot nach dem \emph{least-squares-}Verfahren der Bereich zwischen \SI{13.2}{s} und {150}{s} gegen die Funktion $f(x)=a_K\cdot x+b$ gefittet (rote Linie in \cref{fig:kaeltemaschine}). Dieser Bereich wurde so gewählt, da in den ersten \SI{13}{s} noch keine Temperaturänderung gemessen wurde (Anlaufphase des Motors, Reagenzglas muss sich erst abkühlen) und da bei größerem Abstand zur Zimmertemperatur der Wärmeverlust durch Wärmeleitung des Zylinderglases zu groß wird.
+Die Steigung beträgt $a_K=\SI{-0.1482(5)}{\degreeCelsius\per\s}$, was einer Kühlleistung von 
 \begin{align}
-	P_K&=|a|\cdot V\cdot\rho_{H_2O}\cdot c_{H_2O}\\
+	P_K&=|a_K|\cdot V\cdot\rho_{H_2O}\cdot c_{H_2O}\\
 	&=\SI{-0.1482(5)}{\degreeCelsius\per\s}\cdot \SI{1}{ml}\cdot\SI{1}{\g\per\cubic\cm}\cdot \SI{4.185}{\joule\per\gram\per\kelvin} \\
 	&=\SI{0.6202(21)}{J/s}
 \label{eq:kuehlleistung}
@@ -121,7 +121,7 @@ Die Steigung beträgt $a=\SI{-0.1482(5)}{\degreeCelsius\per\s}$, was einer Kühl
 bzw. einer dem Wasser im RG entzogenen Wärme pro Umlauf von 
 \begin{equation}
 	Q_2=P_K/f=\frac{\SI{0.6202(21)}{J/s}}{\SI{3.05(2)}{Hz}}=\SI{0.2033(15)}{J}
-\label{eq:kuehlleistung}
+\label{eq:q2}
 \end{equation}
 entspricht.
 
@@ -148,16 +148,110 @@ Die pro Umlauf an das Kühlwasser abgegebene Wärme wird analog zu \cref{eq:reib
 	Q_1&=\frac{D}{f}\cdot \rho_{H_2O}\cdot c_{H_2O}(T_1-T_0) \\
 	&=\frac{\SI{3.88(6)}{ml/s}}{\SI{3.05(2)}{Hz}}\cdot \SI{1}{\g\per\cubic\cm}\cdot \SI{4.185}{\joule\per\gram\per\kelvin}\cdot \SI{1.6(2)}{K} \\
 	&=\SI{8.52(107)}{J}
-\label{eq:q2}
+\label{eq:q1}
 \end{align}
 
 Die Leistungszahl ergibt sich mit der in Teil 1 berechneten Reibungsarbeit pro Umlauf zu
 \begin{align}
-	\epsilon&=\frac{Q_2}{W}=\frac{Q_2}{Q_1-Q_2+W_R}\\
+	\epsilon_K&=\frac{Q_2}{W}=\frac{Q_2}{Q_1-Q_2+W_R}\\
 	&=\frac{\SI{0.2033(15)}{J}}{\SI{8.52(107)}{J}-\SI{0.2033(15)}{J}+\SI{2.13(107)}{J}}\\
 	&=\SI{1.95(39)}{\percent}\qquad.
-\label{eq:schmelzberechnet}
+\label{eq:leistungkalt}
 \end{align}
 
 \subsubsection{Bestimmung der Heizleistung}
 Nun wird der Motor bei gleich bleibender Drehzahl in umgekehrter Umlaufrichtung betrieben und die Aufwärmkurve des Wassers aufgenommen.
+
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}
+  \begin{axis}[
+    width=15 cm,
+    height=9 cm,
+    xmin=0, xmax=378,
+    ymin=-25, ymax=50,
+    xlabel={Zeit $t$ [\si{s}]},
+    ylabel={Temperatur $T$ [\si{\degreeCelsius}]},
+    domain=200:360,
+    legend entries={Temperatur des Wassers im RG, $\SI{0.3152}{\degreeCelsius\per\s}\cdot x-\SI{66.1277}{\degreeCelsius}$},
+    legend pos=north west
+  ]
+  \addplot+ plot [only marks,mark=x, error bars/.cd, x dir=both, x fixed=0.2, y dir=both, y fixed=0.1]  table[skip first n=2, each nth point=25, filter discard warning=false, unbounded coords=discard] {res/Nr3_Temp_Zeit.txt};
+	\addplot+ plot [mark=none]  {0.3152*x-66.1277};
+	\draw ({axis cs:50,0}|-current axis.south) -- ({axis cs:50,0}|-current axis.north);
+	\draw ({axis cs:220,0}|-current axis.south) -- ({axis cs:220,0}|-current axis.north);
+  \end{axis}
+\end{tikzpicture}
+\caption{Temperatur von \SI{1}{ml} Wasser im Reagenzglas am Zylinderkopf bei Betrieb des Stirling-Motors als Wärmemaschine}
+\label{fig:waermepumpe}
+\end{figure}
+Zu sehen ist ein rascher Anstieg bis ca. $T=\SI{0}{\degreeCelsius}$ bei $t=\SI{50}{s}$, dann ein Plateau (im Unterschied zur Abkühlkurve liegt auch in diesem Abschnitt eine leichte Steigung vor) bis ca. $t=\SI{220}{s}$ und anschließender monotoner Anstieg.
+
+Wieder wurden die Temperaturen des abfließenden Kühlwassers sowie des Wasserreservoirs vor und nach der Aufnahme der Kurve mit dem Thermometer gemessen.
+\begin{table}[h!]
+\centering
+\begin{tabular}{c | c c}
+		& vorher & nachher  \\ \midrule
+		abfl. Kühlwasser & $T_0=\SI{23.9(1)}{\degreeCelsius}$ & $T_1=\SI{22.7(1)}{\degreeCelsius}$ \\
+		Wasserreservoir & \SI{22.8(1)}{\degreeCelsius} & \SI{22.9(1)}{\degreeCelsius}
+\end{tabular}
+\caption{Wassertemperaturen vor und nach Betrieb der Wärmemaschine}
+\label{tab:wassertemps_warm}
+\end{table}
+
+Analog zu Teil 2 wird mit einem Fit (rote Linie in \cref{fig:waermepumpe}) die Steigung in der Nähe der Raumtemperatur bestimmt: $a_W=\SI{0.3152(13)}{\degreeCelsius\per\s}$.
+
+Dies führt zu einer Heizleistung von
+\begin{align}
+	P_H&=|a_H|\cdot V\cdot\rho_{H_2O}\cdot c_{E}\\
+	&=\SI{0.3152(13)}{\degreeCelsius\per\s}\cdot \SI{1}{ml}\cdot\SI{1}{\g\per\cubic\cm}\cdot \SI{4.185}{\joule\per\gram\per\kelvin} \\
+	&=\SI{1.319(5)}{J/s}
+\label{eq:heizleistung}
+\end{align}
+bzw. einer dem Wasser im RG pro Umlauf zugeführte Wärme von 
+\begin{equation}
+	Q_2=P_H/f=\frac{\SI{1.319(5)}{J/s}}{\SI{3.05(2)}{Hz}}=\SI{0.4325(32)}{J} \qquad.
+\label{eq:q2_H}
+\end{equation}
+
+Die pro Umlauf dem Kühlwasser entzogene Wärme wird analog zu \cref{eq:q1} ermittelt:
+\begin{align}
+	Q_1&=\frac{D}{f}\cdot \rho_{H_2O}\cdot c_{H_2O}(T_0-T_1) \\
+	&=\frac{\SI{3.88(6)}{ml/s}}{\SI{3.05(2)}{Hz}}\cdot \SI{1}{\g\per\cubic\cm}\cdot \SI{4.185}{\joule\per\gram\per\kelvin}\cdot \SI{1.2(2)}{K} \\
+	&=\SI{6.39(107)}{J}
+\label{eq:q1_H}
+\end{align}
+
+Die Leistungszahl ergibt sich mit der in Teil 1 berechneten Reibungsarbeit pro Umlauf zu
+\begin{align}
+	\epsilon_H&=\frac{Q_2}{|W|}=\frac{Q_2}{|Q_2-Q_1+W_R|}\\
+	&=\frac{\SI{0.4325(32)}{J}}{|\SI{0.4325(32)}{J}-\SI{6.39(107)}{J}+\SI{2.13(107)}{J}|}\\
+	&=\SI{11.3(63)}{\percent}\qquad.
+\label{eq:leistungheiss}
+\end{align}
+
+Es hat $t=\SI{55.8(2)}{s}$ gedauert, das Eis von \SI{-24.1(1)}{\degreeCelsius} auf \SI{0}{\degreeCelsius} aufzuwärmen. Mit der Heizleistung kann die spezifische Wärme von Eis berechnet werden:
+\begin{align}
+	c_E&=\frac{\Delta Q}{m\Delta T}=\frac{P_H\cdot t}{m\Delta T}\\
+	&=\frac{\SI{1.319(5)}{J/s}\cdot \SI{55.8(2)}{s}}{\SI{1}{g}\cdot \SI{24.1(1)}{\degreeCelsius}}\\
+	&=\SI{3.054(20)}{\joule\per\g\per\kelvin}
+\label{eq:eisspez}
+\end{align}
+
+\newpage
+\refstepcounter{subsection}
+\addcontentsline{toc}{subsection}{\protect\numberline{\thesubsection}Betrieb als Wärmekraftmaschine}
+\refstepcounter{subsubsection}
+\addcontentsline{toc}{subsubsection}{\protect\numberline{\thesubsubsection}Bestimmung des Wirkungsgrades aus dem ($p$, $V$)-Diagramm}
+\refstepcounter{subsubsection}
+\addcontentsline{toc}{subsubsection}{\protect\numberline{\thesubsubsection}Bestimmung des Wirkungsgrades durch Abbremsen}
+\section{Diskussion}
+\subsection{Betrieb als Wärmepumpe bzw. Kältemaschine}
+Die größte Fehlerquelle war hier die Messung der Temperatur des abfließenden Kühlwassers mit dem Thermometer. Zum Beispiel kam es bei der Berechnung der Reibungsarbeit in \cref{eq:reibungswaerme} zu einem relativen Fehler von \SI{50}{\percent}, da der Temperaturunterschied nur mit \SI{0.4(2)}{K} angegeben werden konnte. Auch der Fehler in der Leistungszahl der Wärmepumpe (\cref{eq:leistungheiss}) ist hierrauf zurückzuführen. Hinzu kommt, dass die Temperatur des Wasserreservoirs nicht konstant blieb (wie die Messungen in den \cref{tab:wassertemps,tab:wassertemps_warm} zeigen). Das bedeutet, dass die Temperaturänderung beim abfließenden Kühlwasser nicht alleine der Wärme von einem Umlauf zuzuschreiben ist.
+Deutlich genauer war die Bestimmung der Heiz- bzw. Kühlleistung anhand der Steigung in den Temperaturkurven.\\
+
+Die Leistungszahl der Wärmepumpe ist, auch wenn man an den unteren Rand des Fehlerintervalls geht, deutlich größer als die Leistungszahl der Kältemaschine.
+\subsection{Betrieb als Wärmekraftmaschine}
+Betrachtet man die Abschnitt 2.2.1 ermittelte Heizleistung pro Umlauf, so fällt direkt ein Fehler bei der 14V Messung auf. Die Frequenz f von \SI{3.63}{Hz} ist zu niedrige. Man würde eine Frequenz zwischen \SI{5.08}{Hz} und \SI{7.13}{Hz} erwarten. Entsprechend ist die für diesen Wert ermittelte Heizleistung nicht Aussage Kräftig. Eine mögliche Ursache für diesen Messfehler könnte gewesen sein, dass sich das System noch nicht vollständig eingeschwungen hatte oder dass der Fehler bei der FTT Bestimmung aufgetreten ist. Die Auswertung zeigt auch, dass der Wirkungsgrad mit zunehmender Heizspannung steigt (vgl. Tabelle 5).
+
+Bei dem in 2.2.2 ermittelten maximalen Wirkungsgrad des Motors vom \SI{6.0976}{\percent} bei \SI{16}{V} ist im Vergleich mit dem im 2.2.1 ermittelten Wirkungsgrad von \SI{8.78(185)}{\percent} für \SI{16}{V}, dass dieser deutlich über den \SI{6.0976}{\percent} liegt und auch nicht im Toleranzbereich dieser Messung liegt. Leider kann aufgrund der fehlenden Bestimmung der Halbwertsbreite der Frequenz im FTT keine Aussagen über den Toleranzbereich des ermittelten maximal Wirkungsgrad gemacht werde. Die Größenordung der Wirkungsgrade stimmen aber weites gehend überein.

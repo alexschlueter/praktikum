@@ -1,0 +1,30 @@
+\documentclass[ngerman,pstricks,border=12pt]{standalone}
+% --- Pakete einbinden
+\input{01_PaketeEinstellungen.tex}
+\begin{document}
+\setcounter{figure}{8}
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+  \begin{axis}[
+    width=15 cm,
+    height=9 cm,
+    xmin=0, xmax=7,
+    ymin=6, ymax=12,
+    xlabel={Abstand der Strahlen zur Linsenmitte},
+    ylabel={Brennweite $f$ [\si{cm}]},
+    domain=-3:17,
+		xtick={0.5,6},
+		xticklabels={am Rand, mittig},
+    %legend entries={Neontriode},
+    legend pos=north west
+  ]
+  \addplot+ plot [only marks,mark=x, error bars/.cd, y dir=both, y fixed=0.2]  coordinates {
+		(1,7.0) (2,9.7) (3,10.1) (4,10.7) (5,11.0) (6,11.62) 
+	};
+	\end{axis}
+\end{tikzpicture}
+
+\label{fig:sphaerisch}
+\end{figure}
+\end{document}

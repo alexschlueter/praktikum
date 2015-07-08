@@ -1,0 +1,44 @@
+% Eigene Befehle eignen sich gut, um Abkürzungen für lange Befehle zu erstellen. Die Syntax ist folgende:
+% \newcommand{neuer Befahl}[Anzahl Parameter (optional)]{ein langer Befehl}
+% Das folgende Beispiel fügt ein Bild mit bestimmten vorgegebenen Optionen ein:
+\newcommand{\centeredImage}[1]{
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=0.50\textwidth]{#1}
+	\end{figure}
+}
+% #1 ist dabei ein Parameter, den man \centeredImage übergeben muss. In 10_Titelseite.tex wird dieser Befehl verwendet. Der Parameter ist dort Bilder/titelseite.jpg.
+% Benötigt man keine Parameter, dann lässt man [1] weg. Werden zusätzliche Parameter benötigt, dann kann man die Zahl auf maximal 9 erhöhen.
+
+% Ein Befehl, um eine E-Mail-Adresse darzustellen bzw. automatisch zu verlinken
+\newcommand{\email}[1]{\href{mailto:#1}{\texttt{#1}}}
+
+\newcommand{\di}{\mathrm{d}}
+
+\makeatletter
+\pgfplotsset{
+    my filter/.style args={every#1except#2and#3there#4}{%
+        /pgfplots/x filter/.append code={%
+            \def\myswitch{1}% Switch is by default on, you can do this with a TeX \if too
+            \ifnum\coordindex>#2%Ready to turn off the filter?
+            % Yes but are we still in the desired interval?
+                \ifnum\coordindex<#3
+                \def\myswitch{0}% Turn it off
+                \fi%
+            \fi%No else
+            % Now if the switch is on
+            \ifnum1=\myswitch%
+                \pgfmathsetmacro\temp{int(mod(\coordindex,#1))}%
+                    \ifnum0<\temp
+                        \let\pgfmathresult\pgfutil@empty
+                    \fi%
+						\else
+								\pgfmathsetmacro\temp{int(mod(\coordindex,#4))}%
+                    \ifnum0<\temp
+                        \let\pgfmathresult\pgfutil@empty
+                    \fi%
+            \fi%
+        }
+    }
+}
+\makeatother

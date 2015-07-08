@@ -1,0 +1,15 @@
+\documentclass[ngerman,pstricks,border=12pt]{standalone}
+% --- Pakete einbinden
+\input{01_PaketeEinstellungen.tex}
+\begin{document}
+\setcounter{table}{2}
+\begin{table}
+\centering
+\begin{tabular}{c c c c c | c}
+		\multicolumn{5}{c|}{Messwerte für $f$} & Mittelwert \\ \hline
+		\SI{11.4}{cm} & \SI{11.6}{cm} & \SI{11.7}{cm} & \SI{11.8}{cm} & \SI{11.6}{cm} & \SI{11.62(15)}{cm}
+\end{tabular}
+\caption{Brennweite $f$ der Sammellinse. Fehler der Messwerte jeweils $\pm\SI{0.3}{cm}$.}
+\label{tab:brenn}
+\end{table}
+\end{document}

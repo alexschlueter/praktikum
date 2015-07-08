@@ -1,13 +1,37 @@
 \documentclass[ngerman,pstricks,border=12pt]{standalone}
 % --- Pakete einbinden
 \input{01_PaketeEinstellungen.tex}
+\usetikzlibrary{shapes.misc}
 \usetikzlibrary{3d}
 \begin{document}
-
-\begin{tikzpicture}[x={(-1cm,-0.5cm)}, y={(0.5cm,-0.20cm)}, z={(0.15cm,.5cm)}]
+\tikzset{
+	point/.style={
+		thick,
+		draw=gray,
+		cross out,
+		inner sep=0pt,
+		minimum width=4pt,
+		minimum height=4pt,
+	}
+}
+\begin{tikzpicture}[]
 \coordinate (0) at (0,0,0);
-\draw (0) -- +(10,0,0) node [right] {x};
+\draw (0,0,0) -- node[below] {$a$} (7,0,0) -- (10,0,0) node [right] {Laser};
 
 \draw[canvas is yz plane at x=0] (-4,1) rectangle (4,-1);
+\draw[canvas is xy plane at z=1] (8,-1) -- (6,-1) -- (7,1) -- cycle;
+\draw[canvas is xy plane at z=-1] (8,-1) -- (6,-1) -- (7,1) -- cycle;
+\draw (8,-1,1) -- (8,-1,-1);
+\draw (6,-1,1) -- (6,-1,-1);
+\draw (7,1,1) -- (7,1,-1);
+\node[above] at (0,3,0) {$y_m$};
+\node[below] at (0,0,0) {$0$};
+\draw (7,0,0) -- (0,3,0);
+\draw[dotted] (0,3,0) -- (0);
+\node[point] at (0,3,0) {};
+\node[point] at (7,0,0) {};
+\node[point] at (0,0,0) {};
+\draw[canvas is xy plane at z=0] (7,0) ++(180:2cm) arc (180:157:2cm) node[midway, right] {$\delta_m$};
+%\draw[decorate, decoration={brace}, xshift=4pt, yshift=4pt] (0,3,0) -- (7,0,0);
 \end{tikzpicture}
 \end{document}

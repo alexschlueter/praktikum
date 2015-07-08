@@ -1,0 +1,19 @@
+\documentclass[ngerman,pstricks,border=12pt]{standalone}
+% --- Pakete einbinden
+\input{01_PaketeEinstellungen.tex}
+\begin{document}
+\setcounter{table}{1}
+\begin{table}
+\centering
+\begin{tabular}{c c c c c c c}
+		& & \multicolumn{4}{c}{Beugungsordnung $m$} \\
+		 Laser &  & 1 & -1 & 2 & -2 & Brechungsindex $n$ \\ \midrule
+		\multirow{2}{*}{rot} & Luft & \SI{23.5}{\degree} & \SI{24.0}{\degree} & \SI{52.0}{\degree} & \SI{52.5}{\degree} & \multirow{2}{*}{\num{1.301(21)}} \\
+		& Wasser & \SI{18.0}{\degree} & \SI{18.0}{\degree} & \SI{37.5}{\degree} & \SI{37.5}{\degree} \\ \midrule
+		\multirow{2}{*}{blau} & Luft & \SI{14.5}{\degree} & \SI{14.4}{\degree} & \SI{29.5}{\degree} & \SI{30.0}{\degree} & \multirow{2}{*}{\num{1.331(27)}} \\
+		& Wasser & \SI{11.0}{\degree} & \SI{10.5}{\degree} & \SI{22.0}{\degree} & \SI{22.0}{\degree} \\
+\end{tabular}
+\caption{Bestimmung der Brechzahl von Wasser anhand der Beugungsmaxima an einem Gitter mit rotem und blauem Laser. Der Fehler für die Winkel beträgt $\pm\SI{0.1}{\degree}$.}
+\label{tab:kuvette}
+\end{table}
+\end{document}

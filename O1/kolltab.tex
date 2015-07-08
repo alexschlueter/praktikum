@@ -1,0 +1,15 @@
+\documentclass[ngerman,pstricks,border=12pt]{standalone}
+% --- Pakete einbinden
+\input{01_PaketeEinstellungen.tex}
+\begin{document}
+\setcounter{table}{3}
+\begin{table}
+\centering
+\begin{tabular}{c c c c c | c}
+		\multicolumn{5}{c|}{Messwerte für Linsenabstand $d$} & Mittelwert \\ \hline
+		\SI{4.9}{cm} & \SI{4.8}{cm} & \SI{5.0}{cm} & \SI{5.0}{cm} & \SI{5.2}{cm} & \SI{4.98(15)}{cm}
+\end{tabular}
+\caption{Abstand $d$ zwischen Sammel- und Streulinse, sodass die Laserstrahlen hinter der Anordnung kollimiert sind. Fehler der Messwerte jeweils $\pm\SI{0.2}{cm}$.}
+\label{tab:koll}
+\end{table}
+\end{document}
